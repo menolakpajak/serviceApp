@@ -331,12 +331,14 @@ $other_info = ucfirst($data2['other']);
             <hr id='foot-hr' class="mt-1">
         <button id="print" class="btn btn-secondary mb-3" onclick="printDocument()"><i class="bi bi-printer-fill"></i> Print</button>
         <a class="send btn btn-success mb-3" target="_blank" href="https://wa.me/<?= $data['wa']; ?>?text=<?= urlencode($qrcode); ?>"><i class="bi bi-whatsapp"></i> Send</a>
+        <a class="send btn btn-warning mb-3" href="javascript:void(0)" onclick="sendBot('<?= $data['wa']; ?>','<?= $qrcode; ?>','receipt')"><i class="bi bi-robot"></i> BOT</a>
         <a class="send btn btn-primary mb-3" href="<?= $qrcode; ?>" onclick="copyURI(event)"><i class="bi bi-copy"></i> Copy</a>
     </div>
 
 
 
 <script src="../alert/sweetalert2.all.js?versi=<?= $version ; ?>"></script>
+<script src="../alert/confirm.js?<?=$version ; ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <!-- html2canvas -->

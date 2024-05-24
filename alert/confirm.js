@@ -2246,3 +2246,30 @@ function deleteINV(id){
         }
     })
 }
+
+// CHAT BOT
+function sendBot(no,msg,kind){
+ 
+    let formData = new FormData();
+            formData.append("no", no);
+            formData.append("msg", msg);
+            formData.append("kind", kind);
+            formData.append("submit", true);
+
+            var ajax = new XMLHttpRequest();
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        var ok = ajax.responseText;
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'SEND WITH BOT',
+                            confirmButtonText: "OK",
+                            text: ok,
+                        })
+                    }
+                }
+                ajax.open("POST", `../ajax/sendWa.php`, "true");
+                ajax.send(formData);
+
+
+}

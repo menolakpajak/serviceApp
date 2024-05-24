@@ -11,7 +11,8 @@ require '../function.php';
 
 $kode = $_SESSION['kode'];
 $login = data("SELECT * FROM logininfo WHERE kodeuser = '$kode' ")[0];
-$penerima = $data['penerima'];
+
+
 if($_SESSION['token'] != $login['token']){
 	include_once '../struktur/ajax-logout.php';
 }
@@ -35,7 +36,7 @@ if(!empty($data)){
 }else{
 	include_once '../struktur/ajax-404.php';
 }
-
+$penerima = $data['penerima'];
 
 // <<<...LOGIC FOR CHECKBOX....>>
 
