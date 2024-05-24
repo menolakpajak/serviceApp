@@ -68,7 +68,7 @@ if(isset($_POST['login'])){
     <title>LOGIN AREA</title>
 </head>
 <body >
-    <img id="img" style="width: 150px; padding:10px; box-sizing:border-box; " src="../imgs/logo/logo-login.png" alt="">
+    <img id="img" style="display:none;width: 150px; padding:10px; box-sizing:border-box; " src="../imgs/logo/logo-login.png" alt="">
     <p id="version" style="color: white; font-style: italic ; ">Version : <?= $version ; ?></p>
     <div id="container" style="width: 30%; margin-top:7%;" class="container ">
         <h1 style="text-align: center;">login akses</h1>

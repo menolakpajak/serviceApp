@@ -149,15 +149,15 @@ $other_info = ucfirst($data2['other']);
         <div id="head" class="row rounded">
             <div class="col-8">
                 <div class="row pt-2">
-                    <img src="../imgs/logo/logo-only.png" class="col-6 h-100 p-1 gx-0 w-25">    
+                    <img src="../imgs/logo/logo-only.png" class="d-none col-6 h-100 p-1 gx-0 w-25">    
                     <div class="col-6 gx-0 d-flex align-items-center">
                         <div>
-                            <h3 class="m-0 font-head head-color">Sinar Photo</h3>
-                            <h6 class="m-0 font-head">PT. Sinar Sumber Makmur</h6>
+                            <h3 class="m-0 font-head head-color">Digital Service</h3>
+                            <!-- <h6 class="m-0 font-head">PT. Sinar Sumber Makmur</h6> -->
                             <h6 class="m-0 font-head">
-                            Jl. Waturenggong no.137<br>
+                            Jl. Tukad Pancoran IV <br>block A4 no 12B <br>
                             Denpasar - Bali <br>
-                            (0361) 238 687</h6>
+                            08980000703</h6>
                         </div>
                     </div>
                 </div>

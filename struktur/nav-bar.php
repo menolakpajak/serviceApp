@@ -5,7 +5,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-				<a class="navbar-brand" href="<?= $page[1]; ?>"><span>Sinar </span>Service</a>
+				<a class="navbar-brand" href="<?= $page[1]; ?>"><span>Digital </span>Repair</a>
 				<ul class="nav navbar-top-links navbar-right">
 					
 						<ul class="dropdown-menu dropdown-messages msg-notif">
