@@ -1,0 +1,132 @@
+body {
+    background: #eee;
+}
+
+.p-3 {
+    background-color: white;
+    border-radius: 5px;
+
+}
+.rowe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#head img {
+    width: 100px;
+    height: 100px;
+}
+#head {
+    display: flex;
+    justify-content:left ;
+    margin-top: 20px;
+}
+#headText {
+    margin-top: 30px;
+}
+.table .total th{
+    border: transparent !important;
+    padding: 2px !important;
+    
+}
+.table .total td{
+    border: transparent !important;
+    
+}
+
+hr {
+    margin-top: 0;
+    border: 1px dashed black;
+}
+
+#space {
+    margin-top: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.box p {
+    display: block;
+
+}
+.input {
+    min-width: 200px;
+
+}
+.box h6 {
+    display: inline-block;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.582);
+}
+
+#kelengkapan,
+.other,
+#kerusakan {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.kelengkapan {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+.kelengkapan .box p {
+    margin-left: 29px;
+}
+#unit,
+#ttd {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ttd div {
+    margin-top: 10px;
+    width: 230px;
+    height: 130px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#ttd div p {
+    font-size: smaller;
+}
+
+#print {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+
+
+@media print {
+    .container {
+        margin: 1px;
+        /* zoom: 100%; */
+    }
+    /* #head img {
+        width: 50%;
+    } */
+    #print {
+        display: none;
+    }
+
+    /* .text-right{
+        margin-top: 10px;
+        margin-left: 50px;
+    } */
+
+    
+
+    body{
+        background: rgb(255, 255, 255);
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 10px !important;
+    }
+}

@@ -1,0 +1,98 @@
+
+body {
+    background-image: url(../imgs/logo/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+h1 {
+    color: honeydew;
+}
+
+#version {
+    display: block;
+    position: absolute !important; 
+    top: 10px;
+    right: 10px;
+}
+.btn-grey {
+    background-color: #d5d9dc42 !important;
+    color: white !important;
+}
+
+#container {
+    max-width: 300px;
+}
+#username,
+#password {
+    background-color: rgba(255, 255, 255, 0.096) !important;
+    color: white !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    
+}
+
+
+:-ms-input-placeholder {
+    color: white !important;
+}
+::placeholder {
+    color: white !important;
+}
+::-webkit-input-placeholder {
+    color: white !important;
+}
+::-moz-placeholder {
+    color: white !important;
+}
+
+/* X-Small devices (portrait phones, less than 576px)
+No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+
+
+
+
+}
+ 
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+    body{
+        min-width: 375px;
+        
+    }
+    body #img {
+        width: 20%px !important;
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+        width: 300px !important;
+        border: 2px solid #555;
+        border-radius: 10px;
+        
+    }
+    #login{
+        width: 270px;
+    }
+
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { }
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {  }
+
+
+

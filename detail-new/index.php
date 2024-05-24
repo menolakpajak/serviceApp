@@ -1,0 +1,545 @@
+<?php 
+ob_start();
+session_start();
+$page = ['detail-new','../'];
+
+
+if(empty($_SESSION['login'])){
+    header('Location: ../login');
+}
+
+require '../config.php';
+
+$kode = $_SESSION['kode'];
+login($kode,$_SESSION['token'],['master','admin','audit','cs']);
+$userName = $_SESSION['user'];
+$kode = $_SESSION['kode'];
+$akses = $_SESSION['akses'];
+
+if(empty($_GET['id'])){
+	header('Location: ../');
+	die;
+}
+
+
+$id = removeSpecialChar($_GET['id']);
+$data = data("SELECT * FROM data WHERE no_spk = '$id'");
+if(empty($data)){
+	header('Location: ../detail-pickup/?id='.$id);
+	exit();
+}
+$data = $data[0];
+
+$spk = str_split($data['no_spk'],7);
+$huruf = $spk[1];
+$angka = str_split($spk[0],3);
+$spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
+
+$penerima = $data['penerima'];
+$data['penerima'] = data("SELECT * FROM logininfo WHERE kodeuser = '$penerima'")[0]['nama'];
+$json = $data['kelengkapan'];
+$data2 = json_decode($json,true);
+if($data['status'] == 'proses'){
+	header('Location: ../detail-proses/?id='.$id); die;}
+if($data['status'] == 'done'){
+	header('Location: ../detail-done/?id='.$id); die;}
+if($data['status'] == 'abort'){
+	header('Location: ../detail-abort/?id='.$id); die;}
+
+
+						// <<<...LOGIC FOR CHECKBOX....>>
+
+$kamera = 'style="display:none"';
+$lensa = 'style="display:none"';
+$battery = 'style="display:none"';
+$memory = 'style="display:none"';
+$strap = 'style="display:none"';
+$bodyCap = 'style="display:none"';
+$lensCap = 'style="display:none"';
+$filter = 'style="display:none"';
+
+$kamera_info = ucfirst($data2['check_kamera_info']);
+$lensa_info = ucfirst($data2['check_lensa_info']);
+$battery_info = ucfirst($data2['check_battery_info']);
+$memory_info = ucfirst($data2['check_memory_info']);
+$strap_info = ucfirst($data2['check_strap_info']);
+$bodyCap_info = ucfirst($data2['check_bodycap_info']);
+$lensCap_info = ucfirst($data2['check_lenscap_info']);
+$filter_info = ucfirst($data2['check_filter_info']);
+$other = ucfirst($data2['other']);
+
+	if($data2['check_kamera'] == 'on'){$kamera = "";}
+	if($data2['check_lensa'] == 'on'){$lensa = "";}
+	if($data2['check_battery'] == 'on'){$battery = "";}
+	if($data2['check_memory'] == 'on'){$memory = "";}
+	if($data2['check_strap'] == 'on'){$strap = "";}
+	if($data2['check_bodycap'] == 'on'){$bodyCap = "";}
+	if($data2['check_lenscap'] == 'on'){$lensCap = "";}
+	if($data2['check_filter'] == 'on'){$filter = "";}
+
+	if(empty($data2['check_kamera_info'])){$kamera_info = "------";}
+	if(empty($data2['check_lensa_info'])){$lensa_info = "------";}
+	if(empty($data2['check_battery_info'])){$battery_info = "------";}
+	if(empty($data2['check_memory_info'])){$memory_info = "------";}
+	if(empty($data2['check_strap_info'])){$strap_info = "------";}
+	if(empty($data2['check_bodycap_info'])){$bodyCap_info = "------";}
+	if(empty($data2['check_lenscap_info'])){$lensCap_info = "------";}
+	if(empty($data2['check_filter_info'])){$filter_info = "------";}
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Detail - New</title>
+	
+	<!-- favicon -->
+	<?php include_once '../struktur/favicon.php' ?>
+	
+	<link href="../css/bootstrap.min.css?versi=<?= $version ; ?>" rel="stylesheet">
+	<link href="../css/font-awesome.min.css?versi=<?= $version ; ?>" rel="stylesheet">
+	<link href="../css/datepicker3.css?versi=<?= $version ; ?>" rel="stylesheet">
+	<link href="../css/styles.css?versi=<?= $version ; ?>" rel="stylesheet">
+	<link href="../css/detail.css?versi=<?= $version ; ?>" rel="stylesheet">
+	<link href="../alert/sweetalert2.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+<!-- nav bar -->
+<?php include_once '../struktur/nav-bar.php';?> 
+<!-- nav bar -->
+
+	<!-- HIDEN INPUT -->
+	<input type="hidden" id="id" value="<?= $id ; ?>">
+
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+	<?php include_once '../struktur/profil.php' // foto profil ?>
+		<div class="divider"></div>
+		 
+		<?php include_once('../struktur/page.php');  // side page >>?>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-sticky-note"></em>
+				</a></li>
+				<li class="active">Detail Order</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">	
+			<div class="col-lg-12" >
+				<div style="display: flex; flex-direction:row;">
+					<h1 style="font-weight: 500;" class="page-header color-blue"><?= ucfirst($data['status']) ; ?> </h1>
+					<i style="font-size: x-large; margin-top:8px;" class="fa fa-plus color-blue" aria-hidden="true"></i>
+				</div>
+				<h3 class="page-header strong color-gray"><?= $spk ; ?></h3>
+			</div>
+		</div><!--/.row-->
+		
+		
+		<div id="edit" class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div style="font-weight: bold;" class="panel-heading">
+						<?= date('d-M-Y', strtotime($data['date'])) ; ?>
+						
+						</div>
+					<div  class="panel-body">
+						<div id="container" class="canvas-wrapper">
+						
+							<form action="tes.php" method="post">
+								
+
+												<!-- PERSONAL INFO -->
+						<div id="head2">
+								<div id="personal_info">
+								<div class="title_fill">
+									<h3>Personal Info</h3>
+								</div>
+										<div class="form-group input">
+											<label for="nama">Nama :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-id-card-o" aria-hidden="true"></i>
+												<input type="text" class="form-control" id="nama" name="nama" maxlength="100" value="<?= ucfirst($data['nama']) ; ?> " readonly>
+											</div>
+										</div>
+										<div class="form-group input">
+											<label for="wa">WA no :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-whatsapp" aria-hidden="true"></i>
+												<input type="number" class="form-control" id="wa" name="wa" maxlength="50" value="<?= $data['wa'] ; ?>" readonly>
+											</div>
+										</div>
+										<div class="form-group input">
+											<label for="no_tlp">No Tlp :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-phone" aria-hidden="true"></i>
+												<input type="number" class="form-control" id="no_tlp" name="no_tlp" maxlength="50" value="<?= $data['no_tlp'] ; ?>" readonly>
+											</div>
+										</div>
+										<div class="form-group input">
+											<label for="alamat">Alamat :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-location-arrow" aria-hidden="true"></i>
+												<input type="text" class="form-control" id="alamat" name="alamat" value="<?= ucfirst($data['alamat']) ; ?>" readonly>
+											</div>
+										</div>										
+								</div>
+
+					<!-- _____________________________________________________________________________ -->
+					
+					
+														<!-- UNIT INFO -->
+					
+								<div id="unit_info">
+									<div class="title_fill">
+										<h3>Unit Info</h3>
+									</div>
+									<div class="form-group input" >
+										<label for="tipe">Tipe Unit :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-camera" aria-hidden="true"></i>
+												<input style="width: 100px;" type="text" class="form-control" id="tipe" name="tipe" maxlength="200" value="<?= ucfirst($data['tipe']) ; ?>" readonly>
+											</div>
+									</div>
+								<div class="form-group input">
+											<label for="unit">Unit :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-camera-retro" aria-hidden="true"></i>
+												<input type="text" class="form-control" id="unit" name="unit" maxlength="200" value="<?= ucfirst($data['unit']) ; ?>" readonly>
+											</div>
+								</div>
+								<div class="form-group input">
+											<label for="serial_number">Serial Number :</label>
+											<div class="box">
+												<i style="font-size: x-large;" class="fa fa-barcode" aria-hidden="true"></i>
+												<input type="text" class="form-control" id="serial_number" name="serial_number" maxlength="255" value="<?= $data['sn'] ; ?>" readonly>
+											</div>
+								</div>	
+							</div>									
+					</div>
+					<!-- _____________________________________________________________________________ -->
+
+						<!-- INPUT INFO -->
+				
+						<div id="input_info" >
+						<div class="title_fill">
+							<h3>Input Info</h3>
+						</div>
+						
+						<div id="head3" class="form-group">
+
+							<div class="form-group input" >
+								<label for="counter">Counter :</label>
+									<div class="box">
+										<i style="font-size: x-large;" class="fa fa-building" aria-hidden="true"></i>
+										<input style="width: 100px;" type="text" class="form-control" id="counter" name="counter" maxlength="200" value="<?= ucfirst($data['counter']) ; ?>" readonly>
+									</div>
+							</div>
+							<div class="form-group input">
+									<label for="penerima">Penerima :</label>
+									<div class="box">
+										<i style="font-size: x-large;" class="fa fa-user" aria-hidden="true"></i>
+										<input type="text" class="form-control" id="penerima" name="penerima" maxlength="20" readonly value="<?= ucfirst($data['penerima']) ; ?>">
+									</div>
+							</div>
+
+			<?php if($data['pin'] == 'on') :?>
+				<div class="form-group">
+					<label for="pin" class="text-danger">Pin :</label>
+						<div class="box">
+								<i style="font-size: x-large;" class="fa fa-thumb-tack" aria-hidden="true"></i>
+						<input id="pin" class="custom-select" name="pin" readonly value="on"></input>
+					</div>
+				</div>
+			<?php endif; ?>
+	
+						</div>
+			<?php if($data['pin'] == 'on') :?>
+							<div class="note">
+								<div style="background-color:#3836362e;border-radius:10px;padding:10px;">
+									<p style="color:black !important;"><?= ucfirst(nl2br($data['note'])) ; ?></p>
+								</div>
+							</div>
+			<?php endif; ?>
+					</div>					
+
+
+					<!-- _____________________________________________________________________________ -->
+
+
+
+											<!-- KELENGKAPAN -->
+
+					<div id="kelengkapan" >
+						<div class="title_fill">
+							<h3>Kelengkapan</h3>
+						</div>
+						
+						<div id="head4" class="form-group input">
+
+							<div <?= $kamera ; ?>>
+								<div class="custom-control custom-checkbox">		
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o" aria-hidden="true"> </i>
+									<label class="custom-control-label">Kamera</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_kamera_info" name="check_kamera_info" maxlength="150" value="<?= $kamera_info ; ?>" disabled>
+									<i id="info1" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div  <?= $lensa ; ?>>
+								<div class="custom-control custom-checkbox">
+									
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Lensa</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_lensa_info" name="check_lensa_info" maxlength="150" value="<?= $lensa_info ; ?>" disabled>
+									<i id="info2"style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $battery ; ?>>
+								<div class="custom-control custom-checkbox">
+									
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label" >Battery</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_battery_info" name="check_battery_info" value="<?= $battery_info ; ?>" maxlength="150" disabled>
+									<i id="info3" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $memory ; ?>>
+								<div class="custom-control custom-checkbox">
+									
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Memory</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_memory_info" name="check_memory_info" value="<?= $memory_info ; ?>" maxlength="150" disabled>
+									<i id="info4"style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $strap ; ?>>
+								<div class="custom-control custom-checkbox">
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Strap</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_strap_info" name="check_strap_info" value="<?= $strap_info ; ?>" maxlength="150" disabled> 
+									<i id="info5" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $bodyCap ; ?>>
+								<div class="custom-control custom-checkbox">
+									
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Body cap</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_bodycap_info" name="check_bodycap_info" value="<?= $bodyCap_info ; ?>" maxlength="150" disabled>
+									<i id="info6" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $lensCap ; ?>>
+								<div class="custom-control custom-checkbox">
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Lens cap</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_lenscap_info" name="check_lenscap_info" value="<?= $lensCap_info ; ?>" maxlength="150">
+									<i id="info7" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+							<div <?= $filter ; ?>>
+								<div class="custom-control custom-checkbox">
+									<i style="font-size: medium; color:blue;" class="fa fa-check-square-o " aria-hidden="true"> </i>
+									<label class="custom-control-label">Filter</label>
+								</div>
+								<div class="box">
+									<input type="text" class="form-control" id="check_filter_info" name="check_filter_info" value="<?= $filter_info ; ?>" maxlength="150" disabled>
+									<i id="info8" style="font-size: x-large;" class="fa fa-sticky-note rotate" aria-hidden="true"></i>
+								</div>
+							</div>
+
+
+						</div>
+						<?php if(!empty($data2['other'])): ?>
+						<div class="kelengkapan_lain">
+							<div style="background-color:#3836362e;border-radius:10px;padding:10px;">
+								<p style="color:black !important;"><?= ucfirst(nl2br($other)) ; ?></p>
+							</div>
+						</div>
+						<?php endif; ?>
+						
+					</div>
+
+					<!-- _____________________________________________________________________________ -->
+
+											<!-- INFO KERUSAKAN -->
+					<div id="kerusakan" >
+						<div class="title_fill">
+							<h3>Info Kerusakan</h3>
+						</div>
+						
+						
+							<div class="kerusakan">
+									<div style="background-color:#3836362e;border-radius:10px;padding:10px;">
+										<p style="color:black !important;"><?= ucfirst(nl2br($data['error'])) ; ?></p>
+									</div>
+							</div>
+						
+					</div>					
+
+					<!-- _____________________________________________________________________________ -->
+
+													<!-- ACTION BUTTON -->
+					<div id="action" >
+						<div class="title_fill">
+							<h3>Action Button</h3>
+						</div>
+						
+							<div class="action">
+								<a href="javascript:void(0)" onclick="editNew()" class="btn btn-primary"> Edit </a>
+								<?php if($akses == 'master') :?>
+								<a href="javascript:void(0)" class="btn btn-danger" onclick="deleteData('new','<?= $id ; ?>')"> Delete </a>
+								<?php endif; ?>
+								<a href="javascript:void(0)" class="btn btn-warning" onclick="proses('<?= $id ; ?>')"> Next to proces </a>
+								<a href="../print/?id=<?= $id ; ?>" class="btn btn-dark" target="_blank">Receipt</a>
+							</div>
+						
+					</div>					
+
+					<!-- _____________________________________________________________________________ -->
+
+						
+							</form>
+
+						</div>
+					</div>
+				</div>
+				<?php if(isset($timeline)) :?>
+				<!-- timeline -->
+				<div class="panel panel-default col-md-6">
+					<div class="panel-heading">
+						Timeline
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left closed"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><i class="glyphicon glyphicon-link"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><i class="glyphicon glyphicon-camera"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><i class="glyphicon glyphicon-paperclip"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- timeline -->
+				<?php endif; ?>
+			</div>
+		</div><!--/.row-->
+
+		
+		
+
+	
+	
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/ajax.js?versi=<?= $version ; ?>"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="../alert/sweetalert2.all.js"></script>
+	<script src="../js/popup.js?versi=<?= $version ; ?>"></script>
+	<script src="../alert/confirm.js?versi=<?= $version ; ?>"></script>
+	<script src="../js/user.js?versi=<?= $version ; ?>"></script>
+	<script src="../js/custom.js?versi=<?= $version ; ?>"></script>
+	<script src="../js/cPass.js?versi=<?= $version ; ?>"></script>
+	
+</body>
+</html>

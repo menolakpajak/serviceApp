@@ -1,0 +1,20 @@
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Directories
+vendor/
+
+# Package files
+composer.lock
+
+# Framework-specific files
+/public/uploads/
+/storage/
+
+#images
+/imgs/profile/
