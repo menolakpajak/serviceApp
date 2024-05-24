@@ -30,8 +30,8 @@ if($detail == 'invoice_for'){
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> Kami tidak bertanggung jawab atas kerusakan atau kehilangan unit jika pengambilan unit di luar masa garansi service.</p>";
         $words['note'][4] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>4.</strong> Cek kembali kelengkapan unit anda, sebab kami tidak menerima komplain atas unit yang hilang/tidak lengkap setelah meninggalkan toko.</p>";
         $words['note'][5] = "<p class='syarat mb-0'><strong>5.</strong> Pembayaran bisa di trf ke rekening :</p>";
-        $words['note'][6] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 040.679.8989</p>";
-        $words['note'][7] = "<p class='syarat mb-0 ms-3 fw-bold'>PT. SINAR SUMBER MAKMUR</p>";
+        $words['note'][6] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 772.548.3121</p>";
+        $words['note'][7] = "<p class='syarat mb-0 ms-3 fw-bold'>I WAYAN SUTAMA</p>";
         if($status_unit == 'abort'){
             $words['note'] = [];
             $words['note'][0] = "<h6 class='fw-bold'>Note :</h6>";
@@ -39,8 +39,8 @@ if($detail == 'invoice_for'){
             $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> Kami tidak bertanggung jawab atas kerusakan atau kehilangan unit jika pengambilan unit di atas 1 minggu.</p>";
             $words['note'][3] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>3.</strong>Cek kembali kelengkapan unit anda, sebab kami tidak menerima komplain atas unit yang hilang/tidak lengkap setelah meninggalkan toko.</p>";
             $words['note'][4] = "<p class='syarat mb-0'><strong>4.</strong> Pembayaran bisa di trf ke rekening :</p>";
-            $words['note'][5] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 040.679.8989</p>";
-            $words['note'][6] = "<p class='syarat mb-0 ms-3 fw-bold'>PT. SINAR SUMBER MAKMUR</p>";
+            $words['note'][5] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 772.548.3121</p>";
+            $words['note'][6] = "<p class='syarat mb-0 ms-3 fw-bold'>I WAYAN SUTAMA</p>";
         }
     }else{
         $words['note'][0] = "<h6 class='fw-bold'>Syarat dan ketentuan :</h6>";
@@ -51,8 +51,8 @@ if($detail == 'invoice_for'){
         $words['note'][5] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>5.</strong> Jika batal akan dikenakan biaya inspeksi Rp.150.000 .</p>";
         $words['note'][6] = "<p class='syarat mb-0'><strong>6.</strong> Harga diatas belum termasuk ongkos kirim.</p>";
         $words['note'][7] = "<p class='syarat mb-0'><strong>7.</strong> Pembayaran bisa di trf ke rekening :</p>";
-        $words['note'][8] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 040.679.8989</p>";
-        $words['note'][9] = "<p class='syarat mb-0 ms-3 fw-bold'>PT. SINAR SUMBER MAKMUR</p>";
+        $words['note'][8] = "<p class='syarat mb-0 ms-3 fw-bold'>BCA 772.548.3121</p>";
+        $words['note'][9] = "<p class='syarat mb-0 ms-3 fw-bold'>I WAYAN SUTAMA</p>";
         $words['note'][10] = "<p class='syarat mb-0'><strong>10.</strong> Harga sudah termasuk PPN .</p>";
     }
 }

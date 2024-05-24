@@ -1398,8 +1398,8 @@ function InputNewUser(){
             </select>
         <select name="counter" id="counter" class="form-control swal2-select">
             <option value="" selected disabled>Counter</option>
-	        <option value="wtrg">Wtrg</option>
-            <option value="udayana">Udayana</option>
+	        <option value="pusat">Pusat</option>
+            <option value="batubulan">Batubulan</option>
             <option value="canggu">Canggu</option>
         </select>
         <input id="userName" type="text" class="form-control swal2-input" placeholder="Username">

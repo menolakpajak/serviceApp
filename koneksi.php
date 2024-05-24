@@ -5,15 +5,15 @@
 date_default_timezone_set("Asia/Hong_Kong");
 $datetime = date('Y-m-d H:i');
 
-// $server = 'localhost';
-// $userServer = 'invy5182_invoite';
-// $serverPwd = 'Kmzwa8aw@@';
-// $database = 'service';
-
 $server = 'localhost';
-$userServer = 'root';
-$serverPwd = '';
-$database = 'service';
+$userServer = 'digp8161_service';
+$serverPwd = 'Kmzwa8aw@@';
+$database = 'digp8161_service';
+
+// $server = 'localhost';
+// $userServer = 'root';
+// $serverPwd = '';
+// $database = 'service';
 
 
 $connFirst = new mysqli($server, $userServer, $serverPwd);

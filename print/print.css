@@ -73,12 +73,13 @@ h1{
 }
 .font-head{
     font-family: 'balooDa', sans-serif;
+    color: #606060;
 }
 .font-stamp{
     font-family: 'stamp', sans-serif;
 }
 .head-color {
-    color: #109f8b;
+    color: #FF8F56;
 }
 .w-fit-content {
     width: fit-content !important;

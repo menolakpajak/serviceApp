@@ -204,9 +204,7 @@ if(empty($data2['check_filter_info'])){$filter_info = "";}
 									<select id="counter" class="custom-select" name="counter" required>
 										<?php if(in_array($_SESSION['akses'],['master','admin'])) : ?>
 										<option value="<?= $data['counter'] ; ?>" selected>Default: <?= ucfirst($data['counter']) ; ?></option>
-										<option value="wtrg">Wtrg</option>
-										<option value="udayana">Udayana</option>
-										<option value="canggu">Canggu</option>
+										<?php include_once("../struktur/select-counter.php"); ?>
 										<?php else : ?>
 										<option value="<?= $data['counter'] ; ?>" selected readonly><?= ucfirst($data['counter']) ; ?></option>
 										<?php endif; ?>

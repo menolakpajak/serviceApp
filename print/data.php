@@ -22,7 +22,7 @@ if(isset($_GET['en'])){
     include_once 'languages/receipt/en.php';
     $send_lang = '&en';
 }
-$qrcode = "https://www.sinar-service.com/receipt?spk=". urlencode(encrypt($id)).$send_lang;   
+$qrcode = "https://repair.digitalisasi.net/receipt?spk=". urlencode(encrypt($id)).$send_lang;
 $send_spk = encrypt($data['no_spk']);
 						// <<<...LOGIC FOR CHECKBOX....>>
 
@@ -148,12 +148,11 @@ $other_info = ucfirst($data2['other']);
         <!-- head -->
         <div id="head" class="row rounded">
             <div class="col-8">
-                <div class="row pt-2">
-                    <img src="../imgs/logo/logo-only.png" class="d-none col-6 h-100 p-1 gx-0 w-25">    
+                <div class="row pt-2 ps-3">
+                    <img src="../imgs/logo/only-logo-terang.png" class="col-6 h-100 p-1 gx-0 w-25">    
                     <div class="col-6 gx-0 d-flex align-items-center">
                         <div>
-                            <h3 class="m-0 font-head head-color">Digital Service</h3>
-                            <!-- <h6 class="m-0 font-head">PT. Sinar Sumber Makmur</h6> -->
+                            <h3 class="m-0 font-head head-color">Digital Repair</h3>
                             <h6 class="m-0 font-head">
                             Jl. Tukad Pancoran IV <br>block A4 no 12B <br>
                             Denpasar - Bali <br>

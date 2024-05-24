@@ -210,9 +210,7 @@ if(empty($data2['check_filter_info'])){$filter_info = "";}
 											<i style="font-size: x-large;" class="fa fa-building" aria-hidden="true"></i>
 									<select id="counter" class="custom-select" name="counter" required>
 										<option value="<?= $data['counter'] ; ?>" selected>Default: <?= ucfirst($data['counter']) ; ?></option>
-										<option value="wtrg">Wtrg</option>
-										<option value="udayana">Udayana</option>
-										<option value="canggu">Canggu</option>
+										<?php include_once("../struktur/select-counter.php"); ?>
 									</select>
 								</div>
 							</div>
