@@ -1836,7 +1836,7 @@ function signature($order){
     $sign = $order['signature'];
     $data = data("SELECT * FROM data WHERE no_spk = '$id'");
     if(empty($data)){
-        die('Invoice mungkin telah terhapus !');
+        die('Receipt mungkin telah terhapus !');
     }
 
 

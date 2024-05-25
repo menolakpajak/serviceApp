@@ -18,7 +18,7 @@ $spk = str_split($data['no_spk'],7);
 $huruf = $spk[1];
 $angka = str_split($spk[0],3);
 $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
-$qrcode = "https://www.sinar-service.com/receipt?spk=". urlencode(encrypt($id));
+$qrcode = "https://repair.digitalisasi.net/receipt?spk=". urlencode(encrypt($id));
 $send_spk = encrypt($data['no_spk']);
 						// <<<...LOGIC FOR CHECKBOX....>>
 
