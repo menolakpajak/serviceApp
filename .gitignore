@@ -6,9 +6,6 @@ Thumbs.db
 *.log
 *.sqlite
 
-# Directories
-vendor/
-
 # Package files
 composer.lock
 
