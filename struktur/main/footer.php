@@ -23,11 +23,11 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="<?= $page[1]; ?>#hero">Home</a></li>
+            <li><a href="<?= $page[1]; ?>#about">About us</a></li>
+            <li><a href="<?= $page[1]; ?>#services">Services</a></li>
+            <li><a href="<?= $page[1]; ?>#">Terms of service</a></li>
+            <li><a href="<?= $page[1]; ?>#">Privacy policy</a></li>
           </ul>
         </div>
 

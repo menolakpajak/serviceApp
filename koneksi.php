@@ -10,10 +10,10 @@ $userServer = 'digp8161_service';
 $serverPwd = 'Kmzwa8aw@@';
 $database = 'digp8161_service';
 
-$server = 'localhost';
-$userServer = 'root';
-$serverPwd = '';
-$database = 'service';
+// $server = 'localhost';
+// $userServer = 'root';
+// $serverPwd = '';
+// $database = 'service';
 
 
 $connFirst = new mysqli($server, $userServer, $serverPwd);

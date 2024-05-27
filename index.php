@@ -59,7 +59,7 @@ $page = ['index',''];
           <h1 data-aos="fade-up" class="">Welcome to <span>Digital Repair</span></h1>
           <p data-aos="fade-up" data-aos-delay="100" class="">Pusat perbaikan perlengkapan elektronik anda<br></p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#about" class="btn-get-started">Get Started</a>
+            <a href="https://api.whatsapp.com/send?phone=628980000703&text=Halo%20kak%2C%20ada%20yang%20ingin%20saya%20tanyakan%20tentang%20Digital%20Repair.%20Apakah%20bisa%20dibantu%20%3F" class="btn-get-started">Hubungi Kami</a>
           </div>
           <img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
         </div>
@@ -135,15 +135,15 @@ $page = ['index',''];
           <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
             <div class="row gy-4">
               <div class="col-lg-6">
-                <img src="assets/img/about-company-1.jpg" class="img-fluid" alt="">
+                <img src="assets/img/about-company-1.webp" class="img-fluid" alt="electronic-component">
               </div>
               <div class="col-lg-6">
                 <div class="row gy-4">
                   <div class="col-lg-12">
-                    <img src="assets/img/about-company-2.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/about-company-2.webp" class="img-fluid" alt="electronic-component">
                   </div>
                   <div class="col-lg-12">
-                    <img src="assets/img/about-company-3.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/about-company-3.webp" class="img-fluid" alt="electronic-component">
                   </div>
                 </div>
               </div>
@@ -163,29 +163,47 @@ $page = ['index',''];
 
         <div class="row gy-4">
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
+        <section class="customer-logos slider row gy-4">
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-1.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-2.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-3.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-4.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-5.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-6.png"></div>
+          <div class="slide client-logo">
+            <img class="img-fluid" src="assets/img/clients/client-7.png"></div>
+      </section>
+
+
+          <!-- <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div>
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div>
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div>
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div>
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div>
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
             <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          </div> -->
 
         </div>
 
@@ -254,11 +272,11 @@ $page = ['index',''];
               </div><!-- End Tab Content Item -->
 
               <div class="tab-pane fade" id="features-tab-2">
-                <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
+                <img src="assets/img/tabs-2.webp" alt="" class="img-fluid">
               </div><!-- End Tab Content Item -->
 
               <div class="tab-pane fade" id="features-tab-3">
-                <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
+                <img src="assets/img/tabs-3.webp" alt="" class="img-fluid">
               </div><!-- End Tab Content Item -->
             </div>
 
@@ -340,7 +358,7 @@ $page = ['index',''];
               <div>
                 <h3>Photography / Videography</h3>
                 <p>Kami menyediakan layanan perbaikan dan perawatan profesional untuk berbagai peralatan fotografi dan videografi berbagai brand. Dengan tim teknisi yang berpengalaman dan peralatan diagnostik canggih, kami siap menangani berbagai masalah teknis pada <strong class="text-primary">Kamera</strong>, <strong class="text-primary">Lensa</strong>, <strong class="text-primary">Drone</strong>, <strong class="text-primary">Tripod</strong>, dan peralatan lainnya.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details/?photography" class="read-more stretched-link">Lihat Detail <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -351,7 +369,7 @@ $page = ['index',''];
               <div>
                 <h3>Komputer / Laptop</h3>
                 <p>Kami menyediakan layanan perbaikan dan perawatan komputer dan laptop berbagai brand yang handal dan berkualitas tinggi. Dengan tim teknisi yang terlatih dan berpengalaman serta peralatan diagnostik yang canggih, kami siap menangani berbagai masalah teknis pada komputer dan laptop Anda.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details.html" class="d-none read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -362,7 +380,7 @@ $page = ['index',''];
               <div>
                 <h3>Printer / Scanner</h3>
                 <p>Kami menyediakan layanan perbaikan yang handal dan efisien untuk printer dan scanner. Dengan tim teknisi yang terampil dan berpengalaman serta peralatan diagnostik yang canggih, kami siap menangani berbagai masalah teknis pada peralatan cetak dan pemindaian Anda.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details.html" class="d-none read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -373,7 +391,7 @@ $page = ['index',''];
               <div>
                 <h3>Apple Product</h3>
                 <p> kami menyediakan layanan perbaikan yang andal dan berkualitas tinggi untuk berbagai produk Apple. Dengan tim teknisi yang terlatih dan berpengalaman dalam teknologi Apple, kami siap menangani berbagai masalah perangkat keras dan perangkat lunak pada produk-produk Apple Anda.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details.html" class="d-none read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -384,7 +402,7 @@ $page = ['index',''];
               <div>
                 <h3>Website dan Software</h3>
                 <p>Kami menawarkan layanan profesional dalam pembuatan website dan pengembangan perangkat lunak. Dengan tim ahli yang terdiri dari pengembang web dan perangkat lunak berpengalaman, kami siap membantu Anda mewujudkan visi digital Anda.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details.html" class="d-none read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -395,7 +413,7 @@ $page = ['index',''];
               <div>
                 <h3>Jaringan dan Internet</h3>
                 <p>Kami menyediakan layanan perbaikan yang andal dan berkualitas tinggi untuk masalah jaringan dan internet. Dengan tim teknisi yang terampil dan berpengalaman dalam teknologi jaringan, kami siap menangani berbagai masalah yang Anda hadapi dalam menghubungkan perangkat Anda ke internet.</p>
-                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="service-details.html" class="d-none read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -457,7 +475,7 @@ $page = ['index',''];
           </div>
 
           <div class="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-            <img src="assets/img/features-3.jpg" alt="">
+            <img src="assets/img/features-3.webp" alt="">
           </div>
 
         </div>
@@ -801,9 +819,35 @@ $page = ['index',''];
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+      $(document).ready(function(){
+          $('.customer-logos').slick({
+              slidesToShow: 6,
+              slidesToScroll: 1,
+              autoplay: true,
+              autoplaySpeed: 1500,
+              arrows: false,
+              dots: false,
+              pauseOnHover: false,
+              responsive: [{
+                  breakpoint: 768,
+                  settings: {
+                      slidesToShow: 4
+                  }
+              }, {
+                  breakpoint: 520,
+                  settings: {
+                      slidesToShow: 3
+                  }
+              }]
+          });
+      });
+      </script>
 
 </body>
 
