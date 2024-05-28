@@ -140,7 +140,6 @@ if (isset($_GET['en'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://repair.digitalisasi.net/receipt?spk=<?= $_GET['spk']; ?>" />
