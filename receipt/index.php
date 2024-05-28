@@ -143,7 +143,7 @@ if (isset($_GET['en'])) {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://repair.digitalisasi.net/receipt?spk=<?= $_GET['spk']; ?>" />
-    <meta property="og:title" content="RECEIPT" />
+    <meta property="og:title" content="RECEIPT <?= $id; ?>" />
     <meta property="og:description" content="Online Receipt" />
     <meta property="og:image" content="https://repair.digitalisasi.net/assets/img/meta/receipt.png" />
 

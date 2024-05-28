@@ -69,7 +69,7 @@ if (isset($_GET['en'])) {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://repair.digitalisasi.net/invoice?kode=<?= $_GET['kode']; ?>" />
-    <meta property="og:title" content="INVOICE" />
+    <meta property="og:title" content="INVOICE <?= $id; ?>" />
     <meta property="og:description" content="Online Invoice" />
     <meta property="og:image" content="https://repair.digitalisasi.net/assets/img/meta/invoice.png" />
     <!-- favicon -->
