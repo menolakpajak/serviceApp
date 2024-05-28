@@ -740,7 +740,7 @@ $page = ['index', ''];
 
         <div class="row gy-4 mt-1">
           <div class="col-12" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0015743741146!2d115.22738387594372!3d-8.691398588533847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd241aab2ed7667%3A0xee9934f7d48ca5c9!2sDigitalisasi.net!5e0!3m2!1sen!2sid!4v1716707638135!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0015185736343!2d115.22738387339729!3d-8.691403891357034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24164330fe689%3A0xfd75b8c0c2a339cf!2sdigital%20repair%20(camera%20and%20drone%20repair)!5e0!3m2!1sen!2sid!4v1716903796144!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
         </div>
 
