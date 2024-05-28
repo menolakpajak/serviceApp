@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 // if(isset($_SESSION['login'])){
@@ -6,9 +6,9 @@ session_start();
 //     die;
 // }
 
-$page = ['index',''];
+$page = ['index', ''];
 
- ?>
+?>
 
 
 
@@ -24,7 +24,7 @@ $page = ['index',''];
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <?php include_once("struktur/favicon.php"); ?>
+  <?php include_once ("struktur/favicon.php"); ?>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -45,7 +45,7 @@ $page = ['index',''];
 
 <body class="index-page">
 
-  <?php  include_once('struktur/main/header.php'); ?>
+  <?php include_once ('struktur/main/header.php'); ?>
 
   <main class="main">
 
@@ -122,7 +122,7 @@ $page = ['index',''];
             <p class="who-we-are">Tentang Kami</p>
             <h3>Tim profesional yang berdedikasi dalam bidang perbaikan alat elektronik sejak tahun 2016</h3>
             <p class="fst-italic">
-            Misi kami adalah memberikan pelayanan terbaik kepada setiap pelanggan dengan menawarkan solusi perbaikan yang efektif dan efisien. Kami berkomitmen untuk:
+              Misi kami adalah memberikan pelayanan terbaik kepada setiap pelanggan dengan menawarkan solusi perbaikan yang efektif dan efisien. Kami berkomitmen untuk:
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> <span><strong>Kualitas Terbaik:</strong> Menggunakan suku cadang berkualitas tinggi dan teknik perbaikan terbaru untuk memastikan hasil yang tahan lama.</span></li>
@@ -163,22 +163,29 @@ $page = ['index',''];
 
         <div class="row gy-4">
 
-        <section class="customer-logos slider row gy-4">
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-1.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-2.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-3.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-4.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-5.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-6.png"></div>
-          <div class="slide client-logo">
-            <img class="img-fluid" src="assets/img/clients/client-7.png"></div>
-      </section>
+          <section class="customer-logos slider row gy-4">
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-1.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-2.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-3.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-4.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-5.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-6.png">
+            </div>
+            <div class="slide client-logo">
+              <img class="img-fluid" src="assets/img/clients/client-7.png">
+            </div>
+          </section>
 
 
           <!-- <div class="col-xl-2 col-md-3 col-6 client-logo">
@@ -232,7 +239,7 @@ $page = ['index',''];
                   <div>
                     <h4 class="d-none d-lg-block"><strong>Diskusi Permasalahan Secara Mendalam</strong></h4>
                     <p>
-                    Kami percaya bahwa memahami permasalahan dengan baik adalah kunci untuk memberikan solusi perbaikan yang efektif dan tepat. Oleh karena itu, kami menyediakan layanan diskusi permasalahan secara mendalam dan detail bagi setiap pelanggan kami.
+                      Kami percaya bahwa memahami permasalahan dengan baik adalah kunci untuk memberikan solusi perbaikan yang efektif dan tepat. Oleh karena itu, kami menyediakan layanan diskusi permasalahan secara mendalam dan detail bagi setiap pelanggan kami.
                     </p>
                   </div>
                 </a>
@@ -243,7 +250,7 @@ $page = ['index',''];
                   <div>
                     <h4 class="d-none d-lg-block"><strong>Solusi dan Penanganan</strong></h4>
                     <p>
-                    Kami memahami bahwa memberikan solusi dan penanganan yang tepat untuk setiap masalah perangkat elektronik adalah inti dari layanan kami. Kami percaya bahwa solusi yang efektif harus didasarkan pada pemahaman mendalam tentang masalah yang dihadapi dan pendekatan yang terstruktur dalam penanganannya.
+                      Kami memahami bahwa memberikan solusi dan penanganan yang tepat untuk setiap masalah perangkat elektronik adalah inti dari layanan kami. Kami percaya bahwa solusi yang efektif harus didasarkan pada pemahaman mendalam tentang masalah yang dihadapi dan pendekatan yang terstruktur dalam penanganannya.
                     </p>
                   </div>
                 </a>
@@ -254,7 +261,7 @@ $page = ['index',''];
                   <div>
                     <h4 class="d-none d-lg-block"><strong>Pengujian dan Verifikasi</strong></h4>
                     <p>
-                    Setelah perbaikan selesai, perangkat akan melalui serangkaian pengujian untuk memastikan bahwa semua masalah telah teratasi dan perangkat berfungsi dengan baik. Kami melakukan pengujian komprehensif untuk memverifikasi bahwa solusi yang diberikan benar-benar efektif dan perangkat siap untuk digunakan kembali oleh pelanggan.
+                      Setelah perbaikan selesai, perangkat akan melalui serangkaian pengujian untuk memastikan bahwa semua masalah telah teratasi dan perangkat berfungsi dengan baik. Kami melakukan pengujian komprehensif untuk memverifikasi bahwa solusi yang diberikan benar-benar efektif dan perangkat siap untuk digunakan kembali oleh pelanggan.
                     </p>
                   </div>
                 </a>
@@ -303,7 +310,7 @@ $page = ['index',''];
             <div class="content">
               <h3>Garansi Perbaikan Penuh</h3>
               <p>
-              Kami berkomitmen untuk memberikan layanan perbaikan elektronik berkualitas tinggi yang didukung oleh garansi perbaikan penuh. Kami ingin memastikan bahwa pelanggan merasa aman dan puas dengan hasil perbaikan kami. Oleh karena itu, setiap layanan perbaikan yang kami lakukan disertai dengan garansi untuk menjamin bahwa perangkat Anda akan berfungsi dengan baik setelah diperbaiki.
+                Kami berkomitmen untuk memberikan layanan perbaikan elektronik berkualitas tinggi yang didukung oleh garansi perbaikan penuh. Kami ingin memastikan bahwa pelanggan merasa aman dan puas dengan hasil perbaikan kami. Oleh karena itu, setiap layanan perbaikan yang kami lakukan disertai dengan garansi untuk menjamin bahwa perangkat Anda akan berfungsi dengan baik setelah diperbaiki.
               </p>
               <a href="#" class="btn more-btn">Detail Garansi</a>
             </div>
@@ -318,10 +325,10 @@ $page = ['index',''];
             <div class="content">
               <h3>Kepuasan Pelanggan</h3>
               <p>
-              Kepuasan pelanggan adalah prioritas utama kami. Kami berkomitmen untuk memberikan layanan perbaikan elektronik yang tidak hanya memenuhi, tetapi juga melampaui harapan Anda. Setiap langkah yang kami ambil, mulai dari diagnosa hingga penyelesaian perbaikan, dirancang dengan satu tujuan utama: memastikan Anda puas dengan hasil dan pengalaman layanan kami.
+                Kepuasan pelanggan adalah prioritas utama kami. Kami berkomitmen untuk memberikan layanan perbaikan elektronik yang tidak hanya memenuhi, tetapi juga melampaui harapan Anda. Setiap langkah yang kami ambil, mulai dari diagnosa hingga penyelesaian perbaikan, dirancang dengan satu tujuan utama: memastikan Anda puas dengan hasil dan pengalaman layanan kami.
               </p>
               <p>
-              Dukungan pelanggan yang ramah dan responsif adalah salah satu pilar layanan kami. Kami selalu siap membantu Anda dengan setiap pertanyaan atau kebutuhan yang mungkin Anda miliki. Komitmen kami terhadap transparansi, kejujuran, dan integritas memastikan bahwa Anda selalu mendapatkan informasi yang jelas dan layanan yang adil.
+                Dukungan pelanggan yang ramah dan responsif adalah salah satu pilar layanan kami. Kami selalu siap membantu Anda dengan setiap pertanyaan atau kebutuhan yang mungkin Anda miliki. Komitmen kami terhadap transparansi, kejujuran, dan integritas memastikan bahwa Anda selalu mendapatkan informasi yang jelas dan layanan yang adil.
               </p>
               <p>
                 Garansi perbaikan penuh yang kami tawarkan adalah bukti kepercayaan kami terhadap kualitas pekerjaan kami dan dedikasi kami terhadap kepuasan Anda. Kami ingin Anda merasa aman dan tenang, mengetahui bahwa perangkat Anda dilindungi oleh garansi yang transparan dan komprehensif.</p>
@@ -434,7 +441,7 @@ $page = ['index',''];
           <div class="col-lg-6 d-flex flex-column justify-content-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
             <h3>Terima Kasih Telah Memilih Layanan Kami</h3>
             <p>Kami ingin mengucapkan terima kasih atas kepercayaan Anda kepada tim kami untuk membantu setiap permasalahan Anda. Bersama <strong class="text-secondary">Digital Repair</strong>, kami berkomitmen untuk memberikan layanan terbaik dan hasil yang memuaskan bagi setiap pelanggan kami.</p>
-              <h4 class="text-primary">Kenapa Memilih Kami?</h4>
+            <h4 class="text-primary">Kenapa Memilih Kami?</h4>
 
             <div class="row">
 
@@ -671,7 +678,7 @@ $page = ['index',''];
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                Saya sangat terkesan dengan pelayanan yang saya terima dari Digital Repair. Mereka tidak hanya memperbaiki kamera canon saya yang sudah tidak bisa diperbaiki oleh service center resmi sekalipun, tapi juga mereka kerjakan dengan cepat dan efisien, dan juga memberikan layanan pelanggan yang luar biasa. Saya sangat merekomendasikan mereka kepada siapa pun yang membutuhkan layanan perbaikan kamera digital terutama merek Canon!.
+                  Saya sangat terkesan dengan pelayanan yang saya terima dari Digital Repair. Mereka tidak hanya memperbaiki kamera canon saya yang sudah tidak bisa diperbaiki oleh service center resmi sekalipun, tapi juga mereka kerjakan dengan cepat dan efisien, dan juga memberikan layanan pelanggan yang luar biasa. Saya sangat merekomendasikan mereka kepada siapa pun yang membutuhkan layanan perbaikan kamera digital terutama merek Canon!.
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -687,7 +694,7 @@ $page = ['index',''];
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                Saya sangat senang dengan hasil perbaikan yang dilakukan oleh tim Digital Repair. Mereka tidak hanya mengembalikan laptop ASUS saya ke kondisi normal, tetapi juga memberikan penjelasan yang jelas tentang masalah yang terjadi. Layanan mereka sangat profesional dan ramah. Terima kasih banyak!
+                  Saya sangat senang dengan hasil perbaikan yang dilakukan oleh tim Digital Repair. Mereka tidak hanya mengembalikan laptop ASUS saya ke kondisi normal, tetapi juga memberikan penjelasan yang jelas tentang masalah yang terjadi. Layanan mereka sangat profesional dan ramah. Terima kasih banyak!
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -703,7 +710,7 @@ $page = ['index',''];
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                Saya mengalami masalah dengan Lensa Nikon saya dan mencoba beberapa layanan perbaikan sebelumnya tanpa hasil yang memuaskan. Namun, ketika saya mencoba Digital Repair, saya sangat terkesan dengan keahlian teknis mereka. Mereka berhasil memperbaiki Lensa saya dengan cepat dan sekarang itu berfungsi dengan sempurna. Saya sangat berterima kasih!
+                  Saya mengalami masalah dengan Lensa Nikon saya dan mencoba beberapa layanan perbaikan sebelumnya tanpa hasil yang memuaskan. Namun, ketika saya mencoba Digital Repair, saya sangat terkesan dengan keahlian teknis mereka. Mereka berhasil memperbaiki Lensa saya dengan cepat dan sekarang itu berfungsi dengan sempurna. Saya sangat berterima kasih!
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -719,7 +726,7 @@ $page = ['index',''];
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                I had been struggling with my Computer for weeks until I decided to seek help from Digital Repair. They quickly identified the problem and had it fixed promptly. Now my Computer is working perfectly, and I couldn't be happier. Thank you for the fantastic service!
+                  I had been struggling with my Computer for weeks until I decided to seek help from Digital Repair. They quickly identified the problem and had it fixed promptly. Now my Computer is working perfectly, and I couldn't be happier. Thank you for the fantastic service!
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -735,7 +742,7 @@ $page = ['index',''];
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                I had a problem with my projector that I couldn't figure out on my own. I took it to [Company Name], and they were able to identify and fix the issue in no time. Their professionalism and expertise were truly impressive. Thank you for the excellent service!
+                  I had a problem with my projector that I couldn't figure out on my own. I took it to [Company Name], and they were able to identify and fix the issue in no time. Their professionalism and expertise were truly impressive. Thank you for the excellent service!
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
@@ -771,7 +778,7 @@ $page = ['index',''];
               <i class="bi bi-geo-alt"></i>
               <h3>Alamat</h3>
               <p class="text-center">Jl. Tukad Pancoran IV block A4 no 12B <br>
-                        Denpasar - Bali</p>
+                Denpasar - Bali</p>
             </div>
           </div><!-- End Info Item -->
 
@@ -795,7 +802,7 @@ $page = ['index',''];
 
         <div class="row gy-4 mt-1">
           <div class="col-12" data-aos="fade-up" data-aos-delay="300">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0015743741146!2d115.22738387594372!3d-8.691398588533847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd241aab2ed7667%3A0xee9934f7d48ca5c9!2sDigitalisasi.net!5e0!3m2!1sen!2sid!4v1716707638135!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0015743741146!2d115.22738387594372!3d-8.691398588533847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd241aab2ed7667%3A0xee9934f7d48ca5c9!2sDigitalisasi.net!5e0!3m2!1sen!2sid!4v1716707638135!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
         </div>
 
@@ -805,7 +812,7 @@ $page = ['index',''];
 
   </main>
 
-  <?php include_once('struktur/main/footer.php'); ?>
+  <?php include_once ('struktur/main/footer.php'); ?>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -814,40 +821,15 @@ $page = ['index',''];
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+  <script src="assets/vendor/slick/slick.js"></script>
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <script>
-      $(document).ready(function(){
-          $('.customer-logos').slick({
-              slidesToShow: 6,
-              slidesToScroll: 1,
-              autoplay: true,
-              autoplaySpeed: 1500,
-              arrows: false,
-              dots: false,
-              pauseOnHover: false,
-              responsive: [{
-                  breakpoint: 768,
-                  settings: {
-                      slidesToShow: 4
-                  }
-              }, {
-                  breakpoint: 520,
-                  settings: {
-                      slidesToShow: 3
-                  }
-              }]
-          });
-      });
-      </script>
 
 </body>
 

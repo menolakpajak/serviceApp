@@ -1,8 +1,8 @@
-<?php 
+<?php
 $detail = 'invoice_for';
 $data = data("SELECT * FROM invoice WHERE kode = '$id'");
 
-if(empty($data)){
+if (empty($data)) {
     include_once '../struktur/ajax-404.php';
 }
 
@@ -11,30 +11,30 @@ $data = $data[0];
 $link_spk = removeSpecialChar($data['link']);
 
 $data2 = data("SELECT * FROM data WHERE no_spk = '$link_spk'");
-if(empty($data2)){
+if (empty($data2)) {
     $data2 = data("SELECT * FROM pickup WHERE no_spk = '$link_spk'");
-    if(empty($data2)){
+    if (empty($data2)) {
         include_once '../struktur/ajax-404.php';
     }
 }
 
 $data2 = $data2[0];
 
-$date = date('d/m/Y',strtotime($data['date'])) ;
-if(!empty($data['date_paid'])){
-    $date_paid = date('d/m/Y',strtotime($data['date_paid'])) ;
-}else{
+$date = date('d/m/Y', strtotime($data['date']));
+if (!empty($data['date_paid'])) {
+    $date_paid = date('d/m/Y', strtotime($data['date_paid']));
+} else {
     $date_paid = '';
 }
 $status = strtoupper($data['status']);
 $status_unit = $data2['status'];
 $save_as = $data['save_as'];
-$qtss = json_decode($data['qts'],true) ;
-$kodes = json_decode($data['kode_part'],true) ;
-$descs = json_decode($data['deskripsi'],true) ;
-$buys =json_decode($data['buy'],true) ;
-$margins = json_decode($data['margin'],true) ;
-$sells = json_decode($data['sell'],true) ;
+$qtss = json_decode($data['qts'], true);
+$kodes = json_decode($data['kode_part'], true);
+$descs = json_decode($data['deskripsi'], true);
+$buys = json_decode($data['buy'], true);
+$margins = json_decode($data['margin'], true);
+$sells = json_decode($data['sell'], true);
 $profit = $data['profit'];
 $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
@@ -42,34 +42,36 @@ $ppn = $data['ppn'];
 $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
-$dp = number_format(str_replace(',','',$subtotal)/2,0,'.',',');
+$dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
 
-$spk = str_split($link_spk,7);
+$spk = str_split($link_spk, 7);
 $huruf = $spk[1];
-$angka = str_split($spk[0],3);
+$angka = str_split($spk[0], 3);
 $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 
-$kode_id = str_split($id,8);
+$kode_id = str_split($id, 8);
 $huruf = $kode_id[0];
 $angka = $kode_id[1];
 $kode_id = "$huruf-$angka";
 $barcode = "QTS-$kode_id";
-$qrcode = "https://repair.digitalisasi.net/invoice?kode=". urlencode(encrypt($id));
-if($save_as == 'invoice'){
+$qrcode = "https://repair.digitalisasi.net/invoice?kode=" . urlencode(encrypt($id));
+if ($save_as == 'invoice') {
     $barcode = "INV-$kode_id";
 }
-if(isset($_GET['en'])){
+if (isset($_GET['en'])) {
     $qrcode .= '&en';
 }
 
+include_once 'rek.php';
 include_once 'languages/invoice/id.php';
-if(isset($_GET['en'])){
+if (isset($_GET['en'])) {
     include_once 'languages/invoice/en.php';
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,24 +81,27 @@ if(isset($_GET['en'])){
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="print.css?versi=<?= $version ; ?>">
+    <link rel="stylesheet" href="print.css?versi=<?= $version; ?>">
     <link href="../alert/sweetalert2.css" rel="stylesheet">
 
     <title><?= $barcode; ?></title>
-	
+
 </head>
+
 <body>
     <div class="container-fluid send">
-    <div class="col-3 col-sm-1 mt-0 mb-1">
-        <select class="form-select" aria-label="Default select example" onchange="language(this)">
-            <option value="id" <?php if(!isset($_GET)) echo 'selected'; ?>>ID</option>
-            <option value="en" <?php if(isset($_GET['en'])) echo 'selected'; ?>>EN</option>
-        </select>
+        <div class="col-3 col-sm-1 mt-0 mb-1">
+            <select class="form-select" aria-label="Default select example" onchange="language(this)">
+                <option value="id" <?php if (!isset($_GET))
+                    echo 'selected'; ?>>ID</option>
+                <option value="en" <?php if (isset($_GET['en']))
+                    echo 'selected'; ?>>EN</option>
+            </select>
         </div>
     </div>
     <div class="container-xl rounded">
         <!-- head -->
-        <?php include_once("../struktur/print-head.php"); ?>
+        <?php include_once ("../struktur/print-head.php"); ?>
         <!-- close head -->
 
         <!-- info -->
@@ -109,7 +114,7 @@ if(isset($_GET['en'])){
                         <strong class="m-0 d-block">UNIT</strong>
                         <strong class="m-0 d-block">SN</strong>
                         <strong class="m-0 d-block">STATUS</strong>
-                        </div>
+                    </div>
                     <div class="col-1">
                         <strong class="m-0 d-block">:</strong>
                         <strong class="m-0 d-block">:</strong>
@@ -122,9 +127,9 @@ if(isset($_GET['en'])){
                         <span class="tb-right"><?= $spk; ?></span>
                         <span class="tb-right"><?= $data2['unit']; ?></span>
                         <span class="tb-right"><?= $data2['sn']; ?></span>
-                        <?php if($status_unit == 'done'): ?>
+                        <?php if ($status_unit == 'done'): ?>
                             <span class="tb-right fw-bold text-success"><?= $words['status_unit']; ?></span>
-                        <?php elseif($status_unit == 'abort'): ?>
+                        <?php elseif ($status_unit == 'abort'): ?>
                             <span class="tb-right fw-bold text-danger"><?= $words['status_unit']; ?></span>
                         <?php else: ?>
                             <span class="tb-right fw-bold text-warning"><?= $words['status_unit']; ?></span>
@@ -133,10 +138,7 @@ if(isset($_GET['en'])){
                 </div>
             </div>
             <div class="col-6 text-center border border-1 border-dark position-relative">
-                <svg class="w-75 h-100 m-0 position-absolute" id="barcode"
-                        jsbarcode-value="<?= $barcode; ?>"
-                        jsbarcode-textmargin="0"
-                        jsbarcode-fontoptions="bold"></svg>
+                <svg class="w-75 h-100 m-0 position-absolute" id="barcode" jsbarcode-value="<?= $barcode; ?>" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
             </div>
         </div>
         <!-- close info -->
@@ -155,7 +157,7 @@ if(isset($_GET['en'])){
         <!-- identity -->
         <div id="identity" class="row px-2">
             <div class="col-6 border border-1 border-dark py-1">
-                <strong class="d-block"><?= ucwords($data2['nama']) ; ?></strong>
+                <strong class="d-block"><?= ucwords($data2['nama']); ?></strong>
                 <span class="d-block"><?= $data2['wa']; ?></span>
                 <span class="d-block"><?= nl2br($data2['alamat']); ?></span>
             </div>
@@ -165,17 +167,17 @@ if(isset($_GET['en'])){
         </div>
         <!-- close identity -->
 
-        <?php if(!empty($data2['result'])) :?>
-        <!-- result -->
-        <div id="gap" class="row px-2">
-            <div class="col-12 text-center border border-1 border-dark bg-secondary-subtle">
-                <strong><?= $words['result']; ?></strong>
+        <?php if (!empty($data2['result'])): ?>
+            <!-- result -->
+            <div id="gap" class="row px-2">
+                <div class="col-12 text-center border border-1 border-dark bg-secondary-subtle">
+                    <strong><?= $words['result']; ?></strong>
+                </div>
+                <div class="col-12 border border-1 border-dark">
+                    <span class="d-block"><?= nl2br(ucfirst($data2['result'])); ?></span>
+                </div>
             </div>
-            <div class="col-12 border border-1 border-dark">
-                <span class="d-block"><?= nl2br(ucfirst($data2['result'])); ?></span>
-            </div>
-        </div>
-        <!-- close result -->
+            <!-- close result -->
         <?php endif; ?>
 
         <!-- table -->
@@ -184,27 +186,27 @@ if(isset($_GET['en'])){
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
-                        <th scope="col" class="tb-center">Qty</th>
-                        <th scope="col"><?= $words['kode']; ?></th>
-                        <th scope="col">Item</th>
-                        <th scope="col" class="tb-right"><?= $words['harga']; ?></th>
-                        <th scope="col" class="tb-right"><?= $words['jumlah']; ?></th>
+                            <th scope="col" class="tb-center">Qty</th>
+                            <th scope="col"><?= $words['kode']; ?></th>
+                            <th scope="col">Item</th>
+                            <th scope="col" class="tb-right"><?= $words['harga']; ?></th>
+                            <th scope="col" class="tb-right"><?= $words['jumlah']; ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i = 0; $i < count($qtss); $i++): ?>
-                            <?php $sell = str_replace(',','',$sells[$i]);
-                                $qts = str_replace(',','',$qtss[$i]);?>
-                        <tr>
-                        <th scope="row" class="tb-center py-0"><?= $qtss[$i]; ?></th>
-                        <td class="py-0"><?= $kodes[$i]; ?></td>
-                        <td class="py-0"><?= $descs[$i]; ?></td>
-                        <td class="tb-right py-0"><?= number_format(round($sell/$qts),0,'.',','); ?></td>
-                        <td class="tb-right py-0"><?= $sells[$i]; ?></td>
-                        </tr>
+                        <?php for ($i = 0; $i < count($qtss); $i++): ?>
+                            <?php $sell = str_replace(',', '', $sells[$i]);
+                            $qts = str_replace(',', '', $qtss[$i]); ?>
+                            <tr>
+                                <th scope="row" class="tb-center py-0"><?= $qtss[$i]; ?></th>
+                                <td class="py-0"><?= $kodes[$i]; ?></td>
+                                <td class="py-0"><?= $descs[$i]; ?></td>
+                                <td class="tb-right py-0"><?= number_format(round($sell / $qts), 0, '.', ','); ?></td>
+                                <td class="tb-right py-0"><?= $sells[$i]; ?></td>
+                            </tr>
                         <?php endfor; ?>
                     </tbody>
-                </table>    
+                </table>
             </div>
         </div>
         <!-- close table -->
@@ -214,14 +216,16 @@ if(isset($_GET['en'])){
             <div class="col-8">
                 <div class="row gx-0 justify-content-between">
                     <div class="col-9">
-                        <?php foreach($words['note'] as $note){echo $note;} ?>
+                        <?php foreach ($words['note'] as $note) {
+                            echo $note;
+                        } ?>
                     </div>
                     <div class="col-3 border border-1 border-dark rounded p-2 w-fit-content  h-fit-content">
                         <div id="qrcode" class="mb-1"></div>
-                        <?php if($data['save_as'] == 'invoice'): ?>
-                        <p id="qrcode-text" class="text-center mb-0 fw-bold">Digital Invoice</p>
+                        <?php if ($data['save_as'] == 'invoice'): ?>
+                            <p id="qrcode-text" class="text-center mb-0 fw-bold">Digital Invoice</p>
                         <?php else: ?>
-                        <p id="qrcode-text" class="text-center mb-0 fw-bold">Digital Quo</p>
+                            <p id="qrcode-text" class="text-center mb-0 fw-bold">Digital Quo</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -233,8 +237,8 @@ if(isset($_GET['en'])){
                             <strong>Subtotal</strong>
                             <span>DPP</span>
                             <span><?= $words['ppn']; ?></span>
-                            <?php if($data['save_as'] == 'invoice'): ?>
-                            <span>Deposit</span>
+                            <?php if ($data['save_as'] == 'invoice'): ?>
+                                <span>Deposit</span>
                             <?php endif; ?>
                             <strong>TOTAL</strong>
                         </div>
@@ -244,22 +248,22 @@ if(isset($_GET['en'])){
                             <span class="tb-right"><?= $subtotal; ?></span>
                             <span class="tb-right"><?= $dpp; ?></span>
                             <span class="tb-right"><?= $ppn; ?></span>
-                            <?php if($data['save_as'] == 'invoice'): ?>
-                            <span class="tb-right"><?= $deposit; ?></span>
-                            <strong class="tb-right"><?= $total; ?></strong>
+                            <?php if ($data['save_as'] == 'invoice'): ?>
+                                <span class="tb-right"><?= $deposit; ?></span>
+                                <strong class="tb-right"><?= $total; ?></strong>
                             <?php else: ?>
-                            <strong class="tb-right"><?= $subtotal; ?></strong>
+                                <strong class="tb-right"><?= $subtotal; ?></strong>
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?php if($data['status'] == 'paid') :?>
-                    <div id="stamp" class="row position-absolute">
-                        <div class="col-8 stamp text-center font-stamp fw-bold">
-                            <p class="mb-min-1 fs-3"><?= $words['status']; ?></p>
-                            <p class="m-0 fs-6"><?= $date_paid; ?></p>
+                    <?php if ($data['status'] == 'paid'): ?>
+                        <div id="stamp" class="row position-absolute">
+                            <div class="col-8 stamp text-center font-stamp fw-bold">
+                                <p class="mb-min-1 fs-3"><?= $words['status']; ?></p>
+                                <p class="m-0 fs-6"><?= $date_paid; ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif ;?>
+                    <?php endif; ?>
                 </div>
             </div>
             <!-- close total -->
@@ -277,20 +281,12 @@ if(isset($_GET['en'])){
 
         </div>
         <!-- Toast with Placements -->
-        <div
-            id="toastCopy"
-            class="send bs-toast toast toast-placement-ex m-2 bg-primary"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-            data-delay="2000"
-            data-autohide="true"
-            style="top: 0; left: 0;">
+        <div id="toastCopy" class="send bs-toast toast toast-placement-ex m-2 bg-primary" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" data-autohide="true" style="top: 0; left: 0;">
             <div class="toast-header">
-            <i class="bi bi-bell"></i>
-            <div class="me-auto fw-semibold"> Link Berhasil dicopy !</div>
-            <!-- <small>11 mins ago</small> -->
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                <i class="bi bi-bell"></i>
+                <div class="me-auto fw-semibold"> Link Berhasil dicopy !</div>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
         <hr id='foot-hr' class="mt-1">
@@ -298,42 +294,40 @@ if(isset($_GET['en'])){
         <a class="send btn btn-success mb-3" target="_blank" href="https://wa.me/<?= $data2['wa']; ?>?text=<?= urlencode($qrcode); ?>"><i class="bi bi-whatsapp"></i> Send</a>
         <a class="send btn btn-warning mb-3" href="javascript:void(0)" onclick="sendBot('<?= $data2['wa']; ?>','<?= $qrcode; ?>','<?= $data['save_as']; ?>')"><i class="bi bi-robot"></i> BOT</a>
         <a class="send btn btn-primary mb-3" href="<?= $qrcode; ?>" onclick="copyURI(event)"><i class="bi bi-copy"></i> Copy</a>
-        
 
-        
+
+
     </div>
-    
-    
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
-<script src="../alert/sweetalert2.all.js?versi=<?= $version ; ?>"></script>
-<script src="barcode.js"></script>
-<script src="../alert/confirm.js?<?=$version ; ?>"></script>
-<script src="print.js?versi=<?= $version ; ?>"></script>
-<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
-function printDocument() {
-  window.print();
-}
-JsBarcode("#barcode").init();
+    <script src="../alert/sweetalert2.all.js?versi=<?= $version; ?>"></script>
+    <script src="barcode.js"></script>
+    <script src="../alert/confirm.js?<?= $version; ?>"></script>
+    <script src="print.js?versi=<?= $version; ?>"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
-var data = '<?= $qrcode; ?>';
-    var qrcode = new QRCode(document.getElementById('qrcode'), {
-        text: data,
-        width: 85,
-        height: 85,
-    });
+    <script>
 
-</script>
+        function printDocument() {
+            window.print();
+        }
+        JsBarcode("#barcode").init();
+
+        var data = '<?= $qrcode; ?>';
+        var qrcode = new QRCode(document.getElementById('qrcode'), {
+            text: data,
+            width: 85,
+            height: 85,
+        });
+
+    </script>
 </body>
 
 
 </html>
-
-

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // error_reporting(0);
 
 
@@ -44,9 +44,10 @@ if ($dbExistsCount > 0) {
         die("Koneksi gagal: " . $conn->connect_error);
     }
     //ambil data di database
-    function data($info){
+    function data($info)
+    {
         global $conn;
-        
+
         $result = $conn->query($info);
         $rows = [];
         if ($result->num_rows > 0) {
@@ -59,12 +60,46 @@ if ($dbExistsCount > 0) {
     }
 
     //remove specialchar function
-    function removeSpecialChar($input){
+    function removeSpecialChar($input)
+    {
         $specialChars = array(
-            '!', '"', '#', '$', '%', '&', "'", '(', ')', '*',
-            '+', ',', '-', '.', '/', ':', ';', '<', '=', '>',
-            '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|',
-            '}', '~', ',', "'", '"', "\\", '/'
+            '!',
+            '"',
+            '#',
+            '$',
+            '%',
+            '&',
+            "'",
+            '(',
+            ')',
+            '*',
+            '+',
+            ',',
+            '-',
+            '.',
+            '/',
+            ':',
+            ';',
+            '<',
+            '=',
+            '>',
+            '?',
+            '@',
+            '[',
+            '\\',
+            ']',
+            '^',
+            '_',
+            '`',
+            '{',
+            '|',
+            '}',
+            '~',
+            ',',
+            "'",
+            '"',
+            "\\",
+            '/'
         );
         $replacement = '';
         $output = str_replace($specialChars, $replacement, $input);
@@ -72,20 +107,52 @@ if ($dbExistsCount > 0) {
     }
 
     //remove input function
-    function removeInputChar($input){
+    function removeInputChar($input)
+    {
         $specialChars = array(
-            '"', '#', '$', '%', '&', "'", '(', ')', '*',
-            '+', '-', '/', ':', ';', '<', '=', '>',
-            '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|',
-            '}', '~', ',', "'", '"', "\\", '/'
+            '"',
+            '#',
+            '$',
+            '%',
+            '&',
+            "'",
+            '(',
+            ')',
+            '*',
+            '+',
+            '-',
+            '/',
+            ':',
+            ';',
+            '<',
+            '=',
+            '>',
+            '?',
+            '@',
+            '[',
+            '\\',
+            ']',
+            '^',
+            '_',
+            '`',
+            '{',
+            '|',
+            '}',
+            '~',
+            ',',
+            "'",
+            '"',
+            "\\",
+            '/'
         );
         $replacement = '';
         $output = str_replace($specialChars, $replacement, $input);
         return $output;
     }
 
-        // fungsi enkripsi url
-    function encrypt($data) {
+    // fungsi enkripsi url
+    function encrypt($data)
+    {
         $key = 'kmzwa8awaa';
         $result = '';
         $dataLength = strlen($data);
@@ -98,7 +165,8 @@ if ($dbExistsCount > 0) {
         return base64_encode($result);
     }
     // fungsi dekripsi url
-    function decrypt($data) {
+    function decrypt($data)
+    {
         $key = 'kmzwa8awaa';
         $data = base64_decode($data);
         $result = '';
@@ -113,14 +181,15 @@ if ($dbExistsCount > 0) {
     }
 
     // funsi user login
-    function login($kode,$token,$akses){        
+    function login($kode, $token, $akses)
+    {
         $login = data("SELECT * FROM logininfo WHERE kodeuser = '$kode' ")[0];
-        if($token != $login['token']){
-            header('Location: ../logout.php');	
+        if ($token != $login['token']) {
+            header('Location: ../logout.php');
             die;
         }
-        if(!in_array($_SESSION['akses'],$akses)){
-            header('Location: ../logout.php'); 
+        if (!in_array($_SESSION['akses'], $akses)) {
+            header('Location: ../logout.php');
             die;
         }
     }
@@ -130,7 +199,7 @@ if ($dbExistsCount > 0) {
     // var_dump($result);
     if ($result) {
         $version = data("SELECT * FROM version WHERE id = 1")[0]['versi'];
-    }else{
+    } else {
         $version = '0.0.0.0';
     }
 
