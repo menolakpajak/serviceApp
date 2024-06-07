@@ -175,7 +175,7 @@ if (isset($_GET['en'])) {
                     <div class="col-6">
                         <div class="row">
                             <strong>Subtotal</strong>
-                            <span>DPP</span>
+                            <span>Discount</span>
                             <span><?= $words['ppn']; ?></span>
                             <?php if ($data['save_as'] == 'invoice'): ?>
                                 <span>Deposit</span>
@@ -186,8 +186,8 @@ if (isset($_GET['en'])) {
                     <div class="col-6">
                         <div class="row">
                             <span class="tb-right"><?= $subtotal; ?></span>
-                            <span class="tb-right"><?= $dpp; ?></span>
-                            <span class="tb-right"><?= $ppn; ?></span>
+                            <span class="tb-right">0</span>
+                            <span class="tb-right">0</span>
                             <?php if ($data['save_as'] == 'invoice'): ?>
                                 <span class="tb-right"><?= $deposit; ?></span>
                                 <strong class="tb-right"><?= $total; ?></strong>

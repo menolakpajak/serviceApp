@@ -10,6 +10,6 @@ $lang[3] = 'For any CANCELLATION after the service inspection process, customers
 $lang[4] = 'If the confirmation of the service cost quotation we provided is not responded to within 2 weeks, the service is considered CANCELLED.';
 $lang[5] = 'We are not responsible for the LOSS / DAMAGE of units that have been COMPLETED / CANCELLED services and are not retrieved within 30 days from the confirmation that the unit is ready for pickup.';
 $lang[6] = 'The service warranty is valid for 30 days from the date of pickup confirmation or the date stated on the receipt, applicable to the same issue and not caused by misuse or natural disasters.';
-$lang[7] = 'Units processed through a service center outside Bali will incur shipping charges according to the service destination.';
+$lang[7] = 'There will be an additional delivery fee if the unit needs to be picked up at the start or delivered back upon completion of the repair, according to the distance and terms.';
 
 $lang['agree'] = 'I Agree';

@@ -10,6 +10,6 @@ $lang[3] = 'Untuk setiap PEMBATALAN setelah proses pengecekan service pelanggan 
 $lang[4] = 'Apabila konfirmasi penawaran biaya service yang kami ajukan tidak ditanggapi dalam waktu 2 minggu, maka service dianggap BATAL.';
 $lang[5] = 'Kami tidak bertanggung jawab atas KEHILANGAN / KERUSAKAN unit yang SELESAI / BATAL service yang tidak diambil dalam waktu 30 hari sejak konfirmasi bahwa unit sudah bisa diambil.';
 $lang[6] = 'Garansi service berlaku selama 30 hari terhitung dari tanggal konfirmasi pengambilan atau tanggal yang tertera pada nota, untuk kerusakan yang sama dan bukan karena kesalahan pemakaian atau bencana alam.';
-$lang[7] = 'Unit yang prosesnya melalui service centre di luar bali akan dikenakan biaya pengiriman sesuai tujuan service.';
+$lang[7] = 'Ada penambahan biaya kirim jika unit harus dijemput saat pengambilan atau diantarkan saat selesai perbaikan,sesuai dengan jarak dan ketentuan.';
 
 $lang['agree'] = 'Saya setuju';
