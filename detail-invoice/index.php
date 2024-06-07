@@ -33,7 +33,10 @@ $descs = json_decode($data['deskripsi'],true) ;
 $buys =json_decode($data['buy'],true) ;
 $margins = json_decode($data['margin'],true) ;
 $sells = json_decode($data['sell'],true) ;
-$profit = $data['profit'];
+$profit = '****';
+if(isset($_GET['show'])){
+	$profit = $data['profit'];
+}
 $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
 $ppn = $data['ppn'];
@@ -128,7 +131,7 @@ $kode_id = "$huruf-$angka";
 													<!-- HEAD -->
 								<div id="head">
 									<div class="form-group input">
-										<strong style="text-align: right;" for="link">Date :</strong>
+										<strong style="text-align: right;">Date :</strong>
 										<div class="box">
 											<h4>
 												<strong><?= $date; ?></strong>
@@ -137,7 +140,7 @@ $kode_id = "$huruf-$angka";
 									</div>
 									<?php if(!empty($spk)) :?>
 									<div class="form-group input">
-										<strong style="text-align: right;" for="link">FOR :</strong>
+										<strong style="text-align: right;">FOR :</strong>
 										<div class="box">
 											<h4>
 												<strong><?= $spk; ?></strong>
@@ -156,7 +159,7 @@ $kode_id = "$huruf-$angka";
 
 								<div id="nota-opsi">
 									<div class="form-group input">
-										<strong style="text-align: right;" for="link">AS :</strong>
+										<strong style="text-align: right;">AS :</strong>
 										<div class="box">
 											<h4>
 												<?php if($save_as == 'QUOTATION') :?>
@@ -168,7 +171,7 @@ $kode_id = "$huruf-$angka";
 										</div>
 									</div>
 									<div class="form-group input">
-										<strong style="text-align: right;" for="link">Status :</strong>
+										<strong style="text-align: right;">Status :</strong>
 										<div class="box">
 											<h4>
 												<?php if($status == 'PAID'): ?>
@@ -219,7 +222,7 @@ $kode_id = "$huruf-$angka";
 										<div class="box-total" style="min-width: 250px;">
 											<div class="form-group input color-blue">
 												<div class="box">
-													<label for="profit">Profit</label>
+													<label>Profit</label>
 													<div style="text-align: right;width:100%">
 														<strong><?= $profit; ?></strong>
 													</div>
@@ -235,7 +238,7 @@ $kode_id = "$huruf-$angka";
 											</div>
 											<div class="form-group input">
 												<div class="box">
-													<label for="dpp">DPP</label>
+													<label>DPP</label>
 													<div style="text-align: right;width:100%">
 														<strong><?= $dpp; ?></strong>
 													</div>
