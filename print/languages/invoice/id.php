@@ -53,6 +53,5 @@ if ($detail == 'invoice_for') {
         $words['note'][7] = "<p class='syarat mb-0'><strong>7.</strong> Pembayaran bisa di trf ke rekening :</p>";
         $words['note'][8] = "<p class='syarat mb-0 ms-3 fw-bold'>$rek[0]</p>";
         $words['note'][9] = "<p class='syarat mb-0 ms-3 fw-bold'>$rek[1]</p>";
-        $words['note'][10] = "<p class='syarat mb-0'><strong>10.</strong> Harga sudah termasuk PPN .</p>";
     }
 }

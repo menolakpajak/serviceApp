@@ -50,6 +50,5 @@ if ($detail == 'invoice_for') {
         $words['note'][7] = "<p class='syarat mb-0'><strong>7.</strong> Payments can be transferred to the following bank account:</p>";
         $words['note'][8] = "<p class='syarat mb-0 ms-3 fw-bold'>$rek[0]</p>";
         $words['note'][9] = "<p class='syarat mb-0 ms-3 fw-bold'>$rek[1]</p>";
-        $words['note'][10] = "<p class='syarat mb-0'><strong>10.</strong> The price already includes VAT (Value Added Tax).</p>";
     }
 }
