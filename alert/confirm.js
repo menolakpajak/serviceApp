@@ -1,10 +1,8 @@
-
-// GENERATE RANDOM STRING 
+// GENERATE RANDOM STRING
 function generateRandomString(length) {
-    const characters = '0123456789';
-    const separator = '-';
-    let randomString = '';
-
+    const characters = "0123456789";
+    const separator = "-";
+    let randomString = "";
 
     for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
@@ -14,68 +12,99 @@ function generateRandomString(length) {
     // Menambahkan strip setelah 3 digit pertama
     randomStringSlash = randomString.slice(0, 3) + separator + randomString.slice(3);
 
-    return [randomString,randomStringSlash];
+    return [randomString, randomStringSlash];
 }
-// REMOVE SPECIAL CHAR 
+// REMOVE SPECIAL CHAR
 function removeSpecialCharacters(inputString) {
     // Menggunakan ekspresi reguler untuk menyaring karakter yang bukan huruf atau angka
-    return inputString.replace(/[^a-zA-Z0-9]/g, '');
+    return inputString.replace(/[^a-zA-Z0-9]/g, "");
 }
- 
-                            //KOMFIRMASI awal input data ke NEW 
-function confirmInput(event){
+
+//KOMFIRMASI awal input data ke NEW
+function confirmInput(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'KIRIM ?',
+        title: "KIRIM ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Input'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Input",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var no_spk = document.querySelector('#no_spk').value;
-            var nama = document.querySelector('#nama').value;
-            var wa = document.querySelector('#wa').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var tipe_unit = document.querySelector('#tipe_unit').value;
-            var unit = document.querySelector('#unit').value;
-            var serial_number = document.querySelector('#serial_number').value;
-            var counter = document.querySelector('#counter').value;
-            var pin = document.querySelector('#pin').value;
-            var note = document.querySelector('#note').value;
-            var error = document.querySelector('#error').value;
-            var check_kamera = document.querySelector('#check_kamera')
-            var check_lensa = document.querySelector('#check_lensa')
-            var check_battery = document.querySelector('#check_battery')
-            var check_memory = document.querySelector('#check_memory')
-            var check_strap = document.querySelector('#check_strap')
-            var check_bodycap = document.querySelector('#check_bodycap')
-            var check_lenscap = document.querySelector('#check_lenscap')
-            var check_filter = document.querySelector('#check_filter')
-            if(check_kamera.checked){check_kamera = 'on'}else{check_kamera = ''}
-            if(check_lensa.checked){check_lensa = 'on'}else{check_lensa = ''}
-            if(check_battery.checked){check_battery = 'on'}else{check_battery = ''}
-            if(check_memory.checked){check_memory = 'on'}else{check_memory = ''}
-            if(check_strap.checked){check_strap = 'on'}else{check_strap = ''}
-            if(check_bodycap.checked){check_bodycap = 'on'}else{check_bodycap = ''}
-            if(check_lenscap.checked){check_lenscap = 'on'}else{check_lenscap = ''}
-            if(check_filter.checked){check_filter = 'on'}else{check_filter = ''}
+            var date = document.querySelector("#date").value;
+            var no_spk = document.querySelector("#no_spk").value;
+            var nama = document.querySelector("#nama").value;
+            var wa = document.querySelector("#wa").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var tipe_unit = document.querySelector("#tipe_unit").value;
+            var unit = document.querySelector("#unit").value;
+            var serial_number = document.querySelector("#serial_number").value;
+            var counter = document.querySelector("#counter").value;
+            var pin = document.querySelector("#pin").value;
+            var note = document.querySelector("#note").value;
+            var error = document.querySelector("#error").value;
+            var check_kamera = document.querySelector("#check_kamera");
+            var check_lensa = document.querySelector("#check_lensa");
+            var check_battery = document.querySelector("#check_battery");
+            var check_memory = document.querySelector("#check_memory");
+            var check_strap = document.querySelector("#check_strap");
+            var check_bodycap = document.querySelector("#check_bodycap");
+            var check_lenscap = document.querySelector("#check_lenscap");
+            var check_filter = document.querySelector("#check_filter");
+            if (check_kamera.checked) {
+                check_kamera = "on";
+            } else {
+                check_kamera = "";
+            }
+            if (check_lensa.checked) {
+                check_lensa = "on";
+            } else {
+                check_lensa = "";
+            }
+            if (check_battery.checked) {
+                check_battery = "on";
+            } else {
+                check_battery = "";
+            }
+            if (check_memory.checked) {
+                check_memory = "on";
+            } else {
+                check_memory = "";
+            }
+            if (check_strap.checked) {
+                check_strap = "on";
+            } else {
+                check_strap = "";
+            }
+            if (check_bodycap.checked) {
+                check_bodycap = "on";
+            } else {
+                check_bodycap = "";
+            }
+            if (check_lenscap.checked) {
+                check_lenscap = "on";
+            } else {
+                check_lenscap = "";
+            }
+            if (check_filter.checked) {
+                check_filter = "on";
+            } else {
+                check_filter = "";
+            }
 
-            var check_kamera_info = document.querySelector('#check_kamera_info').value;
-            var check_lensa_info = document.querySelector('#check_lensa_info').value;
-            var check_battery_info = document.querySelector('#check_battery_info').value;
-            var check_memory_info = document.querySelector('#check_memory_info').value;
-            var check_strap_info = document.querySelector('#check_strap_info').value;
-            var check_bodycap_info = document.querySelector('#check_bodycap_info').value;
-            var check_lenscap_info = document.querySelector('#check_lenscap_info').value;
-            var check_filter_info = document.querySelector('#check_filter_info').value;
-            var other = document.querySelector('#other').value;
-
+            var check_kamera_info = document.querySelector("#check_kamera_info").value;
+            var check_lensa_info = document.querySelector("#check_lensa_info").value;
+            var check_battery_info = document.querySelector("#check_battery_info").value;
+            var check_memory_info = document.querySelector("#check_memory_info").value;
+            var check_strap_info = document.querySelector("#check_strap_info").value;
+            var check_bodycap_info = document.querySelector("#check_bodycap_info").value;
+            var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
+            var check_filter_info = document.querySelector("#check_filter_info").value;
+            var other = document.querySelector("#other").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -111,68 +140,66 @@ function confirmInput(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI INPUT',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di new order !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-new/");
-                                }
-                                window.location.href = "../order-new/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI INPUT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI INPUT",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di new order !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-new/");
+                            }
+                            window.location.href = "../order-new/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI INPUT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/input.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/input.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
+// KONFIRMASI DARI NEW KE PROSES
 
-                            // KONFIRMASI DARI NEW KE PROSES
-
-function proses(id){
+function proses(id) {
     var token = generateRandomString(6);
     Swal.fire({
-        title: 'AKAN MEMPROSES INI ?',
+        title: "AKAN MEMPROSES INI ?",
         html: `<p><strong class="color-blue">NEW</strong> to <strong class="color-orange">ON PROSES</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -180,68 +207,68 @@ function proses(id){
             formData.append("no_spk", id);
             formData.append("submit", true);
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI PROSES',
-                                text: 'Kini status data menjadi ON PROSES',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-proses/?id="+id);
-                                }
-                                window.location.href = "../detail-proses/?id="+id;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI PROSES',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI PROSES",
+                            text: "Kini status data menjadi ON PROSES",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-proses/?id=" + id);
+                            }
+                            window.location.href = "../detail-proses/?id=" + id;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI PROSES",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/proses.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/proses.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
-                           // KONFIRMASI DARI PROSES KE DONE
+// KONFIRMASI DARI PROSES KE DONE
 
-function done(id){
+function done(id) {
     var token = generateRandomString(6);
     Swal.fire({
-        title: 'AKAN MEMPROSES INI ?',
+        title: "AKAN MEMPROSES INI ?",
         html: `<p><strong class="color-orange">ON PROSESS</strong> to <strong class="color-green">DONE</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -249,67 +276,67 @@ function done(id){
             formData.append("no_spk", id);
             formData.append("submit", true);
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI PROSES',
-                                text: 'Kini status data menjadi DONE',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-done/?id="+id);
-                                }
-                                window.location.href = "../detail-done/?id="+id;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI PROSES',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI PROSES",
+                            text: "Kini status data menjadi DONE",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-done/?id=" + id);
+                            }
+                            window.location.href = "../detail-done/?id=" + id;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI PROSES",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/done.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/done.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
-                            // KONFIRMASI DARI PROSES KE ABORT
-function abort(id){
+// KONFIRMASI DARI PROSES KE ABORT
+function abort(id) {
     var token = generateRandomString(6);
     Swal.fire({
-        title: 'AKAN MEMPROSES INI ?',
+        title: "AKAN MEMPROSES INI ?",
         html: `<p><strong class="color-orange">ON PROSESS</strong> to <strong class="color-red">ABORT</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation)
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -317,148 +344,148 @@ function abort(id){
             formData.append("no_spk", id);
             formData.append("submit", true);
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI PROSES',
-                                text: 'Kini status data menjadi ABORT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-abort/?id="+id);
-                                }
-                                window.location.href = "../detail-abort/?id="+id;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI PROSES',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI PROSES",
+                            text: "Kini status data menjadi ABORT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-abort/?id=" + id);
+                            }
+                            window.location.href = "../detail-abort/?id=" + id;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI PROSES",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/abort.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/abort.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-                                // KONFIRMASI DONE / ABORT KE PICKUP
+// KONFIRMASI DONE / ABORT KE PICKUP
 
-function pickup(id,status){
+function pickup(id, status) {
     var token = generateRandomString(6);
-    if(status == 'done'){
+    if (status == "done") {
         var html = `<p><strong class="color-green">DONE</strong> to <strong class="color-purple">PICKUP</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`;
     }
-    if(status == 'abort'){
+    if (status == "abort") {
         var html = `<p><strong class="color-red">ABORT</strong> to <strong class="color-purple">PICKUP</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`;
     }
-    
+
     Swal.fire({
-        title: 'AKAN MEMPROSES INI ?',
+        title: "AKAN MEMPROSES INI ?",
         html: html,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation)
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
-            
+
             let formData = new FormData();
             formData.append("no_spk", id);
             formData.append("submit", true);
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI PROSES',
-                                text: 'Sesi untuk DATA ini akan ditutup.',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-pickup/?id="+id);
-                                }
-                                window.location.href = "../detail-pickup/?id="+id;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI PROSES',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI PROSES",
+                            text: "Sesi untuk DATA ini akan ditutup.",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-pickup/?id=" + id);
+                            }
+                            window.location.href = "../detail-pickup/?id=" + id;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI PROSES",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/pickup.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/pickup.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
-                            // KONFIRMASI DELETE
+// KONFIRMASI DELETE
 
 // DELETE TABEL DATA
 
-function deleteData(status,id){
+function deleteData(status, id) {
     var token = generateRandomString(6);
 
     Swal.fire({
-        title: 'HAPUS DATA INI ?',
+        title: "HAPUS DATA INI ?",
         html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#222',
-        confirmButtonText: 'DELETE'
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI HAPUS',
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -467,103 +494,129 @@ function deleteData(status,id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI HAPUS',
-                                confirmButtonText: "OK",
-                                text: 'Perubahan dapat dilihat di page Sebelumnya !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, `../order-${status}/`);
-                                }
-                                window.location.href = `../order-${status}/`;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI HAPUS',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page Sebelumnya !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../order-${status}/`);
+                            }
+                            window.location.href = `../order-${status}/`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/delete.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/delete.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-
 
 // KONFIRMASI EDIT DATA
 
 // EDIT NEW
 
-function confirmEditNew(event){
+function confirmEditNew(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'EDIT ?',
+        title: "EDIT ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Edit'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Edit",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var no_spk = document.querySelector('#no_spk').value;
-            var nama = document.querySelector('#nama').value;
-            var wa = document.querySelector('#wa').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var tipe_unit = document.querySelector('#tipe_unit').value;
-            var unit = document.querySelector('#unit').value;
-            var serial_number = document.querySelector('#serial_number').value;
-            var counter = document.querySelector('#counter').value;
-            var pin = document.querySelector('#pin').value;
-            var note = document.querySelector('#note').value;
-            var error = document.querySelector('#error').value;
-            var check_kamera = document.querySelector('#check_kamera')
-            var check_lensa = document.querySelector('#check_lensa')
-            var check_battery = document.querySelector('#check_battery')
-            var check_memory = document.querySelector('#check_memory')
-            var check_strap = document.querySelector('#check_strap')
-            var check_bodycap = document.querySelector('#check_bodycap')
-            var check_lenscap = document.querySelector('#check_lenscap')
-            var check_filter = document.querySelector('#check_filter')
-            if(check_kamera.checked){check_kamera = 'on'}else{check_kamera = ''}
-            if(check_lensa.checked){check_lensa = 'on'}else{check_lensa = ''}
-            if(check_battery.checked){check_battery = 'on'}else{check_battery = ''}
-            if(check_memory.checked){check_memory = 'on'}else{check_memory = ''}
-            if(check_strap.checked){check_strap = 'on'}else{check_strap = ''}
-            if(check_bodycap.checked){check_bodycap = 'on'}else{check_bodycap = ''}
-            if(check_lenscap.checked){check_lenscap = 'on'}else{check_lenscap = ''}
-            if(check_filter.checked){check_filter = 'on'}else{check_filter = ''}
+            var date = document.querySelector("#date").value;
+            var no_spk = document.querySelector("#no_spk").value;
+            var nama = document.querySelector("#nama").value;
+            var wa = document.querySelector("#wa").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var tipe_unit = document.querySelector("#tipe_unit").value;
+            var unit = document.querySelector("#unit").value;
+            var serial_number = document.querySelector("#serial_number").value;
+            var counter = document.querySelector("#counter").value;
+            var pin = document.querySelector("#pin").value;
+            var note = document.querySelector("#note").value;
+            var error = document.querySelector("#error").value;
+            var check_kamera = document.querySelector("#check_kamera");
+            var check_lensa = document.querySelector("#check_lensa");
+            var check_battery = document.querySelector("#check_battery");
+            var check_memory = document.querySelector("#check_memory");
+            var check_strap = document.querySelector("#check_strap");
+            var check_bodycap = document.querySelector("#check_bodycap");
+            var check_lenscap = document.querySelector("#check_lenscap");
+            var check_filter = document.querySelector("#check_filter");
+            if (check_kamera.checked) {
+                check_kamera = "on";
+            } else {
+                check_kamera = "";
+            }
+            if (check_lensa.checked) {
+                check_lensa = "on";
+            } else {
+                check_lensa = "";
+            }
+            if (check_battery.checked) {
+                check_battery = "on";
+            } else {
+                check_battery = "";
+            }
+            if (check_memory.checked) {
+                check_memory = "on";
+            } else {
+                check_memory = "";
+            }
+            if (check_strap.checked) {
+                check_strap = "on";
+            } else {
+                check_strap = "";
+            }
+            if (check_bodycap.checked) {
+                check_bodycap = "on";
+            } else {
+                check_bodycap = "";
+            }
+            if (check_lenscap.checked) {
+                check_lenscap = "on";
+            } else {
+                check_lenscap = "";
+            }
+            if (check_filter.checked) {
+                check_filter = "on";
+            } else {
+                check_filter = "";
+            }
 
-            var check_kamera_info = document.querySelector('#check_kamera_info').value;
-            var check_lensa_info = document.querySelector('#check_lensa_info').value;
-            var check_battery_info = document.querySelector('#check_battery_info').value;
-            var check_memory_info = document.querySelector('#check_memory_info').value;
-            var check_strap_info = document.querySelector('#check_strap_info').value;
-            var check_bodycap_info = document.querySelector('#check_bodycap_info').value;
-            var check_lenscap_info = document.querySelector('#check_lenscap_info').value;
-            var check_filter_info = document.querySelector('#check_filter_info').value;
-            var other = document.querySelector('#other').value;
-            
-
-
-
+            var check_kamera_info = document.querySelector("#check_kamera_info").value;
+            var check_lensa_info = document.querySelector("#check_lensa_info").value;
+            var check_battery_info = document.querySelector("#check_battery_info").value;
+            var check_memory_info = document.querySelector("#check_memory_info").value;
+            var check_strap_info = document.querySelector("#check_strap_info").value;
+            var check_bodycap_info = document.querySelector("#check_bodycap_info").value;
+            var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
+            var check_filter_info = document.querySelector("#check_filter_info").value;
+            var other = document.querySelector("#other").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -599,119 +652,144 @@ function confirmEditNew(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // console.log(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-new/?id="+no_spk);
-                                }
-                                window.location.href = "../detail-new/?id="+no_spk;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-new/?id=" + no_spk);
+                            }
+                            window.location.href = "../detail-new/?id=" + no_spk;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editNew.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editNew.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-
-
 
 // EDIT PROSES
 
-function confirmEditProses(event){
+function confirmEditProses(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'EDIT ?',
+        title: "EDIT ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Edit'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Edit",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var no_spk = document.querySelector('#no_spk').value;
-            var nama = document.querySelector('#nama').value;
-            var wa = document.querySelector('#wa').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var tipe_unit = document.querySelector('#tipe_unit').value;
-            var unit = document.querySelector('#unit').value;
-            var serial_number = document.querySelector('#serial_number').value;
-            var counter = document.querySelector('#counter').value;
-            var pin = document.querySelector('#pin').value;
-            var note = document.querySelector('#note').value;
-            var error = document.querySelector('#error').value;
-            var service_at = document.querySelector('#service_at').value;
-            var date_proses = document.querySelector('#date_proses').value;
-            if(document.querySelector('#date_update') == null){
-                var date_update = '';
-            }else{
-                var date_update = document.querySelector('#date_update').value;
+            var date = document.querySelector("#date").value;
+            var no_spk = document.querySelector("#no_spk").value;
+            var nama = document.querySelector("#nama").value;
+            var wa = document.querySelector("#wa").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var tipe_unit = document.querySelector("#tipe_unit").value;
+            var unit = document.querySelector("#unit").value;
+            var serial_number = document.querySelector("#serial_number").value;
+            var counter = document.querySelector("#counter").value;
+            var pin = document.querySelector("#pin").value;
+            var note = document.querySelector("#note").value;
+            var error = document.querySelector("#error").value;
+            var service_at = document.querySelector("#service_at").value;
+            var date_proses = document.querySelector("#date_proses").value;
+            if (document.querySelector("#date_update") == null) {
+                var date_update = "";
+            } else {
+                var date_update = document.querySelector("#date_update").value;
             }
 
-            var pengecekan = document.querySelector('#pengecekan').value;
-            var biaya = document.querySelector('#biaya').value;
-            var acc = document.querySelector('#acc');
+            var pengecekan = document.querySelector("#pengecekan").value;
+            var biaya = document.querySelector("#biaya").value;
+            var acc = document.querySelector("#acc");
 
-            if(acc.checked){
-                acc = 'on';
-            }else{
-                acc = '';
+            if (acc.checked) {
+                acc = "on";
+            } else {
+                acc = "";
             }
 
-            var check_kamera = document.querySelector('#check_kamera')
-            var check_lensa = document.querySelector('#check_lensa')
-            var check_battery = document.querySelector('#check_battery')
-            var check_memory = document.querySelector('#check_memory')
-            var check_strap = document.querySelector('#check_strap')
-            var check_bodycap = document.querySelector('#check_bodycap')
-            var check_lenscap = document.querySelector('#check_lenscap')
-            var check_filter = document.querySelector('#check_filter')
-            if(check_kamera.checked){check_kamera = 'on'}else{check_kamera = ''}
-            if(check_lensa.checked){check_lensa = 'on'}else{check_lensa = ''}
-            if(check_battery.checked){check_battery = 'on'}else{check_battery = ''}
-            if(check_memory.checked){check_memory = 'on'}else{check_memory = ''}
-            if(check_strap.checked){check_strap = 'on'}else{check_strap = ''}
-            if(check_bodycap.checked){check_bodycap = 'on'}else{check_bodycap = ''}
-            if(check_lenscap.checked){check_lenscap = 'on'}else{check_lenscap = ''}
-            if(check_filter.checked){check_filter = 'on'}else{check_filter = ''}
+            var check_kamera = document.querySelector("#check_kamera");
+            var check_lensa = document.querySelector("#check_lensa");
+            var check_battery = document.querySelector("#check_battery");
+            var check_memory = document.querySelector("#check_memory");
+            var check_strap = document.querySelector("#check_strap");
+            var check_bodycap = document.querySelector("#check_bodycap");
+            var check_lenscap = document.querySelector("#check_lenscap");
+            var check_filter = document.querySelector("#check_filter");
+            if (check_kamera.checked) {
+                check_kamera = "on";
+            } else {
+                check_kamera = "";
+            }
+            if (check_lensa.checked) {
+                check_lensa = "on";
+            } else {
+                check_lensa = "";
+            }
+            if (check_battery.checked) {
+                check_battery = "on";
+            } else {
+                check_battery = "";
+            }
+            if (check_memory.checked) {
+                check_memory = "on";
+            } else {
+                check_memory = "";
+            }
+            if (check_strap.checked) {
+                check_strap = "on";
+            } else {
+                check_strap = "";
+            }
+            if (check_bodycap.checked) {
+                check_bodycap = "on";
+            } else {
+                check_bodycap = "";
+            }
+            if (check_lenscap.checked) {
+                check_lenscap = "on";
+            } else {
+                check_lenscap = "";
+            }
+            if (check_filter.checked) {
+                check_filter = "on";
+            } else {
+                check_filter = "";
+            }
 
-            var check_kamera_info = document.querySelector('#check_kamera_info').value;
-            var check_lensa_info = document.querySelector('#check_lensa_info').value;
-            var check_battery_info = document.querySelector('#check_battery_info').value;
-            var check_memory_info = document.querySelector('#check_memory_info').value;
-            var check_strap_info = document.querySelector('#check_strap_info').value;
-            var check_bodycap_info = document.querySelector('#check_bodycap_info').value;
-            var check_lenscap_info = document.querySelector('#check_lenscap_info').value;
-            var check_filter_info = document.querySelector('#check_filter_info').value;
-            var other = document.querySelector('#other').value;
-            
-
-
-
+            var check_kamera_info = document.querySelector("#check_kamera_info").value;
+            var check_lensa_info = document.querySelector("#check_lensa_info").value;
+            var check_battery_info = document.querySelector("#check_battery_info").value;
+            var check_memory_info = document.querySelector("#check_memory_info").value;
+            var check_strap_info = document.querySelector("#check_strap_info").value;
+            var check_bodycap_info = document.querySelector("#check_bodycap_info").value;
+            var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
+            var check_filter_info = document.querySelector("#check_filter_info").value;
+            var other = document.querySelector("#other").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -754,66 +832,64 @@ function confirmEditProses(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-new/?id="+no_spk);
-                                }
-                                window.location.href = "../detail-new/?id="+no_spk;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-new/?id=" + no_spk);
+                            }
+                            window.location.href = "../detail-new/?id=" + no_spk;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editProses.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editProses.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 // UPDATE PROSES
-function update(event){
+function update(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'UPDATE ?',
+        title: "UPDATE ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Update'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Update",
     }).then((result) => {
         if (result.isConfirmed) {
-            var no_spk = document.querySelector('#id').value;
-            var result = document.querySelector('#pengecekan').value;
-            var cost = document.querySelector('#biaya').value;
-            var service_at = document.querySelector('#service_at').value;
-            var acc = document.querySelector('#acc');
+            var no_spk = document.querySelector("#id").value;
+            var result = document.querySelector("#pengecekan").value;
+            var cost = document.querySelector("#biaya").value;
+            var service_at = document.querySelector("#service_at").value;
+            var acc = document.querySelector("#acc");
 
-            if(acc.checked){
-                acc = 'on';
-            }else{
-                acc = '';
+            if (acc.checked) {
+                acc = "on";
+            } else {
+                acc = "";
             }
-
 
             let formData = new FormData();
             formData.append("no_spk", no_spk);
@@ -823,114 +899,140 @@ function update(event){
             formData.append("acc", acc);
             formData.append("submit", true);
 
-
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok)
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI UPDATE',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-new/?id="+no_spk);
-                                }
-                                window.location.href = "../detail-proses/?id="+no_spk;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI UPDATE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok)
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI UPDATE",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-new/?id=" + no_spk);
+                            }
+                            window.location.href = "../detail-proses/?id=" + no_spk;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI UPDATE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/update.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/update.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 // EDIT DONE
-function confirmEditDone(event){
+function confirmEditDone(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'EDIT ?',
+        title: "EDIT ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Edit'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Edit",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var no_spk = document.querySelector('#no_spk').value;
-            var nama = document.querySelector('#nama').value;
-            var wa = document.querySelector('#wa').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var tipe_unit = document.querySelector('#tipe_unit').value;
-            var unit = document.querySelector('#unit').value;
-            var serial_number = document.querySelector('#serial_number').value;
-            var counter = document.querySelector('#counter').value;
-            var pin = document.querySelector('#pin').value;
-            var note = document.querySelector('#note').value;
-            var error = document.querySelector('#error').value;
-            var service_at = document.querySelector('#service_at').value;
-            var date_proses = document.querySelector('#date_proses').value;
-            var date_update = document.querySelector('#date_update').value;
-            var date_finish = document.querySelector('#date_finish').value;
-            var pengecekan = document.querySelector('#pengecekan').value;
-            var biaya = document.querySelector('#biaya').value;
-            var acc = document.querySelector('#acc');
+            var date = document.querySelector("#date").value;
+            var no_spk = document.querySelector("#no_spk").value;
+            var nama = document.querySelector("#nama").value;
+            var wa = document.querySelector("#wa").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var tipe_unit = document.querySelector("#tipe_unit").value;
+            var unit = document.querySelector("#unit").value;
+            var serial_number = document.querySelector("#serial_number").value;
+            var counter = document.querySelector("#counter").value;
+            var pin = document.querySelector("#pin").value;
+            var note = document.querySelector("#note").value;
+            var error = document.querySelector("#error").value;
+            var service_at = document.querySelector("#service_at").value;
+            var date_proses = document.querySelector("#date_proses").value;
+            var date_update = document.querySelector("#date_update").value;
+            var date_finish = document.querySelector("#date_finish").value;
+            var pengecekan = document.querySelector("#pengecekan").value;
+            var biaya = document.querySelector("#biaya").value;
+            var acc = document.querySelector("#acc");
 
-            if(acc.checked){
-                acc = 'on';
-            }else{
-                acc = '';
+            if (acc.checked) {
+                acc = "on";
+            } else {
+                acc = "";
             }
 
-            var check_kamera = document.querySelector('#check_kamera')
-            var check_lensa = document.querySelector('#check_lensa')
-            var check_battery = document.querySelector('#check_battery')
-            var check_memory = document.querySelector('#check_memory')
-            var check_strap = document.querySelector('#check_strap')
-            var check_bodycap = document.querySelector('#check_bodycap')
-            var check_lenscap = document.querySelector('#check_lenscap')
-            var check_filter = document.querySelector('#check_filter')
-            if(check_kamera.checked){check_kamera = 'on'}else{check_kamera = ''}
-            if(check_lensa.checked){check_lensa = 'on'}else{check_lensa = ''}
-            if(check_battery.checked){check_battery = 'on'}else{check_battery = ''}
-            if(check_memory.checked){check_memory = 'on'}else{check_memory = ''}
-            if(check_strap.checked){check_strap = 'on'}else{check_strap = ''}
-            if(check_bodycap.checked){check_bodycap = 'on'}else{check_bodycap = ''}
-            if(check_lenscap.checked){check_lenscap = 'on'}else{check_lenscap = ''}
-            if(check_filter.checked){check_filter = 'on'}else{check_filter = ''}
+            var check_kamera = document.querySelector("#check_kamera");
+            var check_lensa = document.querySelector("#check_lensa");
+            var check_battery = document.querySelector("#check_battery");
+            var check_memory = document.querySelector("#check_memory");
+            var check_strap = document.querySelector("#check_strap");
+            var check_bodycap = document.querySelector("#check_bodycap");
+            var check_lenscap = document.querySelector("#check_lenscap");
+            var check_filter = document.querySelector("#check_filter");
+            if (check_kamera.checked) {
+                check_kamera = "on";
+            } else {
+                check_kamera = "";
+            }
+            if (check_lensa.checked) {
+                check_lensa = "on";
+            } else {
+                check_lensa = "";
+            }
+            if (check_battery.checked) {
+                check_battery = "on";
+            } else {
+                check_battery = "";
+            }
+            if (check_memory.checked) {
+                check_memory = "on";
+            } else {
+                check_memory = "";
+            }
+            if (check_strap.checked) {
+                check_strap = "on";
+            } else {
+                check_strap = "";
+            }
+            if (check_bodycap.checked) {
+                check_bodycap = "on";
+            } else {
+                check_bodycap = "";
+            }
+            if (check_lenscap.checked) {
+                check_lenscap = "on";
+            } else {
+                check_lenscap = "";
+            }
+            if (check_filter.checked) {
+                check_filter = "on";
+            } else {
+                check_filter = "";
+            }
 
-            var check_kamera_info = document.querySelector('#check_kamera_info').value;
-            var check_lensa_info = document.querySelector('#check_lensa_info').value;
-            var check_battery_info = document.querySelector('#check_battery_info').value;
-            var check_memory_info = document.querySelector('#check_memory_info').value;
-            var check_strap_info = document.querySelector('#check_strap_info').value;
-            var check_bodycap_info = document.querySelector('#check_bodycap_info').value;
-            var check_lenscap_info = document.querySelector('#check_lenscap_info').value;
-            var check_filter_info = document.querySelector('#check_filter_info').value;
-            var other = document.querySelector('#other').value;
-            
-
-
-
+            var check_kamera_info = document.querySelector("#check_kamera_info").value;
+            var check_lensa_info = document.querySelector("#check_lensa_info").value;
+            var check_battery_info = document.querySelector("#check_battery_info").value;
+            var check_memory_info = document.querySelector("#check_memory_info").value;
+            var check_strap_info = document.querySelector("#check_strap_info").value;
+            var check_bodycap_info = document.querySelector("#check_bodycap_info").value;
+            var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
+            var check_filter_info = document.querySelector("#check_filter_info").value;
+            var other = document.querySelector("#other").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -974,113 +1076,139 @@ function confirmEditDone(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // console.log(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-new/?id="+no_spk);
-                                }
-                                window.location.href = "../detail-new/?id="+no_spk;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-new/?id=" + no_spk);
+                            }
+                            window.location.href = "../detail-new/?id=" + no_spk;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editDone.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editDone.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-
 
 // EDIT ABORT
-function confirmEditAbort(event){
+function confirmEditAbort(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'EDIT ?',
+        title: "EDIT ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Edit'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Edit",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var no_spk = document.querySelector('#no_spk').value;
-            var nama = document.querySelector('#nama').value;
-            var wa = document.querySelector('#wa').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var tipe_unit = document.querySelector('#tipe_unit').value;
-            var unit = document.querySelector('#unit').value;
-            var serial_number = document.querySelector('#serial_number').value;
-            var counter = document.querySelector('#counter').value;
-            var pin = document.querySelector('#pin').value;
-            var note = document.querySelector('#note').value;
-            var error = document.querySelector('#error').value;
-            var service_at = document.querySelector('#service_at').value;
-            var date_proses = document.querySelector('#date_proses').value;
-            var date_update = document.querySelector('#date_update').value;
-            var date_finish = document.querySelector('#date_finish').value;
-            var pengecekan = document.querySelector('#pengecekan').value;
-            var biaya = document.querySelector('#biaya').value;
-            var acc = document.querySelector('#acc');
+            var date = document.querySelector("#date").value;
+            var no_spk = document.querySelector("#no_spk").value;
+            var nama = document.querySelector("#nama").value;
+            var wa = document.querySelector("#wa").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var tipe_unit = document.querySelector("#tipe_unit").value;
+            var unit = document.querySelector("#unit").value;
+            var serial_number = document.querySelector("#serial_number").value;
+            var counter = document.querySelector("#counter").value;
+            var pin = document.querySelector("#pin").value;
+            var note = document.querySelector("#note").value;
+            var error = document.querySelector("#error").value;
+            var service_at = document.querySelector("#service_at").value;
+            var date_proses = document.querySelector("#date_proses").value;
+            var date_update = document.querySelector("#date_update").value;
+            var date_finish = document.querySelector("#date_finish").value;
+            var pengecekan = document.querySelector("#pengecekan").value;
+            var biaya = document.querySelector("#biaya").value;
+            var acc = document.querySelector("#acc");
 
-            if(acc.checked){
-                acc = 'on';
-            }else{
-                acc = '';
+            if (acc.checked) {
+                acc = "on";
+            } else {
+                acc = "";
             }
 
-            var check_kamera = document.querySelector('#check_kamera')
-            var check_lensa = document.querySelector('#check_lensa')
-            var check_battery = document.querySelector('#check_battery')
-            var check_memory = document.querySelector('#check_memory')
-            var check_strap = document.querySelector('#check_strap')
-            var check_bodycap = document.querySelector('#check_bodycap')
-            var check_lenscap = document.querySelector('#check_lenscap')
-            var check_filter = document.querySelector('#check_filter')
-            if(check_kamera.checked){check_kamera = 'on'}else{check_kamera = ''}
-            if(check_lensa.checked){check_lensa = 'on'}else{check_lensa = ''}
-            if(check_battery.checked){check_battery = 'on'}else{check_battery = ''}
-            if(check_memory.checked){check_memory = 'on'}else{check_memory = ''}
-            if(check_strap.checked){check_strap = 'on'}else{check_strap = ''}
-            if(check_bodycap.checked){check_bodycap = 'on'}else{check_bodycap = ''}
-            if(check_lenscap.checked){check_lenscap = 'on'}else{check_lenscap = ''}
-            if(check_filter.checked){check_filter = 'on'}else{check_filter = ''}
+            var check_kamera = document.querySelector("#check_kamera");
+            var check_lensa = document.querySelector("#check_lensa");
+            var check_battery = document.querySelector("#check_battery");
+            var check_memory = document.querySelector("#check_memory");
+            var check_strap = document.querySelector("#check_strap");
+            var check_bodycap = document.querySelector("#check_bodycap");
+            var check_lenscap = document.querySelector("#check_lenscap");
+            var check_filter = document.querySelector("#check_filter");
+            if (check_kamera.checked) {
+                check_kamera = "on";
+            } else {
+                check_kamera = "";
+            }
+            if (check_lensa.checked) {
+                check_lensa = "on";
+            } else {
+                check_lensa = "";
+            }
+            if (check_battery.checked) {
+                check_battery = "on";
+            } else {
+                check_battery = "";
+            }
+            if (check_memory.checked) {
+                check_memory = "on";
+            } else {
+                check_memory = "";
+            }
+            if (check_strap.checked) {
+                check_strap = "on";
+            } else {
+                check_strap = "";
+            }
+            if (check_bodycap.checked) {
+                check_bodycap = "on";
+            } else {
+                check_bodycap = "";
+            }
+            if (check_lenscap.checked) {
+                check_lenscap = "on";
+            } else {
+                check_lenscap = "";
+            }
+            if (check_filter.checked) {
+                check_filter = "on";
+            } else {
+                check_filter = "";
+            }
 
-            var check_kamera_info = document.querySelector('#check_kamera_info').value;
-            var check_lensa_info = document.querySelector('#check_lensa_info').value;
-            var check_battery_info = document.querySelector('#check_battery_info').value;
-            var check_memory_info = document.querySelector('#check_memory_info').value;
-            var check_strap_info = document.querySelector('#check_strap_info').value;
-            var check_bodycap_info = document.querySelector('#check_bodycap_info').value;
-            var check_lenscap_info = document.querySelector('#check_lenscap_info').value;
-            var check_filter_info = document.querySelector('#check_filter_info').value;
-            var other = document.querySelector('#other').value;
-            
-
-
-
+            var check_kamera_info = document.querySelector("#check_kamera_info").value;
+            var check_lensa_info = document.querySelector("#check_lensa_info").value;
+            var check_battery_info = document.querySelector("#check_battery_info").value;
+            var check_memory_info = document.querySelector("#check_memory_info").value;
+            var check_strap_info = document.querySelector("#check_strap_info").value;
+            var check_bodycap_info = document.querySelector("#check_bodycap_info").value;
+            var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
+            var check_filter_info = document.querySelector("#check_filter_info").value;
+            var other = document.querySelector("#other").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -1124,69 +1252,66 @@ function confirmEditAbort(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // console.log(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../detail-new/?id="+no_spk);
-                                }
-                                window.location.href = "../detail-new/?id="+no_spk;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-new/?id=" + no_spk);
+                            }
+                            window.location.href = "../detail-new/?id=" + no_spk;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editAbort.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editAbort.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-
 
 // KONFIRMASI ADMIN
 
 // iNPUT SERVICE CENTER
-function inputServiceCenter(event){
+function inputServiceCenter(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'KIRIM ?',
+        title: "KIRIM ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Input'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Input",
     }).then((result) => {
         if (result.isConfirmed) {
-            var date = document.querySelector('#date').value;
-            var kode = document.querySelector('#kode').value;
-            var nama = document.querySelector('#nama').value;
-            var up_to = document.querySelector('#up').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var unit = document.querySelector('#unit').value;
-            var legal_name = document.querySelector('#legal_name').value;
-            var rek_number = document.querySelector('#rek_number').value;
-            var note = document.querySelector('#note').value;
-
+            var date = document.querySelector("#date").value;
+            var kode = document.querySelector("#kode").value;
+            var nama = document.querySelector("#nama").value;
+            var up_to = document.querySelector("#up").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var unit = document.querySelector("#unit").value;
+            var legal_name = document.querySelector("#legal_name").value;
+            var rek_number = document.querySelector("#rek_number").value;
+            var note = document.querySelector("#note").value;
 
             let formData = new FormData();
             formData.append("date", date);
@@ -1202,64 +1327,62 @@ function inputServiceCenter(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI INPUT',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di page Service Center !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-new/");
-                                }
-                                window.location.href = "../order-service-center/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI INPUT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI INPUT",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di page Service Center !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-new/");
+                            }
+                            window.location.href = "../order-service-center/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI INPUT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/inputServiceCenter.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/inputServiceCenter.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 // EDIT SERVICE CENTER
-function editServiceCenter(event){
+function editServiceCenter(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'KIRIM ?',
+        title: "KIRIM ?",
         text: "Apakah Data yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Input'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Input",
     }).then((result) => {
         if (result.isConfirmed) {
-            var kode = document.querySelector('#kode').value;
-            var nama = document.querySelector('#nama').value;
-            var up_to = document.querySelector('#up').value;
-            var no_tlp = document.querySelector('#no_tlp').value;
-            var alamat = document.querySelector('#alamat').value;
-            var unit = document.querySelector('#unit').value;
-            var legal_name = document.querySelector('#legal_name').value;
-            var rek_number = document.querySelector('#rek_number').value;
-            var note = document.querySelector('#note').value;
-
+            var kode = document.querySelector("#kode").value;
+            var nama = document.querySelector("#nama").value;
+            var up_to = document.querySelector("#up").value;
+            var no_tlp = document.querySelector("#no_tlp").value;
+            var alamat = document.querySelector("#alamat").value;
+            var unit = document.querySelector("#unit").value;
+            var legal_name = document.querySelector("#legal_name").value;
+            var rek_number = document.querySelector("#rek_number").value;
+            var note = document.querySelector("#note").value;
 
             let formData = new FormData();
             formData.append("kode", kode);
@@ -1274,69 +1397,68 @@ function editServiceCenter(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di page Service Center !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-service-center/");
-                                }
-                                window.location.href = "../order-service-center/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di page Service Center !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-service-center/");
+                            }
+                            window.location.href = "../order-service-center/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editServiceCenter.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editServiceCenter.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 // DELETE SERVICE CENTER
-function deleteServiceCenter(id){
+function deleteServiceCenter(id) {
     var token = generateRandomString(6);
 
     Swal.fire({
-        title: 'HAPUS DATA INI ?',
+        title: "HAPUS DATA INI ?",
         html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#222',
-        confirmButtonText: 'DELETE'
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI HAPUS',
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -1345,47 +1467,45 @@ function deleteServiceCenter(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI HAPUS',
-                                confirmButtonText: "OK",
-                                text: 'Perubahan dapat dilihat di page Service Center !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-service-center/");
-                                }
-                                window.location.href = "../order-service-center/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI HAPUS',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page Service Center !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-service-center/");
+                            }
+                            window.location.href = "../order-service-center/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/deleteServiceCenter.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/deleteServiceCenter.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
-
 
 // USER FUNCTION>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 //input new user form
-function InputNewUser(){
+function InputNewUser() {
     Swal.fire({
         title: "New User",
         icon: "question",
@@ -1420,11 +1540,11 @@ function InputNewUser(){
         cancelButtonAriaLabel: "Cancel",
     }).then((result) => {
         if (result.isConfirmed) {
-            var kode = document.querySelector('#kode').value
-            var akses = document.querySelector('#akses').value
-            var counter = document.querySelector('#counter').value
-            var role = document.querySelector('#role').value
-            var userName = document.querySelector('#userName').value
+            var kode = document.querySelector("#kode").value;
+            var akses = document.querySelector("#akses").value;
+            var counter = document.querySelector("#counter").value;
+            var role = document.querySelector("#role").value;
+            var userName = document.querySelector("#userName").value;
 
             let formData = new FormData();
             formData.append("kode", kode);
@@ -1435,70 +1555,68 @@ function InputNewUser(){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // console.log(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI INPUT',
-                                confirmButtonText: "OK",
-                                text: 'User Baru Telah Ditambahkan',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-user/");
-                                }
-                                window.location.href = "../order-user/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI INPUT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI INPUT",
+                            confirmButtonText: "OK",
+                            text: "User Baru Telah Ditambahkan",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-user/");
+                            }
+                            window.location.href = "../order-user/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI INPUT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/inputNewUser.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/inputNewUser.php`, "true");
+            ajax.send(formData);
         }
-    })   
-
+    });
 }
 
 // delete user
-function deleteUser(id){
+function deleteUser(id) {
     var token = generateRandomString(6);
 
     Swal.fire({
-        title: 'HAPUS DATA INI ?',
+        title: "HAPUS DATA INI ?",
         html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#222',
-        confirmButtonText: 'DELETE'
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI HAPUS',
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -1507,44 +1625,43 @@ function deleteUser(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'USER BERHASIL DI HAPUS',
-                                confirmButtonText: "OK",
-                                text: 'Perubahan dapat dilihat di page Service Center !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-user/");
-                                }
-                                window.location.href = "../order-user/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'USER GAGAL DI HAPUS',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "USER BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page Service Center !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-user/");
+                            }
+                            window.location.href = "../order-user/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "USER GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/deleteUser.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/deleteUser.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //edit user form
-function editUser(id,kode,akses,counter,username,role){
+function editUser(id, kode, akses, counter, username, role) {
     Swal.fire({
         title: "Edit User",
         icon: "question",
@@ -1579,11 +1696,11 @@ function editUser(id,kode,akses,counter,username,role){
         cancelButtonAriaLabel: "Cancel",
     }).then((result) => {
         if (result.isConfirmed) {
-            var kode = document.querySelector('#kode').value
-            var akses = document.querySelector('#akses').value
-            var counter = document.querySelector('#counter').value
-            var role = document.querySelector('#role').value
-            var userName = document.querySelector('#userName').value
+            var kode = document.querySelector("#kode").value;
+            var akses = document.querySelector("#akses").value;
+            var counter = document.querySelector("#counter").value;
+            var role = document.querySelector("#role").value;
+            var userName = document.querySelector("#userName").value;
 
             let formData = new FormData();
             formData.append("id", id);
@@ -1595,67 +1712,65 @@ function editUser(id,kode,akses,counter,username,role){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // console.log(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'DATA BERHASIL DI EDIT',
-                                confirmButtonText: "OK",
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-user/");
-                                }
-                                window.location.href = "../order-user/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'DATA GAGAL DI EDIT',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI EDIT",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-user/");
+                            }
+                            window.location.href = "../order-user/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI EDIT",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/editUser.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/editUser.php`, "true");
+            ajax.send(formData);
         }
-    })   
-
+    });
 }
 
-function resetUserPwd(id){
+function resetUserPwd(id) {
     var token = generateRandomString(6);
 
     Swal.fire({
-        title: 'WARNING',
+        title: "WARNING",
         html: `<p class="color-red">⚠️ Reset Password ?</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        cancelButtonColor: '#222',
-        confirmButtonText: 'RESET'
+        cancelButtonColor: "#222",
+        confirmButtonText: "RESET",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'PASSWORD GAGAL DI RESET',
+                    icon: "error",
+                    title: "PASSWORD GAGAL DI RESET",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -1664,84 +1779,82 @@ function resetUserPwd(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'RESET BERHASIL',
-                                confirmButtonText: "OK",
-                                text: 'password default sekarang adalah : 0000',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-user/");
-                                }
-                                window.location.href = "../order-user/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'GAGAL MERESET',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "RESET BERHASIL",
+                            confirmButtonText: "OK",
+                            text: "password default sekarang adalah : 0000",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-user/");
+                            }
+                            window.location.href = "../order-user/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "GAGAL MERESET",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/resetUserPwd.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/resetUserPwd.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //NOTA FUNCTION
 
 //input nota
-function inputNota(event){
+function inputNota(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'SAVE ?',
+        title: "SAVE ?",
         text: "Apakah Invoice yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Save'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Save",
     }).then((result) => {
         if (result.isConfirmed) {
+            var date = document.querySelector("#date").value;
+            var qts = document.querySelectorAll(".qts");
+            var kode = document.querySelectorAll(".kode");
+            var desc = document.querySelectorAll(".desc");
+            var buy = document.querySelectorAll(".buy");
+            var margin = document.querySelectorAll(".margin");
+            var sell = document.querySelectorAll(".sell");
+            var profit = document.querySelector("#profit").value;
+            var subtotal = document.querySelector("#subtotal").value;
+            var dpp = document.querySelector("#dpp").value;
+            var ppn = document.querySelector("#ppn").value;
+            var deposit = document.querySelector("#deposit").value;
+            var total = document.querySelector("#total").value;
+            var note = document.querySelector("#note").value;
+            var saveas = document.querySelector("#saveas").value;
 
-            var date = document.querySelector('#date').value;            
-            var qts = document.querySelectorAll('.qts');
-            var kode = document.querySelectorAll('.kode');
-            var desc = document.querySelectorAll('.desc');
-            var buy = document.querySelectorAll('.buy');
-            var margin = document.querySelectorAll('.margin');
-            var sell = document.querySelectorAll('.sell');
-            var profit = document.querySelector('#profit').value;
-            var subtotal = document.querySelector('#subtotal').value;
-            var dpp = document.querySelector('#dpp').value;
-            var ppn = document.querySelector('#ppn').value;
-            var deposit = document.querySelector('#deposit').value;
-            var total = document.querySelector('#total').value;
-            var note = document.querySelector('#note').value;
-            var saveas = document.querySelector('#saveas').value;
+            var qtss = [];
+            var kodes = [];
+            var descs = [];
+            var buys = [];
+            var margins = [];
+            var sells = [];
 
-            var qtss =[];
-            var kodes =[];
-            var descs =[];
-            var buys =[];
-            var margins =[];
-            var sells =[];
-
-            for(i = 0; i<qts.length; i++){
-                if(desc[i].value != '' && sell[i].value != 0){
+            for (i = 0; i < qts.length; i++) {
+                if (desc[i].value != "" && sell[i].value != 0) {
                     qtss.push(qts[i].value);
                     kodes.push(kode[i].value);
                     descs.push(desc[i].value);
@@ -1758,7 +1871,7 @@ function inputNota(event){
             var send_sell = JSON.stringify(sells);
 
             let formData = new FormData();
-            
+
             formData.append("date", date);
             formData.append("qts", send_qts);
             formData.append("kode", send_kode);
@@ -1778,82 +1891,80 @@ function inputNota(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // return console.log(ok);
-                        if(ok == 'ok'){    
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'INVOICE BERHASIL DI SAVE',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di order Nota !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-invoice/");
-                                }
-                                window.location.href = "../order-invoice/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'INVOICE GAGAL DI SAVE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // return console.log(ok);
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "INVOICE BERHASIL DI SAVE",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di order Nota !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-invoice/");
+                            }
+                            window.location.href = "../order-invoice/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "INVOICE GAGAL DI SAVE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/input-nota.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/input-nota.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //input nota FOR
-function inputNotaFor(event){
+function inputNotaFor(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'SAVE ?',
+        title: "SAVE ?",
         text: "Apakah Invoice yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Save'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Save",
     }).then((result) => {
         if (result.isConfirmed) {
+            var date = document.querySelector("#date").value;
+            var link = document.querySelector("#link").value;
+            var qts = document.querySelectorAll(".qts");
+            var kode = document.querySelectorAll(".kode");
+            var desc = document.querySelectorAll(".desc");
+            var buy = document.querySelectorAll(".buy");
+            var margin = document.querySelectorAll(".margin");
+            var sell = document.querySelectorAll(".sell");
+            var profit = document.querySelector("#profit").value;
+            var subtotal = document.querySelector("#subtotal").value;
+            var dpp = document.querySelector("#dpp").value;
+            var ppn = document.querySelector("#ppn").value;
+            var deposit = document.querySelector("#deposit").value;
+            var total = document.querySelector("#total").value;
+            var note = document.querySelector("#note").value;
+            var saveas = document.querySelector("#saveas").value;
 
-            var date = document.querySelector('#date').value;
-            var link = document.querySelector('#link').value;            
-            var qts = document.querySelectorAll('.qts');
-            var kode = document.querySelectorAll('.kode');
-            var desc = document.querySelectorAll('.desc');
-            var buy = document.querySelectorAll('.buy');
-            var margin = document.querySelectorAll('.margin');
-            var sell = document.querySelectorAll('.sell');
-            var profit = document.querySelector('#profit').value;
-            var subtotal = document.querySelector('#subtotal').value;
-            var dpp = document.querySelector('#dpp').value;
-            var ppn = document.querySelector('#ppn').value;
-            var deposit = document.querySelector('#deposit').value;
-            var total = document.querySelector('#total').value;
-            var note = document.querySelector('#note').value;
-            var saveas = document.querySelector('#saveas').value;
+            var qtss = [];
+            var kodes = [];
+            var descs = [];
+            var buys = [];
+            var margins = [];
+            var sells = [];
 
-            var qtss =[];
-            var kodes =[];
-            var descs =[];
-            var buys =[];
-            var margins =[];
-            var sells =[];
-
-            for(i = 0; i<qts.length; i++){
-                if(desc[i].value != '' && sell[i].value != 0){
+            for (i = 0; i < qts.length; i++) {
+                if (desc[i].value != "" && sell[i].value != 0) {
                     qtss.push(qts[i].value);
                     kodes.push(kode[i].value);
                     descs.push(desc[i].value);
@@ -1870,7 +1981,7 @@ function inputNotaFor(event){
             var send_sell = JSON.stringify(sells);
 
             let formData = new FormData();
-            
+
             formData.append("for", true);
             formData.append("date", date);
             formData.append("link", link);
@@ -1892,80 +2003,79 @@ function inputNotaFor(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // return console.log(ok);
-                        if(ok == 'ok'){    
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'NOTA BERHASIL DI SAVE',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di Detail Proses !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, `../detail-proses/?id=${link}`);
-                                }
-                                window.location.href = `../detail-proses/?id=${link}`;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'NOTA GAGAL DI SAVE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // return console.log(ok);
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "NOTA BERHASIL DI SAVE",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di Detail Proses !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../detail-proses/?id=${link}`);
+                            }
+                            window.location.href = `../detail-proses/?id=${link}`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "NOTA GAGAL DI SAVE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/input-nota.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/input-nota.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //edit nota
-function editNota(event){
+function editNota(event) {
     event.preventDefault();
 
     Swal.fire({
-        title: 'UPDATE ?',
+        title: "UPDATE ?",
         text: "Apakah Invoice yang Anda input sudah benar ?",
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Update'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Update",
     }).then((result) => {
         if (result.isConfirmed) {
-            var id = document.querySelector('#id').value;
-            var date = document.querySelector('#date').value;
-            var qts = document.querySelectorAll('.qts');
-            var kode = document.querySelectorAll('.kode');
-            var desc = document.querySelectorAll('.desc');
-            var buy = document.querySelectorAll('.buy');
-            var margin = document.querySelectorAll('.margin');
-            var sell = document.querySelectorAll('.sell');
-            var profit = document.querySelector('#profit').value;
-            var subtotal = document.querySelector('#subtotal').value;
-            var dpp = document.querySelector('#dpp').value;
-            var ppn = document.querySelector('#ppn').value;
-            var deposit = document.querySelector('#deposit').value;
-            var total = document.querySelector('#total').value;
-            var note = document.querySelector('#note').value;
+            var id = document.querySelector("#id").value;
+            var date = document.querySelector("#date").value;
+            var qts = document.querySelectorAll(".qts");
+            var kode = document.querySelectorAll(".kode");
+            var desc = document.querySelectorAll(".desc");
+            var buy = document.querySelectorAll(".buy");
+            var margin = document.querySelectorAll(".margin");
+            var sell = document.querySelectorAll(".sell");
+            var profit = document.querySelector("#profit").value;
+            var subtotal = document.querySelector("#subtotal").value;
+            var dpp = document.querySelector("#dpp").value;
+            var ppn = document.querySelector("#ppn").value;
+            var deposit = document.querySelector("#deposit").value;
+            var total = document.querySelector("#total").value;
+            var note = document.querySelector("#note").value;
 
-            var qtss =[];
-            var kodes =[];
-            var descs =[];
-            var buys =[];
-            var margins =[];
-            var sells =[];
+            var qtss = [];
+            var kodes = [];
+            var descs = [];
+            var buys = [];
+            var margins = [];
+            var sells = [];
 
-            for(i = 0; i<qts.length; i++){
-                if(desc[i].value != '' && sell[i].value != 0){
+            for (i = 0; i < qts.length; i++) {
+                if (desc[i].value != "" && sell[i].value != 0) {
                     qtss.push(qts[i].value);
                     kodes.push(kode[i].value);
                     descs.push(desc[i].value);
@@ -1982,7 +2092,7 @@ function editNota(event){
             var send_sell = JSON.stringify(sells);
 
             let formData = new FormData();
-            
+
             formData.append("id", id);
             formData.append("date", date);
             formData.append("qts", send_qts);
@@ -2002,67 +2112,66 @@ function editNota(event){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // return console.log(ok);
-                        if(ok == 'ok'){    
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'NOTA BERHASIL DI UPDATE',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di Detail Invoice !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
-                                }
-                                window.location.href = `../detail-invoice/?id=${id}`;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'NOTA GAGAL DI UPDATE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // return console.log(ok);
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "NOTA BERHASIL DI UPDATE",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di Detail Invoice !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
+                            }
+                            window.location.href = `../detail-invoice/?id=${id}`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "NOTA GAGAL DI UPDATE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/edit-nota.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/edit-nota.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //set to invoice
-function setInvoice(id){
+function setInvoice(id) {
     var token = generateRandomString(6);
     Swal.fire({
-        title: 'AKAN MEMPROSES INI ?',
+        title: "AKAN MEMPROSES INI ?",
         html: `<p>Setelah status benjadi <strong class="color-blue">INVOICE </strong>maka data tidak akan bisa diubah kembali !</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -2071,69 +2180,69 @@ function setInvoice(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // return console.log(ok);
-                        if(ok == 'ok'){    
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'INVOICE BERHASIL DI UPDATE',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di Detail Invoice !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
-                                }
-                                window.location.href = `../detail-invoice/?id=${id}`;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'INVOICE GAGAL DI UPDATE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // return console.log(ok);
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "INVOICE BERHASIL DI UPDATE",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di Detail Invoice !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
+                            }
+                            window.location.href = `../detail-invoice/?id=${id}`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "INVOICE GAGAL DI UPDATE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/set-invoice.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/set-invoice.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //set to paid
-function setPaid(id){
+function setPaid(id) {
     var token = generateRandomString(6);
     Swal.fire({
-        title: 'PAID PROCESS ?',
+        title: "PAID PROCESS ?",
         html: `<p>Lakukan proses ini jika costumer sudah membayar !</p>
         <label for="datePaid">Paid Date :</label>
         <input id="datePaid" type="datetime-local" class="form-control swal2-input" placeholder="Paid Date">
         <h4 class="color-blue strong">${token[1]}</h4>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'PROSES'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "PROSES",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            var date = document.querySelector('#datePaid').value;
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            var date = document.querySelector("#datePaid").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI PROSES',
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -2143,67 +2252,67 @@ function setPaid(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // return console.log(ok);
-                        if(ok == 'ok'){    
-                            document.getElementsByTagName('form')[0].innerHTML = '';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'INVOICE BERHASIL DI UPDATE',
-                                confirmButtonText: "OK",
-                                text: 'Data dapat dilihat di Detail Invoice !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
-                                }
-                                window.location.href = `../detail-invoice/?id=${id}`;
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'INVOICE GAGAL DI UPDATE',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // return console.log(ok);
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "INVOICE BERHASIL DI UPDATE",
+                            confirmButtonText: "OK",
+                            text: "Data dapat dilihat di Detail Invoice !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../detail-invoice/?id=${id}`);
+                            }
+                            window.location.href = `../detail-invoice/?id=${id}`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "INVOICE GAGAL DI UPDATE",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/set-paid.php`, "true");
-                ajax.send(formData);
+            };
+            ajax.open("POST", `../action/set-paid.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 //delete invoice
-function deleteINV(id){
+function deleteINV(id) {
     var token = generateRandomString(6);
 
     Swal.fire({
-        title: 'HAPUS INVOICE INI ?',
+        title: "HAPUS INVOICE INI ?",
         html: `<p class="color-red">⚠️ INVOICE yang terhapus tidak dapat dipulihkan</p>
         <h3 class="color-blue strong">${token[1]}</h3>
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#222',
-        confirmButtonText: 'DELETE'
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
     }).then((result) => {
         if (result.isConfirmed) {
-            var validation = document.querySelector('#validation').value
-            validation = removeSpecialCharacters(validation) 
-            
-            if(validation != token[0]){
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'DATA GAGAL DI HAPUS',
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
                     confirmButtonText: "Ulangi",
                     confirmButtonColor: "#f54949",
-                    text: 'Token Salah !',
-                })
+                    text: "Token Salah !",
+                });
                 return;
             }
 
@@ -2212,64 +2321,60 @@ function deleteINV(id){
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        // alert(ok);
-                        // return;
-                        if(ok == 'ok'){
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'INVOICE BERHASIL DI HAPUS',
-                                confirmButtonText: "OK",
-                                text: 'Perubahan dapat dilihat di page INVOICE !',
-                            }).then(() => {
-                                if (window.history.replaceState) {
-                                    window.history.replaceState(null, null, "../order-invoice/");
-                                }
-                                window.location.href = "../order-invoice/";
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'INVOICE GAGAL DI HAPUS',
-                                confirmButtonText: "Ulangi",
-                                confirmButtonColor: "#f54949",
-                                text: ok,
-                            })
-                        }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // alert(ok);
+                    // return;
+                    if (ok == "ok") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "INVOICE BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page INVOICE !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../order-invoice/");
+                            }
+                            window.location.href = "../order-invoice/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "INVOICE GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
                     }
                 }
-                ajax.open("POST", `../action/deleteInvoice.php`, "true");
-                ajax.send(formData);
-            
+            };
+            ajax.open("POST", `../action/deleteInvoice.php`, "true");
+            ajax.send(formData);
         }
-    })
+    });
 }
 
 // CHAT BOT
-function sendBot(no,msg,kind){
- 
+function sendBot(no, msg, kind) {
     let formData = new FormData();
-            formData.append("no", no);
-            formData.append("msg", msg);
-            formData.append("kind", kind);
-            formData.append("submit", true);
+    formData.append("no", no);
+    formData.append("msg", msg);
+    formData.append("kind", kind);
+    formData.append("submit", true);
 
-            var ajax = new XMLHttpRequest();
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4 && ajax.status == 200) {
-                        var ok = ajax.responseText;
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'SEND WITH BOT',
-                            confirmButtonText: "OK",
-                            text: ok,
-                        })
-                    }
-                }
-                ajax.open("POST", `../ajax/sendWa.php`, "true");
-                ajax.send(formData);
-
-
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var ok = ajax.responseText;
+            Swal.fire({
+                icon: "info",
+                title: "SEND WITH BOT",
+                confirmButtonText: "OK",
+                text: ok,
+            });
+        }
+    };
+    ajax.open("POST", `../ajax/sendWa.php`, "true");
+    ajax.send(formData);
 }

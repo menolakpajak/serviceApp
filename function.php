@@ -3,6 +3,16 @@ ob_start();
 // require 'koneksi.php';
 require_once __DIR__ . '/koneksi.php';
 
+// Fungsi notif BOT
+function bot($text)
+{
+    $add = "📋 NOTIF FROM SERVER >>>>>>>
+";
+    $text = $add . $text;
+    $text = rawurlencode($text);
+    $url = 'https://api.callmebot.com/whatsapp.php?phone=+62817870770&apikey=543792&text=' . $text;
+    file_get_contents($url);
+}
 
 //FUNGSI MERUBAH STATUS KLIK PADA notif_msg
 function klik_notif($no_spk)
@@ -102,8 +112,17 @@ function input($order)
 
     mysqli_query($conn, $query);
     $result = mysqli_error($conn);
-
     if (mysqli_affected_rows($conn) > 0) {
+        $url_bot = urlencode(encrypt($no_spk));
+        $text = '
+Input Baru ==>
+
+NO SPK : ' . $no_spk . '
+NAMA : ' . $nama . '
+UNIT : ' . $unit . '
+ERROR : ' . $error . '
+LINK : https://repair.digitalisasi.net/receipt?spk=' . $url_bot;
+        bot($text);
         return 'ok';
     } else {
         return $result;
