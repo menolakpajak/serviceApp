@@ -12,7 +12,7 @@ $login = data("SELECT * FROM logininfo WHERE kodeuser = '$kode' ")[0];
 if ($_SESSION['token'] != $login['token']) {
     include_once '../struktur/ajax-logout.php';
 }
-$data = data("SELECT * FROM data ORDER BY date DESC");
+$data = data("SELECT * FROM pickup ORDER BY date_pickup DESC LIMIT 20");
 $akses = $_SESSION['akses'];
 
 // error_reporting(0);
@@ -26,7 +26,7 @@ $query = "SELECT * FROM pickup
             WHERE
             (no_spk LIKE '%$keyword%' OR
             nama LIKE '%$keyword%' OR 
-            no_tlp LIKE '%$keyword%') ORDER BY $order ";
+            no_tlp LIKE '%$keyword%') ORDER BY $order LIMIT 20";
 
 $data = data($query);
 
@@ -36,7 +36,7 @@ $data = data($query);
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Date</th>
+            <th scope="col">Pickup</th>
             <th scope="col">SPK</th>
             <th scope="col">Nama</th>
             <th scope="col">Unit</th>
@@ -48,7 +48,7 @@ $data = data($query);
         <?php foreach ($data as $datas): ?>
             <tr>
                 <th scope="row"><?= $i; ?></th>
-                <td><?= date('d-M-Y', strtotime($datas['date'])); ?></td>
+                <td><?= date('d-M-Y', strtotime($datas['date_pickup'])); ?></td>
                 <td>
                     <a class="color-blue" href="<?= '../detail-pickup/?id=' . $datas['no_spk']; ?>" target="_blank">
                         <?php

@@ -15,7 +15,7 @@ $userName = $_SESSION['user'];
 $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
 
-$data = data("SELECT * FROM pickup ORDER BY date DESC");
+$data = data("SELECT * FROM pickup ORDER BY id DESC LIMIT 50");
 
 
 
@@ -125,7 +125,7 @@ $data = data("SELECT * FROM pickup ORDER BY date DESC");
 								<thead>
 									<tr>
 										<th scope="col">No</th>
-										<th scope="col">Date</th>
+										<th scope="col">Pickup</th>
 										<th scope="col">SPK</th>
 										<th scope="col">Nama</th>
 										<th scope="col">Unit</th>

@@ -682,7 +682,7 @@ if (document.getElementById("keyword-pickup") != null) {
         };
 
         // jalankan ajaxnya
-        ajax.open("GET", "../ajax/cariPickup.php", "true");
+        ajax.open("GET", "../ajax/cariPickup.php?keyword=" + keyword.value + "&order=" + order, "true");
         ajax.send();
     });
 
@@ -691,13 +691,13 @@ if (document.getElementById("keyword-pickup") != null) {
         var icon2 = document.getElementById("icon2");
         var opsi2 = document.getElementById("opsi2");
         if (pilih2.classList["value"] == "naik") {
-            var order = "date DESC";
+            var order = "date_pickup DESC";
             pilih2.classList["value"] = "turun";
             icon2.classList["value"] = "fa fa-sort-numeric-desc";
             opsi2.innerText = " Terlama ";
         } else {
             pilih2.classList["value"] = "naik";
-            var order = "date";
+            var order = "date_pickup";
             icon2.classList["value"] = "fa fa-sort-numeric-asc";
             opsi2.innerText = " Terbaru ";
         }
@@ -716,8 +716,8 @@ if (document.getElementById("keyword-pickup") != null) {
     });
 
     keyword.addEventListener("keydown", function (event) {
+        var keyword = document.getElementById("keyword-pickup");
         if (event.key === "Enter" || event.keyCode === 13) {
-            var keyword = document.getElementById("keyword-pickup");
             var order = "date";
             var ajax = new XMLHttpRequest();
             // Menambahkan elemen loading spinner ke dalam pesan SweetAlert
