@@ -1,0 +1,22 @@
+User-agent: *
+Disallow: charts.html
+Disallow: elements.html
+Disallow: panels.html
+Disallow: starter-page.html
+Disallow: widget.html
+
+# Allow specific important pages in wp-admin
+Allow: /wp-admin/admin-ajax.php
+
+# Allow crawling of CSS, JS, and images
+Allow: /*.css$
+Allow: /*.js$
+Allow: /images/
+
+# Block certain file types from being indexed
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.rar$
+
+# Sitemap location (ensure you have a sitemap and it's placed correctly)
+Sitemap: https://repair.digitalisasi.net/sitemap.xml

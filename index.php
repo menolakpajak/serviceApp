@@ -19,9 +19,35 @@ $page = ['index', ''];
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Digital Repair</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
+	<meta name="theme-color" content="#000000">
+
+	<!-- Title Tag -->
+	<title>Digital Repair - Layanan Perbaikan dan Digitalisasi Terbaik</title>
+
+	<!-- Meta Description -->
+	<meta name="description" content="Digital Repair adalah layanan profesional yang menawarkan solusi perbaikan dan digitalisasi untuk perangkat elektronik Anda. Hubungi kami untuk layanan cepat dan handal.">
+
+	<!-- Meta Keywords -->
+	<meta name="keywords" content="perbaikan kamera, perbaikan drone, layanan perbaikan, servis elektronik, perbaikan cepat, camera repair, drone repair, service komputer, service laptop">
+
+	<!-- Meta Author -->
+	<meta name="author" content="Digital Repair Team">
+
+	<!-- Meta Robots -->
+	<meta name="robots" content="index, follow">
+
+	<!-- Open Graph Meta Tags -->
+	<meta property="og:title" content="Digital Repair - Layanan Perbaikan kamera dan drone terbaik">
+	<meta property="og:description" content="Digital Repair menyediakan layanan perbaikan dan digitalisasi profesional untuk berbagai jenis perangkat elektronik. Kualitas layanan yang cepat dan dapat diandalkan.">
+	<meta property="og:image" content="https://repair.digitalisasi.net/assets/img/meta/og-img.jpg">
+	<meta property="og:url" content="https://repair.digitalisasi.net/">
+	<meta property="og:type" content="website">
+
+	<!-- Twitter Card Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Repair Digitalisasi - Layanan Perbaikan dan Digitalisasi Terbaik">
+	<meta name="twitter:description" content="Layanan profesional untuk perbaikan dan digitalisasi perangkat elektronik Anda. Dapatkan layanan yang cepat dan terpercaya dari Repair Digitalisasi.">
+	<meta name="twitter:image" content="https://repair.digitalisasi.net/assets/img/meta/og-img.jpg">
 
 	<!-- Favicons -->
 	<?php include_once ("struktur/favicon.php"); ?>
@@ -64,7 +90,6 @@ $page = ['index', ''];
 					<img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
 				</div>
 			</div>
-
 		</section><!-- /Hero Section -->
 
 		<!-- Featured Services Section -->
