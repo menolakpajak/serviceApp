@@ -98,7 +98,7 @@ $profit = array_sum($allProfit);
                             ?>
                     </a>
                 </td>
-                <td><?= $datas['total']; ?></td>
+                <td><?= $datas['subtotal']; ?></td>
                 <?php if ($datas['status'] == 'pending'): ?>
                     <td style="font-weight:500;" class="color-orange"><?= ucfirst($datas['status']); ?></td>
                 <?php endif; ?>
