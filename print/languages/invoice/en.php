@@ -22,7 +22,7 @@ if ($detail == 'invoice_for') {
 
     if ($save_as == 'invoice') {
         $words['note'][0] = "<h6 class='fw-bold'>Note :</h6>";
-        $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> The service warranty is valid for 1 month from the date this invoice is issued.</p>";
+        $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> The service warranty covers the same type of damage and does not include user errors. It is valid for up to 1 month from the date this invoice is issued.</p>";
         $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> The cleaning process is not covered by the warranty.</p>";
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> We are not responsible for any damage or loss of the unit if the unit is collected outside the warranty service period.</p>";
         $words['note'][4] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>4.</strong> Please double-check the completeness of your unit, as we do not accept complaints about missing/incomplete units after leaving the store.</p>";

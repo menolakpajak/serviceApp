@@ -7,3 +7,7 @@ $rek[1] = "I WAYAN SUTAMA";
 // saya
 $rek[0] = "BCA 772.534.3949";
 $rek[1] = "PUTU ARTANA";
+
+// komang adi
+$rek[0] = "BCA 772.584.6185";
+$rek[1] = "KOMANG ADI WIRAWAN";

@@ -25,7 +25,7 @@ if ($detail == 'invoice_for') {
     }
     if ($save_as == 'invoice') {
         $words['note'][0] = "<h6 class='fw-bold'>Note :</h6>";
-        $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> Garansi service berlaku hingga 1 bulan terhitung dari tanggal invoice ini diterbitkan.</p>";
+        $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> Garansi service berlaku untuk kerusakan yang sama dan bukan dari kesalahan pengguna, hingga 1 bulan terhitung dari tanggal invoice ini diterbitkan.</p>";
         $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> Proses Cleaning tidak dicover garansi.</p>";
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> Kami tidak bertanggung jawab atas kerusakan atau kehilangan unit jika pengambilan unit di luar masa garansi service.</p>";
         $words['note'][4] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>4.</strong> Cek kembali kelengkapan unit anda, sebab kami tidak menerima komplain atas unit yang hilang/tidak lengkap setelah meninggalkan toko.</p>";

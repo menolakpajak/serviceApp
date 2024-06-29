@@ -270,10 +270,16 @@ $other_info = ucfirst($data2['other']);
                                 <p class="mb-0"><strong><?= $lang[5]; ?></strong></p>
                             </li>
                             <li>
-                                <p class="mb-0"><?= $lang[6]; ?></p>
+                                <p class="mb-0"><strong><?= $lang[6]; ?></strong></p>
                             </li>
                             <li>
-                                <p><?= $lang[7]; ?></p>
+                                <p class="mb-0"><?= $lang[7]; ?></p>
+                            </li>
+                            <li>
+                                <p class="mb-0"><?= $lang[8]; ?></p>
+                            </li>
+                            <li>
+                                <p><?= $lang[9]; ?></p>
                             </li>
                         </ul>
                     </div>

@@ -918,7 +918,7 @@ function cariInvoiceBulan(id) {
             <option value="11">November</option>
             <option value="12">Desember</option>
         </select>
-        <input id="tahun" type="text" class="form-control swal2-input" placeholder="Tahun" autocomplete="off" required maxlength="4">
+        <input id="tahun" type="number" class="form-control swal2-input" placeholder="Tahun" autocomplete="off" required style="max-width:100%">
         </form>`,
         icon: "warning",
         showCancelButton: true,
