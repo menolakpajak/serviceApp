@@ -2066,6 +2066,7 @@ function editNota(event) {
             var deposit = document.querySelector("#deposit").value;
             var total = document.querySelector("#total").value;
             var note = document.querySelector("#note").value;
+            var rekening = document.querySelector("#rekening").value;
 
             var qtss = [];
             var kodes = [];
@@ -2108,6 +2109,7 @@ function editNota(event) {
             formData.append("deposit", deposit);
             formData.append("total", total);
             formData.append("note", note);
+            formData.append("rekening", rekening);
 
             formData.append("submit", true);
 

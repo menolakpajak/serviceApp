@@ -2201,6 +2201,7 @@ function editNota($order)
     $deposit = $order['deposit'];
     $total = $order['total'];
     $note = $order['note'];
+    $rekening = htmlspecialchars($order['rekening']);
 
     $change = 0;
 
@@ -2218,6 +2219,7 @@ function editNota($order)
         $deposit != $data['deposit'] ||
         $total != $data['total'] ||
         $note != $data['note'] ||
+        $rekening != $data['rek'] ||
         ($date . ':00' != $data['date'])
     ) {
         $change++;
@@ -2245,7 +2247,8 @@ function editNota($order)
     ppn = '$ppn',
     deposit = '$deposit',
     total = '$total',
-    note = '$note'
+    note = '$note',
+    rek = '$rekening'
     WHERE kode = '$id'";
 
     $conn->query($query);

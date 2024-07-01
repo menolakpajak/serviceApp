@@ -57,6 +57,7 @@ $ppn = $data['ppn'];
 $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
+$rekening = $data['rek'];
 
 
 ?>
@@ -277,6 +278,15 @@ $note = $data['note'];
 													<label for="note">Note :</label>
 													<textarea class="form-control" name="note" id="note" cols="3" rows="3" placeholder="---"><?= $data['note']; ?></textarea>
 												</div>
+											</div>
+											<div class="form-group input">
+												<label for="note">Rekening :</label>
+												<input id="rekening" type="text" class="form-control desc" style="max-width: 250px; margin:0;" list="rekening-list" value="<?= $rekening; ?>" autocomplete="off">
+												<datalist id="rekening-list">
+													<option value="putu artana"></option>
+													<option value="wayan sutama"></option>
+													<option value="komang adi"></option>
+												</datalist>
 											</div>
 										</div>
 										

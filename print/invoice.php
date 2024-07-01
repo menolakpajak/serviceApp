@@ -21,6 +21,7 @@ $ppn = $data['ppn'];
 $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
+$rekening = $data['rek'];
 $dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
 
 

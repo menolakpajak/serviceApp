@@ -40,6 +40,7 @@ $ppn = $data['ppn'];
 $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
+$rekening = $data['rek'];
 $spk = '';
 
 if (!empty($link)) {
@@ -302,6 +303,10 @@ $kode_id = "$huruf-$angka";
 														<?= $note; ?>
 													</textarea>
 												</div>
+											</div>
+											<div class="form-group input">
+												<label for="note">Rekening :</label>
+												<input id="rekening" type="text" class="form-control desc" style="max-width: 250px; margin:0;" value="<?= $rekening; ?>" disabled>
 											</div>
 										</div>
 

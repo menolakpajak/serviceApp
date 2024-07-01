@@ -325,6 +325,7 @@ $conn = new mysqli($server, $userServer, $serverPwd, $database);
         `total` varchar(100) NOT NULL,
         `save_as` varchar(20) NOT NULL,
         `status` varchar(20) DEFAULT NULL,
+        `rek` varchar(20) DEFAULT NULL,
         `note` text DEFAULT NULL,
         `quotation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
