@@ -135,29 +135,30 @@ function updateVersion (versi){
         showCancelButton: true ,
         confirmButtonText: 'UPDATE'
     }).then((result) => {
-        // console.log(result.value);
-        var ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function () {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                ok = ajax.responseText;
-                if (ok == "ok") {
-                    Swal.fire({
-                        icon: "success",
-                        title: "DONE",
-                        text: "Update Version berhasil dilakukan",
+        if (result.isConfirmed) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    ok = ajax.responseText;
+                    if (ok == "ok") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "DONE",
+                            text: "Update Version berhasil dilakukan",
+                        });
+                    }else{
+                        Swal.fire({
+                        icon: "error",
+                        title: "FAILED",
+                        text: ok,
                     });
-                }else{
-                    Swal.fire({
-                    icon: "error",
-                    title: "FAILED",
-                    text: ok,
-                });
+                    }
                 }
             }
+            ajax.open("POST", `../ajax/update_version.php`, "true");
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send(`versi=${result.value}`);
         }
-        ajax.open("POST", `../ajax/update_version.php`, "true");
-        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        ajax.send(`versi=${result.value}`);
 
     })
 
