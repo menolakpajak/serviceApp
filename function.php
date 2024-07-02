@@ -2397,3 +2397,20 @@ function signature($order)
     }
 
 }
+
+
+//update version
+function update_version($versi){
+    global $conn;
+    
+    $query = "UPDATE version SET 
+    versi = '$versi' ";
+
+    $conn->query($query);
+    if ($conn->affected_rows > 0) {
+        return 'ok';
+    } else {
+        return $conn->error;
+    }
+
+}

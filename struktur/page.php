@@ -207,7 +207,7 @@
 			</li>
 			<?php if ($_SESSION['akses'] == 'master'): ?>
 				<li>
-					<a id="version" class="" href="javascript:void(0)">
+					<a id="version" class="" href="javascript:void(0)" onclick="updateVersion('<?= $version; ?>')">
 						<span class="fa fa-code-fork">&nbsp;</span> Update Version
 					</a>
 				</li>
