@@ -5,7 +5,7 @@
     border-radius: 0 !important;
 } */
 
-.col-lg-12{
+.col-lg-12 {
     display: flex;
     justify-content: space-between;
 }
@@ -15,14 +15,14 @@
 #input_info .custom-select,
 #head5 .custom-select,
 #head .custom-select {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #000000;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  border-radius: 0;
-  max-height: 30px;
-  margin-left: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-radius: 0;
+    max-height: 30px;
+    margin-left: 10px;
 }
 
 .input input.form-control,
@@ -31,8 +31,8 @@
 #head5 .custom-select,
 #head .custom-select,
 .unitinfo {
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 label {
@@ -46,8 +46,8 @@ label {
     margin-top: 3px;
 }
 
-                    /* <<<<<< GROUP >>>>> */
-    /* KATAGORI GRUP */
+/* <<<<<< GROUP >>>>> */
+/* KATAGORI GRUP */
 #personal_info,
 #unit_info,
 .unitinfo {
@@ -56,7 +56,7 @@ label {
     border-radius: 10px;
     padding: 10px;
 }
-.unitinfo{
+.unitinfo {
     margin-bottom: 10px;
 }
 #nota {
@@ -73,9 +73,8 @@ label {
     border: solid 1px black;
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
 }
-
 
 .acc {
     background-image: url("../imgs/logo/acc.png");
@@ -89,8 +88,6 @@ label {
     background-color: rgba(41, 144, 132, 70%);
     color: white;
 }
-
-
 
 h3 {
     text-align: center;
@@ -122,13 +119,12 @@ h3 {
 
 /* _________________________________ */
 
-
 #head {
     display: flex;
     justify-content: space-between;
 }
 
-#head2{
+#head2 {
     margin-top: 5px;
     margin-bottom: 15px;
     display: flex;
@@ -142,9 +138,9 @@ h3 {
     margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
 }
-#head6{
+#head6 {
     margin-top: 5px;
     margin-bottom: 15px;
     display: flex;
@@ -166,7 +162,6 @@ h3 {
     right: 0;
     background-color: rgba(0, 0, 0, 0.404);
     z-index: 9999;
-    
 }
 
 #popup div {
@@ -177,12 +172,11 @@ h3 {
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     background-color: white;
     justify-content: center;
     text-align: center;
-    
 }
 
 #popup div h3 {
@@ -191,16 +185,14 @@ h3 {
     margin: 0;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 .show {
-
-    animation: zoom_in 1s ;
+    animation: zoom_in 1s;
 }
 .hide {
-
-    animation: zoom_out 1s ;
+    animation: zoom_out 1s;
 }
 
 .action .action-grup {
@@ -215,7 +207,6 @@ h3 {
 .action2 {
     display: flex;
     flex-wrap: wrap;
-    
 }
 
 .approve {
@@ -226,31 +217,37 @@ h3 {
     display: flex;
 }
 
-
 /* animation */
 @keyframes rotate {
-    from {transform: rotate(0);}
-    to {transform: rotate(180deg);}
-    
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(180deg);
+    }
 }
 @keyframes zoom_in {
-    from {opacity: 0;
-    transform: scale(0);}
-    to {opacity: 1;
-    transform: scale(1);}
-    
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 @keyframes zoom_out {
-    from {opacity: 1;
-    transform: scale(1);}
-    to {opacity: 0;
-    transform: scale(0);}
-    
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
 }
 
-
-
-                                        /* Responsive */
+/* Responsive */
 
 @media (max-width: 580px) {
     #head,
@@ -287,32 +284,30 @@ h3 {
     }
 }
 
+/* EDIT BOOTSTRAP */
 
-                /* EDIT BOOTSTRAP */
-
-.btn-purple{
-    color:#fff;
-    background-color:#9821cf;
-    border-color:#9821cf
+.btn-purple {
+    color: #fff;
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
 .btn-purple.focus,
-.btn-purple:focus{
-    color:#fff;
-    background-color:#9821cf;
-    border-color:#9821cf
+.btn-purple:focus {
+    color: #fff;
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
-.btn-purple:hover{
-    color:#fff;
-    background-color:#9821cf;
-    border-color:#9821cf
+.btn-purple:hover {
+    color: #fff;
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
 .btn-purple.active,
 .btn-purple:active,
-.open>.dropdown-toggle
-.btn-purple{
-    color:#fff;
-    background-color:#9821cf;
-    border-color:#9821cf
+.open > .dropdown-toggle .btn-purple {
+    color: #fff;
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
 .btn-purple.active.focus,
 .btn-purple.active:focus,
@@ -320,17 +315,17 @@ h3 {
 .btn-purple:active.focus,
 .btn-purple:active:focus,
 .btn-purple:active:hover,
-.open>.dropdown-toggle.btn-purple.focus,
-.open>.dropdown-toggle.btn-purple:focus,
-.open>.dropdown-toggle.btn-purple:hover{
-    color:#fff;
-    background-color:#9821cf;
-    border-color:#9821cf
+.open > .dropdown-toggle.btn-purple.focus,
+.open > .dropdown-toggle.btn-purple:focus,
+.open > .dropdown-toggle.btn-purple:hover {
+    color: #fff;
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
 .btn-purple.active,
 .btn-purple:active,
-.open>.dropdown-toggle.btn-purple{
-    background-image:none
+.open > .dropdown-toggle.btn-purple {
+    background-image: none;
 }
 .btn-purple.disabled.focus,
 .btn-purple.disabled:focus,
@@ -340,11 +335,15 @@ h3 {
 .btn-purple[disabled]:hover,
 fieldset[disabled] .btn-purple.focus,
 fieldset[disabled] .btn-purple:focus,
-fieldset[disabled] .btn-purple:hover{
-    background-color:#9821cf;
-    border-color:#9821cf
+fieldset[disabled] .btn-purple:hover {
+    background-color: #9821cf;
+    border-color: #9821cf;
 }
-.btn-purple .badge{
-    color:#9821cf;
-    background-color:#fff
+.btn-purple .badge {
+    color: #9821cf;
+    background-color: #fff;
+}
+
+.mt-1 {
+    margin-top: 0.25em;
 }
