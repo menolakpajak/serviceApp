@@ -456,6 +456,73 @@ function pickup(id, status) {
     });
 }
 
+// KONFIRMASI BACK TO PROSESS
+function backProses(id) {
+    
+    var token = generateRandomString(6);
+    Swal.fire({
+        title: "AKAN MEMPROSES INI ?",
+        html: `<p><strong>Commit Back</strong> to <strong class="color-orange">PROSES</strong></p>
+        <h3 class="color-blue strong">${token[1]}</h3>
+        <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#ffb83b",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "BACK to PROSES",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
+                Swal.fire({
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Token Salah !",
+                });
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("no_spk", id);
+            formData.append("submit", true);
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI PROSES",
+                            text: "Kini status data menjadi PROSES",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, "../detail-proses/?id=" + id);
+                            }
+                            window.location.href = "../detail-proses/?id=" + id;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI PROSES",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
+                    }
+                }
+            };
+            ajax.open("POST", `../action/backProses.php`, "true");
+            ajax.send(formData);
+        }
+    });
+}
+
 // KONFIRMASI DELETE
 
 // DELETE TABEL DATA

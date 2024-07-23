@@ -1709,6 +1709,54 @@ function pickup($order)
     // >>>>>>>
 }
 
+// RUBAH STATUS KEMBALI KE PROSES
+
+function backProses($order)
+{
+    global $datetime;
+    global $conn;
+    $id = $order['no_spk'];
+
+    $data = data("SELECT * FROM data WHERE no_spk = '$id' ");
+    if (empty($data)) {
+        return 'Tidak Ada data, mungkin telah terhapus !';
+    }
+    $data = $data[0];
+    $prev_log = json_decode($data['log'], true);
+    $status = strtoupper($data['status']);
+    
+    $log = array();
+    $log['date'] = $datetime;
+    $log['status'] = $data['status'];
+    $log['action'] = 'move';
+    $log['detail'] = [];
+    $log['user'] = $_SESSION['kode'];
+
+    array_push($log['detail'], "Perpindahan status dari $status kembali ke => PROSES");
+
+    array_push($prev_log, $log);
+    $log = json_encode($prev_log, JSON_PRETTY_PRINT);
+    $log = mysqli_real_escape_string($conn, $log);
+
+    $query = "UPDATE data SET 
+                    log = '$log',
+                    status = 'proses'
+                WHERE no_spk = '$id' ";
+    mysqli_query($conn, $query);
+    $result = mysqli_error($conn);
+
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $notif = data("SELECT * FROM notif_msg WHERE no_spk = '$id' ");
+        if (!empty($notif)) {
+            $query = "DELETE FROM notif_msg WHERE no_spk = '$id' ";
+        }
+        mysqli_query($conn, $query);
+        return 'ok';
+    } else {
+        return $result;
+    }
+}
 
 // FUNGSI DELETE DATA
 

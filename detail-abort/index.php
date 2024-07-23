@@ -553,12 +553,13 @@ if (empty($data2['check_filter_info'])) {
 
 										<div class="action">
 											<?php if ($akses == 'master'): ?>
-												<a href="javascript:void(0)" class="btn btn-primary" onclick="editDone()"> Edit </a>
-												<a href="javascript:void(0)" class="btn btn-danger" onclick="deleteData('done','<?= $id; ?>')"> Delete </a>
+												<a href="javascript:void(0)" class="btn btn-primary mt-1" onclick="editDone()"> Edit </a>
+												<a href="javascript:void(0)" class="btn btn-danger mt-1" onclick="deleteData('done','<?= $id; ?>')"> Delete </a>
+												<a href="javascript:void(0)" class="btn btn-warning mt-1" onclick="backProses('<?= $id; ?>')"> Back to Proses </a>
 											<?php endif; ?>
-											<a href="javascript:void(0)" class="btn btn-purple" onclick="pickup('<?= $id; ?>','<?= $status; ?>')"> Next to Pickup </a>
+											<a href="javascript:void(0)" class="btn btn-purple mt-1" onclick="pickup('<?= $id; ?>','<?= $status; ?>')"> Next to Pickup </a>
 											<a href="../duplicateOrder/?id=<?= $id; ?>" class="btn btn-info mt-1">Duplicate</a>
-											<a href="../print/?id=<?= $id; ?>" class="btn btn-dark">Receipt</a>
+											<a href="../print/?id=<?= $id; ?>" class="btn btn-dark mt-1">Receipt</a>
 										</div>
 
 									</div>

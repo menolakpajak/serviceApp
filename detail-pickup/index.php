@@ -551,10 +551,10 @@ if (empty($data2['check_filter_info'])) {
 
 										<div class="action">
 											<?php if ($akses == 'master'): ?>
-												<a href="javascript:void(0)" class="btn btn-danger" onclick="deleteData('pickup','<?= $id; ?>')"> Delete </a>
+												<a href="javascript:void(0)" class="btn btn-danger mt-1" onclick="deleteData('pickup','<?= $id; ?>')"> Delete </a>
 											<?php endif; ?>
 											<a href="../duplicateOrder/?id=<?= $id; ?>" class="btn btn-info mt-1">Duplicate</a>
-											<a href="../print/?id=<?= $id; ?>" class="btn btn-dark" target="_blank">Receipt</a>
+											<a href="../print/?id=<?= $id; ?>" class="btn btn-dark mt-1" target="_blank">Receipt</a>
 										</div>
 
 									</div>
