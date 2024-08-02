@@ -150,7 +150,7 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 									<div class="form-group input color-blue">
 										<label style="text-align: right;" for="link">Link Spk</label>
 										<div class="box">
-											<input style="width: fit-content;" type="text" class="form-control color-blue" id="link" name="link" maxlength="20" value="<?= $link_spk; ?>" readonly autocomplete="off" required>
+											<input style="width: 100%;" type="text" class="form-control color-blue" id="link" name="link" maxlength="20" value="<?= $link_spk; ?>" readonly autocomplete="off" required>
 										</div>
 									</div>
 								</div>
@@ -255,6 +255,12 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 												<div class="box">
 													<label for="total">TOTAL :</label>
 													<input type="text" class="form-control color-purple" id="total" onkeyup="numSeperate(event)" value="0">
+												</div>
+											</div>
+											<div class="form-group input color-red">
+												<div class="box">
+													<label for="cancel">Cancel :</label>
+													<input type="text" class="form-control color-red" id="cancel" onkeyup="numSeperate(event)" value="0">
 												</div>
 											</div>
 											<div class="form-group input">

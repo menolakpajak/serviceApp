@@ -25,7 +25,6 @@ if(empty($cek) || empty($_POST['subtotal'])){
     echo 'Tidak dapat menyimpan Invoice Kosong !';
     die;
 };
-
     
 if(isset($_POST['submit'])){
     $result =  editNota($_POST);

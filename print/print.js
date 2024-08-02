@@ -135,5 +135,18 @@ function copyURI(evt) {
         location.href = url+'&en'
     }
   }
-
   
+  // change language QUO
+  function languageQuo(e){
+    let lang = e.value;
+    let url = window.location.href;
+    url = url.split('&');
+    url = `${url[0]}&${url[1]}`
+    if(lang == 'id'){
+        location.href = url
+    }
+    if(lang == 'en'){
+        location.href = url+'&en'
+    }
+    return;
+  }

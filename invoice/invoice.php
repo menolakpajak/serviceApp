@@ -35,6 +35,12 @@ $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
+if(!empty($data['cancel'])){
+	$cancel = $data['cancel'];
+}else{
+	$cancel = "150,000";
+}
+
 $dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
 
 $spk = str_split($link_spk, 7);

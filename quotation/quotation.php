@@ -1,13 +1,5 @@
 <?php
 $detail = 'invoice_for';
-$data = data("SELECT * FROM invoice WHERE kode = '$id'");
-
-if (empty($data)) {
-    include_once '../struktur/ajax-404.php';
-}
-
-
-$data = $data[0];
 $link_spk = removeSpecialChar($data['link']);
 
 $data2 = data("SELECT * FROM data WHERE no_spk = '$link_spk'");
@@ -20,7 +12,7 @@ if (empty($data2)) {
 
 $data2 = $data2[0];
 
-$date = date('d/m/Y', strtotime($data['date']));
+$date = date('d/m/Y', strtotime($quo['date']));
 if (!empty($data['date_paid'])) {
     $date_paid = date('d/m/Y', strtotime($data['date_paid']));
 } else {
@@ -28,19 +20,20 @@ if (!empty($data['date_paid'])) {
 }
 $status = strtoupper($data['status']);
 $status_unit = $data2['status'];
+$data['save_as'] = 'quotation';
 $save_as = $data['save_as'];
-$qtss = json_decode($data['qts'], true);
-$kodes = json_decode($data['kode_part'], true);
-$descs = json_decode($data['deskripsi'], true);
-$buys = json_decode($data['buy'], true);
-$margins = json_decode($data['margin'], true);
-$sells = json_decode($data['sell'], true);
-$profit = $data['profit'];
-$subtotal = $data['subtotal'];
-$dpp = $data['dpp'];
-$ppn = $data['ppn'];
-$deposit = $data['deposit'];
-$total = $data['total'];
+$qtss = $quo['qts'];
+$kodes = $quo['kode_part'];
+$descs = $quo['dekripsi'];
+$buys = $quo['buy'];
+$margins = $quo['margin'];
+$sells = $quo['sell'];
+$profit = $quo['profit'];
+$subtotal = $quo['subtotal'];
+$dpp = $quo['dpp'];
+$ppn = $quo['ppn'];
+$deposit = $quo['deposit'];
+$total = $quo['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
 if(!empty($data['cancel'])){
@@ -48,6 +41,7 @@ if(!empty($data['cancel'])){
 }else{
 	$cancel = "150,000";
 }
+
 $dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
 
 $spk = str_split($link_spk, 7);
@@ -60,18 +54,15 @@ $huruf = $kode_id[0];
 $angka = $kode_id[1];
 $kode_id = "$huruf-$angka";
 $barcode = "QTS-$kode_id";
-$qrcode = "https://repair.digitalisasi.net/invoice?kode=" . urlencode(encrypt($id));
+$qrcode = "https://repair.digitalisasi.net/invoice?kode=$kode_id";
 if ($save_as == 'invoice') {
     $barcode = "INV-$kode_id";
 }
-if (isset($_GET['en'])) {
-    $qrcode .= '&en';
-}
 
-include_once 'rek.php';
-include_once 'languages/invoice/id.php';
+include_once '../print/rek.php';
+include_once '../print/languages/invoice/id.php';
 if (isset($_GET['en'])) {
-    include_once 'languages/invoice/en.php';
+    include_once '../print/languages/invoice/en.php';
 }
 ?>
 
@@ -82,13 +73,19 @@ if (isset($_GET['en'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://repair.digitalisasi.net/invoice?kode=<?= $_GET['kode']; ?>" />
+    <meta property="og:title" content="INVOICE <?= $id; ?>" />
+    <meta property="og:description" content="Online Invoice" />
+    <meta property="og:image" content="https://repair.digitalisasi.net/assets/img/meta/invoice.png" />
     <!-- favicon -->
     <?php include_once '../struktur/favicon.php'; ?>
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="print.css?versi=<?= $version; ?>">
-    <link href="../alert/sweetalert2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../print/print.css?versi=<?= $version; ?>">
 
     <title><?= $barcode; ?></title>
 
@@ -97,7 +94,7 @@ if (isset($_GET['en'])) {
 <body>
     <div class="container-fluid send">
         <div class="col-3 col-sm-1 mt-0 mb-1">
-            <select class="form-select" aria-label="Default select example" onchange="language(this)">
+            <select class="form-select" aria-label="Default select example" onchange="languageQuo(this)">
                 <option value="id" <?php if (!isset($_GET))
                     echo 'selected'; ?>>ID</option>
                 <option value="en" <?php if (isset($_GET['en']))
@@ -226,7 +223,7 @@ if (isset($_GET['en'])) {
                             echo $note;
                         } ?>
                     </div>
-                    <div class="col-3 border border-1 border-dark rounded p-2 w-fit-content  h-fit-content">
+                    <div class="d-none col-3 border border-1 border-dark rounded p-2 w-fit-content  h-fit-content">
                         <div id="qrcode" class="mb-1"></div>
                         <?php if ($data['save_as'] == 'invoice'): ?>
                             <p id="qrcode-text" class="text-center mb-0 fw-bold">Digital Invoice</p>
@@ -262,14 +259,6 @@ if (isset($_GET['en'])) {
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?php if ($data['status'] == 'paid'): ?>
-                        <div id="stamp" class="row position-absolute">
-                            <div class="col-8 stamp text-center font-stamp fw-bold">
-                                <p class="mb-min-1 fs-3"><?= $words['status']; ?></p>
-                                <p class="m-0 fs-6"><?= $date_paid; ?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
                 </div>
             </div>
             <!-- close total -->
@@ -286,25 +275,7 @@ if (isset($_GET['en'])) {
             <!-- close hormat -->
 
         </div>
-        <!-- Toast with Placements -->
-        <div id="toastCopy" class="send bs-toast toast toast-placement-ex m-2 bg-primary" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" data-autohide="true" style="top: 0; left: 0;">
-            <div class="toast-header">
-                <i class="bi bi-bell"></i>
-                <div class="me-auto fw-semibold"> Link Berhasil dicopy !</div>
-                <!-- <small>11 mins ago</small> -->
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-        <hr id='foot-hr' class="mt-1">
-        <button id="print" class="btn btn-secondary mb-3" onclick="printDocument()"><i class="bi bi-printer-fill"></i> Print</button>
-        <a class="send btn btn-success mb-3" target="_blank" href="https://wa.me/<?= $data2['wa']; ?>?text=<?= urlencode($qrcode); ?>"><i class="bi bi-whatsapp"></i> Send</a>
-        <a class="send btn btn-warning mb-3" href="javascript:void(0)" onclick="sendBot('<?= $data2['wa']; ?>','<?= $qrcode; ?>','<?= $data['save_as']; ?>')"><i class="bi bi-robot"></i> BOT</a>
-        <a class="send btn btn-primary mb-3" href="<?= $qrcode; ?>" onclick="copyURI(event)"><i class="bi bi-copy"></i> Copy</a>
-
-
-
     </div>
-
 
 
 
@@ -312,10 +283,8 @@ if (isset($_GET['en'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
-    <script src="../alert/sweetalert2.all.js?versi=<?= $version; ?>"></script>
-    <script src="barcode.js"></script>
-    <script src="../alert/confirm.js?<?= $version; ?>"></script>
-    <script src="print.js?versi=<?= $version; ?>"></script>
+    <script src="../print/barcode.js"></script>
+    <script src="../print/print.js?versi=<?= $version; ?>"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
     <script>

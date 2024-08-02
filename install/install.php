@@ -323,6 +323,7 @@ $conn = new mysqli($server, $userServer, $serverPwd, $database);
         `ppn` varchar(100) NOT NULL,
         `deposit` varchar(100) NOT NULL,
         `total` varchar(100) NOT NULL,
+        `cancel` varchar(100) DEFAULT NULL,
         `save_as` varchar(20) NOT NULL,
         `status` varchar(20) DEFAULT NULL,
         `rek` varchar(20) DEFAULT NULL,

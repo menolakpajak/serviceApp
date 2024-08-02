@@ -125,6 +125,7 @@ function addUnit() {
     location.href = `?add=${add.value}`;
 }
 
+// fungsi menampilkan profit
 function profitShow(profit) {
     // console.log(profit);
     var show = document.querySelector(".profitShow");
@@ -133,4 +134,40 @@ function profitShow(profit) {
     } else {
         show.innerText = "*****";
     }
+}
+
+//fungsi menampilkan quotation
+function quo(id){
+
+    let formData = new FormData();
+    formData.append("id", id);
+    formData.append("submit", true);
+
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var ok = JSON.parse(ajax.responseText);
+            // return console.log(ok);
+            if(ok.length > 0){
+                var link = '';
+                for(i = 0; i < ok.length; i++){
+                    var date = ok[i]['date'];
+                    link += `<a class="btn btn-warning" href="../quotation/?kode=${id}&index=${i}" target="_blank"><i class="fa fa-file" aria-hidden="true"> </i> ${date}</a>`
+                }
+            }
+
+            Swal.fire({
+                title: "Quotation",
+                html: link,
+                icon: "info",
+                showCancelButton: false,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "OK",
+            })
+        }
+    }
+    ajax.open("POST", `../ajax/quotation.php`, "true");
+    ajax.send(formData);
+
+    return;
 }

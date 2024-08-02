@@ -41,6 +41,11 @@ $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
+if(!empty($data['cancel'])){
+	$cancel = $data['cancel'];
+}else{
+	$cancel = 0;
+}
 $spk = '';
 
 if (!empty($link)) {
@@ -264,6 +269,14 @@ $kode_id = "$huruf-$angka";
 													</div>
 												</div>
 											</div>
+											<div class="form-group input color-red">
+												<div class="box">
+													<strong style="font-size:18px; width: fit-content; text-wrap:nowrap;">CANCEL</strong>
+													<div style="font-size:18px; text-align: right;width:100%">
+														<strong><?= $cancel; ?></strong>
+													</div>
+												</div>
+											</div>
 											<div class="form-group input color-purple">
 												<div class="box">
 													<strong style="font-size:20px; width: fit-content; text-wrap:nowrap;">TOTAL</strong>
@@ -280,6 +293,7 @@ $kode_id = "$huruf-$angka";
 														<?php if ($data['status'] != 'paid'): ?>
 															<button onclick="setPaid('<?= $id; ?>')" type="button" class="btn btn-success">Set Paid</button>
 														<?php endif; ?>
+														<button onclick="quo('<?= $id; ?>')" type="button" class="btn btn-warning"><i class="fa fa-folder-open" aria-hidden="true"></i> Quo</button>
 													<?php endif; ?>
 													<a href="../print?invoice-for=true&id=<?= $id; ?>" class="btn btn-info"><i class="fa fa-print" aria-hidden="true"></i> Print Preview</a>
 												</div>

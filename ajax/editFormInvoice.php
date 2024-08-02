@@ -58,6 +58,11 @@ $deposit = $data['deposit'];
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
+if(!empty($data['cancel'])){
+	$cancel = $data['cancel'];
+}else{
+	$cancel = 0;
+}
 
 
 ?>
@@ -265,6 +270,12 @@ $rekening = $data['rek'];
 												<div class="box">
 													<label for="total">TOTAL :</label>
 													<input type="text" class="form-control color-purple" id="total" onkeyup="numSeperate(event)" value="<?= $total; ?>">
+												</div>
+											</div>
+											<div class="form-group input color-red">
+												<div class="box">
+													<label for="cancel">Cancel :</label>
+													<input type="text" class="form-control color-red" id="cancel" onkeyup="numSeperate(event)" value="<?= $cancel; ?>">
 												</div>
 											</div>
 											<div class="form-group input">

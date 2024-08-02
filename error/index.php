@@ -1,5 +1,5 @@
 <?php
-$page = ['error', '../'];
+
 
 ?>
 
@@ -24,7 +24,7 @@ $page = ['error', '../'];
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="error.css" />
+  <link rel="stylesheet" href="<?= $page[1]; ?>/error/error.css" />
 </head>
 
 <body>
@@ -37,7 +37,7 @@ $page = ['error', '../'];
       <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
       <!-- <a href="../" style="color:white; background-color:#696cff; border-radius:20px; padding: 8px;">Back to home</a> -->
       <div class="mt-3">
-        <img src="error.png" alt="page-misc-error-light" width="500" class="img-fluid" data-app-dark-img="error.image" data-app-light-img="error-image" />
+        <img src="<?= $page[1]; ?>/error/error.png" alt="page-misc-error-light" width="500" class="img-fluid" data-app-dark-img="error.image" data-app-light-img="error-image" />
       </div>
     </div>
   </div>

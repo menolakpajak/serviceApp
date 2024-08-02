@@ -2151,6 +2151,7 @@ function inputNotaFor($order)
     $ppn = $order['ppn'];
     $deposit = $order['deposit'];
     $total = $order['total'];
+    $cancel = $order['cancel'];
     $note = htmlentities($order['note'], ENT_QUOTES, 'UTF-8');
     $saveas = htmlspecialchars($order['saveas']);
 
@@ -2165,7 +2166,7 @@ function inputNotaFor($order)
     $json_desc = mysqli_real_escape_string($conn, $desc);
     $json_kode = mysqli_real_escape_string($conn, $kode_inv);
 
-    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,total,save_as,status,note)
+    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,total,cancel,save_as,status,note)
                     VALUES 
                     ('$date',
                     '$no_spk',
@@ -2183,6 +2184,7 @@ function inputNotaFor($order)
                     '$ppn',
                     '$deposit',
                     '$total',
+                    '$cancel',
                     '$saveas',
                     'pending',
                     '$note')";
@@ -2248,6 +2250,7 @@ function editNota($order)
     $ppn = $order['ppn'];
     $deposit = $order['deposit'];
     $total = $order['total'];
+    $cancel = $order['cancel'];
     $note = $order['note'];
     $rekening = htmlspecialchars($order['rekening']);
 
@@ -2266,6 +2269,7 @@ function editNota($order)
         $ppn != $data['ppn'] ||
         $deposit != $data['deposit'] ||
         $total != $data['total'] ||
+        $cancel != $data['cancel'] ||
         $note != $data['note'] ||
         $rekening != $data['rek'] ||
         ($date . ':00' != $data['date'])
@@ -2295,6 +2299,7 @@ function editNota($order)
     ppn = '$ppn',
     deposit = '$deposit',
     total = '$total',
+    cancel = '$cancel',
     note = '$note',
     rek = '$rekening'
     WHERE kode = '$id'";
@@ -2305,7 +2310,7 @@ function editNota($order)
     } else {
         return $conn->error;
     }
-
+    
 }
 
 //set invoice

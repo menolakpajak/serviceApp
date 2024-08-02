@@ -45,7 +45,7 @@ if ($detail == 'invoice_for') {
         $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> The offer is valid until 14 calendar days.</p>";
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> If no confirmation is received, it will be considered as canceled.</p>";
         $words['note'][4] = "<p class='syarat mb-0'><strong>4.</strong> Please settle the remaining payment before the delivery or collection of the unit.</p>";
-        $words['note'][5] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>5.</strong> Cancellation will incur an inspection fee of Rp.150,000.</p>";
+        $words['note'][5] = "<p class='syarat mb-0 text-danger'><strong class='text-dark'>5.</strong> Cancellation will incur an inspection fee of Rp.$cancel.</p>";
         $words['note'][6] = "<p class='syarat mb-0'><strong>6.</strong> The above price does not include shipping costs.</p>";
         $words['note'][7] = "<p class='syarat mb-0'><strong>7.</strong> Payments can be transferred to the following bank account:</p>";
         $words['note'][8] = "<p class='syarat mb-0 ms-3 fw-bold'>$rek[0]</p>";
