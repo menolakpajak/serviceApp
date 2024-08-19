@@ -18,6 +18,7 @@ if (empty($data)) {
 }
 $data = $data[0];
 $quo = json_decode($data['quotation'],true)[$index];
-// var_dump($quo);die;
+// $quo = json_decode($data['quotation'],true);
+// var_dump($quo[0]['qts']);die;
 
 include_once 'quotation.php';

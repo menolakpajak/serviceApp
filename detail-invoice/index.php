@@ -286,16 +286,16 @@ $kode_id = "$huruf-$angka";
 												</div>
 											</div>
 											<div class="form-group input">
-												<div class="box" style="justify-content: space-between;">
+												<div class="box" style="justify-content: space-between;flex-wrap:wrap;">
 													<?php if ($data['save_as'] == 'quotation'): ?>
-														<button onclick="editINV('<?= $id; ?>')" type="button" class="btn btn-warning">Update</button>
+														<button onclick="editINV('<?= $id; ?>')" type="button" class="btn btn-warning mt-1">Update</button>
 													<?php else: ?>
 														<?php if ($data['status'] != 'paid'): ?>
-															<button onclick="setPaid('<?= $id; ?>')" type="button" class="btn btn-success">Set Paid</button>
+															<button onclick="setPaid('<?= $id; ?>')" type="button" class="btn btn-success mt-1">Set Paid</button>
 														<?php endif; ?>
-														<button onclick="quo('<?= $id; ?>')" type="button" class="btn btn-warning"><i class="fa fa-folder-open" aria-hidden="true"></i> Quo</button>
+														<button onclick="quo('<?= $id; ?>')" type="button" class="btn btn-warning mt-1"><i class="fa fa-folder-open" aria-hidden="true"></i> Quo</button>
 													<?php endif; ?>
-													<a href="../print?invoice-for=true&id=<?= $id; ?>" class="btn btn-info"><i class="fa fa-print" aria-hidden="true"></i> Print Preview</a>
+													<a href="../print?invoice-for=true&id=<?= $id; ?>" class="btn btn-info mt-1"><i class="fa fa-print" aria-hidden="true"></i> Print Preview</a>
 												</div>
 											</div>
 											<?php if ($data['save_as'] == 'quotation'): ?>

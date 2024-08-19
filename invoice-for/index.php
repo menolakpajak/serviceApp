@@ -275,6 +275,15 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 													<textarea class="form-control" name="note" id="note" cols="3" rows="3" placeholder="---"></textarea>
 												</div>
 											</div>
+											<div class="form-group input">
+												<label for="note">Rekening :</label>
+												<input id="rekening" type="text" class="form-control desc" style="max-width: 250px; margin:0;" list="rekening-list" autocomplete="off">
+												<datalist id="rekening-list">
+													<option value="putu artana"></option>
+													<option value="wayan sutama"></option>
+													<option value="komang adi"></option>
+												</datalist>
+											</div>
 										</div>
 										
 									</div>

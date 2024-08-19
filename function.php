@@ -2152,6 +2152,7 @@ function inputNotaFor($order)
     $deposit = $order['deposit'];
     $total = $order['total'];
     $cancel = $order['cancel'];
+    $rekening = $order['rekening'];
     $note = htmlentities($order['note'], ENT_QUOTES, 'UTF-8');
     $saveas = htmlspecialchars($order['saveas']);
 
@@ -2163,10 +2164,32 @@ function inputNotaFor($order)
         die('Invoice tidak dapat dibuat tanpa relasi dari NO SPK yang terdaftar !');
     }
 
+    $quo = [];
+    $quo_detail = [];
+    $quo_detail['date'] = $date;
+    $quo_detail['qts'] = json_decode($qts,true);
+    $quo_detail['dekripsi'] = json_decode($desc,true);
+    $quo_detail['kode_part'] = json_decode($kode_inv,true);
+    $quo_detail['buy'] = json_decode($buy,true);
+    $quo_detail['margin'] = json_decode($margin,true);
+    $quo_detail['sell'] = json_decode($sell,true);
+    $quo_detail['profit'] = $profit;
+    $quo_detail['subtotal'] = $subtotal;
+    $quo_detail['dpp'] = $dpp;
+    $quo_detail['ppn'] = $ppn;
+    $quo_detail['deposit'] = $deposit;
+    $quo_detail['total'] = $total;
+    $quo_detail['cancel'] = $cancel;
+    $quo_detail['save_as'] = 'quotation';
+    $quo_detail['input'] = $_SESSION['kode'];
+    array_push($quo, $quo_detail);
+    $quo = json_encode($quo, JSON_PRETTY_PRINT);
+    $json_quo = mysqli_real_escape_string($conn, $quo);
+
     $json_desc = mysqli_real_escape_string($conn, $desc);
     $json_kode = mysqli_real_escape_string($conn, $kode_inv);
 
-    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,total,cancel,save_as,status,note)
+    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,total,cancel,save_as,status,rek,note,quotation)
                     VALUES 
                     ('$date',
                     '$no_spk',
@@ -2187,7 +2210,10 @@ function inputNotaFor($order)
                     '$cancel',
                     '$saveas',
                     'pending',
-                    '$note')";
+                    '$rekening',
+                    '$note',
+                    '$json_quo'
+                    )";
 
     $sql_data = "UPDATE data SET 
         invoice = '$no_spk' 
@@ -2238,6 +2264,9 @@ function editNota($order)
     }
 
     $data = $data[0];
+    $save_as = $data['save_as']; // validasi untuk input kolom quotation    
+    $quotation = json_decode($data['quotation'],true); // validasi untuk input kolom quotation
+    
     $qts = $order['qts'];
     $kode_part = $order['kode'];
     $desc = $order['desc'];
@@ -2285,24 +2314,70 @@ function editNota($order)
     $json_kode = mysqli_real_escape_string($conn, $kode_part);
 
 
-    $query = "UPDATE invoice SET 
-    date = '$date',
-    qts = '$qts', 
-    kode_part = '$json_kode',
-    deskripsi = '$json_desc',
-    buy = '$buy',
-    margin = '$margin',
-    sell = '$sell',
-    profit = '$profit',
-    subtotal = '$subtotal',
-    dpp = '$dpp',
-    ppn = '$ppn',
-    deposit = '$deposit',
-    total = '$total',
-    cancel = '$cancel',
-    note = '$note',
-    rek = '$rekening'
-    WHERE kode = '$id'";
+    $quo = [];
+    if(!empty($quotation)){$quo = $quotation;};
+    $quo_detail = [];
+    $quo_detail['date'] = $datetime;
+    $quo_detail['qts'] = json_decode($qts,true);
+    $quo_detail['dekripsi'] = json_decode($desc,true);
+    $quo_detail['kode_part'] = json_decode($kode_part,true);
+    $quo_detail['buy'] = json_decode($buy,true);
+    $quo_detail['margin'] = json_decode($margin,true);
+    $quo_detail['sell'] = json_decode($sell,true);
+    $quo_detail['profit'] = $profit;
+    $quo_detail['subtotal'] = $subtotal;
+    $quo_detail['dpp'] = $dpp;
+    $quo_detail['ppn'] = $ppn;
+    $quo_detail['deposit'] = $deposit;
+    $quo_detail['total'] = $total;
+    $quo_detail['cancel'] = $cancel;
+    $quo_detail['save_as'] = 'quotation';
+    $quo_detail['input'] = $_SESSION['kode'];
+    array_push($quo, $quo_detail);
+    $quo = json_encode($quo, JSON_PRETTY_PRINT);
+
+    $json_quo = mysqli_real_escape_string($conn, $quo);
+
+        $query = "UPDATE invoice SET 
+        date = '$date',
+        qts = '$qts', 
+        kode_part = '$json_kode',
+        deskripsi = '$json_desc',
+        buy = '$buy',
+        margin = '$margin',
+        sell = '$sell',
+        profit = '$profit',
+        subtotal = '$subtotal',
+        dpp = '$dpp',
+        ppn = '$ppn',
+        deposit = '$deposit',
+        total = '$total',
+        cancel = '$cancel',
+        note = '$note',
+        rek = '$rekening',
+        quotation = '$json_quo'
+        WHERE kode = '$id'";
+
+    if($save_as == 'invoice'){
+        $query = "UPDATE invoice SET 
+        date = '$date',
+        qts = '$qts', 
+        kode_part = '$json_kode',
+        deskripsi = '$json_desc',
+        buy = '$buy',
+        margin = '$margin',
+        sell = '$sell',
+        profit = '$profit',
+        subtotal = '$subtotal',
+        dpp = '$dpp',
+        ppn = '$ppn',
+        deposit = '$deposit',
+        total = '$total',
+        cancel = '$cancel',
+        note = '$note',
+        rek = '$rekening'
+        WHERE kode = '$id'";
+    }
 
     $conn->query($query);
     if ($conn->affected_rows > 0) {
@@ -2327,34 +2402,9 @@ function setInvoice($order)
 
     $data = $data[0];
 
-    $quo = [];
-
-    $quo_detail = [];
-
-    $quo_detail['date'] = $data['date'];
-    $quo_detail['qts'] = json_decode($data['qts'], true);
-    $quo_detail['dekripsi'] = json_decode($data['deskripsi'], true);
-    $quo_detail['kode_part'] = json_decode($data['kode_part'], true);
-    $quo_detail['buy'] = json_decode($data['buy'], true);
-    $quo_detail['margin'] = json_decode($data['margin'], true);
-    $quo_detail['sell'] = json_decode($data['sell'], true);
-    $quo_detail['profit'] = $data['profit'];
-    $quo_detail['subtotal'] = $data['subtotal'];
-    $quo_detail['dpp'] = $data['dpp'];
-    $quo_detail['ppn'] = $data['ppn'];
-    $quo_detail['deposit'] = $data['deposit'];
-    $quo_detail['total'] = $data['total'];
-    $quo_detail['save_as'] = 'quotation';
-    $quo_detail['input'] = $_SESSION['kode'];
-    array_push($quo, $quo_detail);
-    $quo = json_encode($quo, JSON_PRETTY_PRINT);
-
-    $json_quo = mysqli_real_escape_string($conn, $quo);
-
     $query = "UPDATE invoice SET 
         date = '$datetime',
-        save_as = 'invoice',
-        quotation = '$json_quo'
+        save_as = 'invoice'
         WHERE kode = '$id'";
 
     $conn->query($query);

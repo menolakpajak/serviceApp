@@ -19,7 +19,6 @@ if(!in_array($_SESSION['akses'],['master','admin'])){
     include_once '../struktur/action-403.php';
 }
 
-
 $cek = json_decode($_POST['desc'],true);
 if(empty($cek) || empty($_POST['subtotal'])){
     echo 'Tidak dapat menyimpan Invoice Kosong !';

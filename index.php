@@ -757,7 +757,7 @@ $page = ['index', ''];
 						<div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
 							<i class="bi bi-envelope"></i>
 							<h3>Email Us</h3>
-							<p>info@digitalisasi.net</p>
+							<p>repair@digitalisasi.net</p>
 						</div>
 					</div><!-- End Info Item -->
 

@@ -152,7 +152,7 @@ function quo(id){
                 var link = '';
                 for(i = 0; i < ok.length; i++){
                     var date = ok[i]['date'];
-                    link += `<a class="btn btn-warning" href="../quotation/?kode=${id}&index=${i}" target="_blank"><i class="fa fa-file" aria-hidden="true"> </i> ${date}</a>`
+                    link += `<a class="btn btn-warning mt-1" href="../quotation/?kode=${id}&index=${i}" target="_blank"><i class="fa fa-file" aria-hidden="true"> </i> ${date}</a>`
                 }
             }
 

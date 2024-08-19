@@ -10,7 +10,7 @@
             <p>Jl. Tukad Pancoran IV block A4 no 12B</p>
             <p>Denpasar - Bali</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+62 898 0000 703</span></p>
-            <p><strong>Email:</strong> <span>info@digitalisasi.net</span></p>
+            <p><strong>Email:</strong> <span>repair@digitalisasi.net</span></p>
           </div>
           <div class="d-none social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>

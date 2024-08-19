@@ -28,7 +28,7 @@ if(empty($cek) || empty($_POST['subtotal'])){
 
 if(isset($_POST['for'])){
     if(isset($_POST['submit'])){
-        $result =  inputNotaFor($_POST);
+        $result = inputNotaFor($_POST);
             echo $result;
         }else{
             include_once '../struktur/action-noKey.php';

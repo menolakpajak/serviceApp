@@ -274,6 +274,9 @@ if (isset($_GET['en'])) {
             </div>
             <!-- close hormat -->
 
+            <hr id='foot-hr' class="mt-1">
+        <button id="print" class="btn btn-secondary mb-3" onclick="printDocument()"><i class="bi bi-printer-fill"></i> Print</button>
+
         </div>
     </div>
 

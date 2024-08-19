@@ -2023,6 +2023,7 @@ function inputNotaFor(event) {
             var cancel = document.querySelector("#cancel").value;
             var note = document.querySelector("#note").value;
             var saveas = document.querySelector("#saveas").value;
+            var rekening = document.querySelector("#rekening").value;
 
             var qtss = [];
             var kodes = [];
@@ -2068,6 +2069,7 @@ function inputNotaFor(event) {
             formData.append("cancel", cancel);
             formData.append("note", note);
             formData.append("saveas", saveas);
+            formData.append("rekening", rekening);
 
             formData.append("submit", true);
 
