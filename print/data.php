@@ -261,7 +261,7 @@ $other_info = ucfirst($data2['other']);
                                 <p class="mb-0"><?= $lang[2]; ?></p>
                             </li>
                             <li>
-                                <p class="mb-0"><strong><?= $lang[3]; ?></strong></p>
+                                <p class="mb-0"><?= $lang[3]; ?></p>
                             </li>
                             <li>
                                 <p class="mb-0"><strong><?= $lang[4]; ?></strong></p>
@@ -273,13 +273,16 @@ $other_info = ucfirst($data2['other']);
                                 <p class="mb-0"><strong><?= $lang[6]; ?></strong></p>
                             </li>
                             <li>
-                                <p class="mb-0"><?= $lang[7]; ?></p>
+                                <p class="mb-0"><strong><?= $lang[7]; ?></strong></p>
                             </li>
                             <li>
                                 <p class="mb-0"><?= $lang[8]; ?></p>
                             </li>
                             <li>
-                                <p><?= $lang[9]; ?></p>
+                                <p class="mb-0"><?= $lang[9]; ?></p>
+                            </li>
+                            <li>
+                                <p><?= $lang[10]; ?></p>
                             </li>
                         </ul>
                     </div>
