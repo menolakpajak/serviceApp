@@ -55,6 +55,8 @@ $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
 $ppn = $data['ppn'];
 $deposit = $data['deposit'];
+if(!empty($data['discount'])){$discount = $data['discount'];
+}else{$discount = 0;}
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
@@ -159,9 +161,7 @@ if(!empty($data['cancel'])){
 										<div class="form-group input">
 											<input type="text" class="form-control desc" style="max-width: 250px; margin:0;" list="opsi" value="<?= $descs[$i]; ?>">
 											<datalist id="opsi">
-												<option value="Cleaning Sensor APSC"></option>
-												<option value="Cleaning Sensor FF"></option>
-												<option value="Cleaning Lensa"></option>
+												<?php include_once '../struktur/datalist-nota.html'; ?>
 											</datalist>
 										</div>
 									</td>
@@ -263,7 +263,13 @@ if(!empty($data['cancel'])){
 											<div class="form-group input color-orange">
 												<div class="box">
 													<label for="deposit">Deposit :</label>
-													<input type="text" class="form-control" id="deposit" onkeyup="numSeperate(event)" value="<?= $deposit; ?>">
+													<input type="text" class="form-control color-orange" id="deposit" onkeyup="numSeperate(event)" value="<?= $deposit; ?>">
+												</div>
+											</div>
+											<div class="form-group input color-green">
+												<div class="box">
+													<label for="discount">Discount :</label>
+													<input type="text" class="form-control color-green" id="discount" onkeyup="numSeperate(event)" value="<?= $discount; ?>">
 												</div>
 											</div>
 											<div class="form-group input color-purple">

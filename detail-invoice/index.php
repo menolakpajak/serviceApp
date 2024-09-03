@@ -38,6 +38,8 @@ $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
 $ppn = $data['ppn'];
 $deposit = $data['deposit'];
+if(!empty($data['discount'])){$discount = $data['discount'];
+}else{$discount = 0;}
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
@@ -266,6 +268,14 @@ $kode_id = "$huruf-$angka";
 													<strong style="width: fit-content; text-wrap:nowrap;">Deposit</strong>
 													<div style="text-align: right;width:100%">
 														<strong><?= $deposit; ?></strong>
+													</div>
+												</div>
+											</div>
+											<div class="form-group input color-green">
+												<div class="box">
+													<strong style="width: fit-content; text-wrap:nowrap;">Discount</strong>
+													<div style="text-align: right;width:100%">
+														<strong><?= $discount; ?></strong>
 													</div>
 												</div>
 											</div>

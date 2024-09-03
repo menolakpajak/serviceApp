@@ -2150,6 +2150,7 @@ function inputNotaFor($order)
     $dpp = $order['dpp'];
     $ppn = $order['ppn'];
     $deposit = $order['deposit'];
+    $discount = $order['discount'];
     $total = $order['total'];
     $cancel = $order['cancel'];
     $rekening = $order['rekening'];
@@ -2178,6 +2179,7 @@ function inputNotaFor($order)
     $quo_detail['dpp'] = $dpp;
     $quo_detail['ppn'] = $ppn;
     $quo_detail['deposit'] = $deposit;
+    $quo_detail['discount'] = $discount;
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
     $quo_detail['save_as'] = 'quotation';
@@ -2189,7 +2191,7 @@ function inputNotaFor($order)
     $json_desc = mysqli_real_escape_string($conn, $desc);
     $json_kode = mysqli_real_escape_string($conn, $kode_inv);
 
-    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,total,cancel,save_as,status,rek,note,quotation)
+    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,discount,total,cancel,save_as,status,rek,note,quotation)
                     VALUES 
                     ('$date',
                     '$no_spk',
@@ -2206,6 +2208,7 @@ function inputNotaFor($order)
                     '$dpp',
                     '$ppn',
                     '$deposit',
+                    '$discount',
                     '$total',
                     '$cancel',
                     '$saveas',
@@ -2278,6 +2281,7 @@ function editNota($order)
     $dpp = $order['dpp'];
     $ppn = $order['ppn'];
     $deposit = $order['deposit'];
+    $discount = $order['discount'];
     $total = $order['total'];
     $cancel = $order['cancel'];
     $note = $order['note'];
@@ -2297,6 +2301,7 @@ function editNota($order)
         $dpp != $data['dpp'] ||
         $ppn != $data['ppn'] ||
         $deposit != $data['deposit'] ||
+        $discount != $data['discount'] ||
         $total != $data['total'] ||
         $cancel != $data['cancel'] ||
         $note != $data['note'] ||
@@ -2329,6 +2334,7 @@ function editNota($order)
     $quo_detail['dpp'] = $dpp;
     $quo_detail['ppn'] = $ppn;
     $quo_detail['deposit'] = $deposit;
+    $quo_detail['discount'] = $discount;
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
     $quo_detail['save_as'] = 'quotation';
@@ -2351,6 +2357,7 @@ function editNota($order)
         dpp = '$dpp',
         ppn = '$ppn',
         deposit = '$deposit',
+        discount = '$discount',
         total = '$total',
         cancel = '$cancel',
         note = '$note',
@@ -2372,6 +2379,7 @@ function editNota($order)
         dpp = '$dpp',
         ppn = '$ppn',
         deposit = '$deposit',
+        discount = '$discount',
         total = '$total',
         cancel = '$cancel',
         note = '$note',

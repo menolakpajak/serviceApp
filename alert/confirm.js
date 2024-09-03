@@ -2019,6 +2019,7 @@ function inputNotaFor(event) {
             var dpp = document.querySelector("#dpp").value;
             var ppn = document.querySelector("#ppn").value;
             var deposit = document.querySelector("#deposit").value;
+            var discount = document.querySelector("#discount").value;
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
             var note = document.querySelector("#note").value;
@@ -2065,6 +2066,7 @@ function inputNotaFor(event) {
             formData.append("dpp", dpp);
             formData.append("ppn", ppn);
             formData.append("deposit", deposit);
+            formData.append("discount", discount);
             formData.append("total", total);
             formData.append("cancel", cancel);
             formData.append("note", note);
@@ -2135,6 +2137,7 @@ function editNota(event) {
             var dpp = document.querySelector("#dpp").value;
             var ppn = document.querySelector("#ppn").value;
             var deposit = document.querySelector("#deposit").value;
+            var discount = document.querySelector("#discount").value;
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
             var note = document.querySelector("#note").value;
@@ -2179,6 +2182,7 @@ function editNota(event) {
             formData.append("dpp", dpp);
             formData.append("ppn", ppn);
             formData.append("deposit", deposit);
+            formData.append("discount", discount);
             formData.append("total", total);
             formData.append("cancel", cancel);
             formData.append("note", note);

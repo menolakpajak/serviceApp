@@ -6,7 +6,6 @@ var sell = document.querySelectorAll(".sell");
 
 function calInvoice() {
     var qts = document.querySelectorAll(".qts");
-    var desc = document.querySelectorAll(".desc");
     var buy = document.querySelectorAll(".buy");
     var margin = document.querySelectorAll(".margin");
     var sell = document.querySelectorAll(".sell");
@@ -15,6 +14,7 @@ function calInvoice() {
     var dpp = document.querySelector("#dpp");
     var ppn = document.querySelector("#ppn");
     var dp = document.querySelector("#deposit");
+    var discount = document.querySelector("#discount");
     var total = document.querySelector("#total");
 
     var item = qts.length;
@@ -39,10 +39,10 @@ function calInvoice() {
         sell[i].value = Math.round(fsell).toLocaleString();
     }
 
-    fprofit = fsubtotal - fprofit;
+    fprofit = fsubtotal - fprofit - makeNum(discount.value);
     var fdpp = (fsubtotal * 100) / 111;
     var fppn = (fdpp * 11) / 100;
-    var ftotal = fsubtotal - makeNum(dp.value);
+    var ftotal = fsubtotal - makeNum(dp.value) - makeNum(discount.value);
     subtotal.value = Math.round(fsubtotal).toLocaleString();
     total.value = Math.round(ftotal).toLocaleString();
     dpp.value = Math.round(fdpp).toLocaleString();

@@ -188,9 +188,7 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 													<div class="form-group input">
 														<input type="text" class="form-control desc" style="max-width: 250px; margin:0;" list="opsi">
 														<datalist id="opsi">
-															<option value="Cleaning Sensor APSC"></option>
-															<option value="Cleaning Sensor FF"></option>
-															<option value="Cleaning Lensa"></option>
+															<?php include_once '../struktur/datalist-nota.html'; ?>
 														</datalist>
 													</div>
 												</td>
@@ -249,6 +247,12 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 												<div class="box">
 													<label for="deposit">Deposit :</label>
 													<input type="text" class="form-control" id="deposit" onkeyup="numSeperate(event)" value="0">
+												</div>
+											</div>
+											<div class="form-group input color-green">
+												<div class="box">
+													<label for="discount">Discount :</label>
+													<input type="text" class="form-control color-green" id="discount" onkeyup="numSeperate(event)" value="0">
 												</div>
 											</div>
 											<div class="form-group input color-purple">

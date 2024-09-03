@@ -30,10 +30,14 @@ $margins = $quo['margin'];
 $sells = $quo['sell'];
 $profit = $quo['profit'];
 $subtotal = $quo['subtotal'];
+if(isset($quo['discount'])){$discount = $quo['discount'];
+}else{$discount = 0;}
 $dpp = $quo['dpp'];
 $ppn = $quo['ppn'];
 $deposit = $quo['deposit'];
 $total = $quo['total'];
+$quototal = str_replace(',','',$subtotal)  - str_replace(',','',$discount);
+$quototal = number_format($quototal,0,'.',',');
 $note = $data['note'];
 $rekening = $data['rek'];
 if(!empty($data['cancel'])){
@@ -249,13 +253,13 @@ if (isset($_GET['en'])) {
                     <div class="col-6">
                         <div class="row">
                             <span class="tb-right"><?= $subtotal; ?></span>
-                            <span class="tb-right">0</span>
+                            <span class="tb-right"><?= $discount; ?></span>
                             <span class="tb-right">0</span>
                             <?php if ($data['save_as'] == 'invoice'): ?>
                                 <span class="tb-right"><?= $deposit; ?></span>
                                 <strong class="tb-right"><?= $total; ?></strong>
                             <?php else: ?>
-                                <strong class="tb-right"><?= $subtotal; ?></strong>
+                                <strong class="tb-right"><?= $quototal; ?></strong>
                             <?php endif; ?>
                         </div>
                     </div>
