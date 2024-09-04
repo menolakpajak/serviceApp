@@ -270,27 +270,7 @@ if (!empty($data2['other'])) {
                 <div class="row">
                     <div class="container">
                         <ul>
-                            <li>
-                                <p class="mb-0"><?= $lang[1]; ?></p>
-                            </li>
-                            <li>
-                                <p class="mb-0"><?= $lang[2]; ?></p>
-                            </li>
-                            <li>
-                                <p class="mb-0"><strong><?= $lang[3]; ?></strong></p>
-                            </li>
-                            <li>
-                                <p class="mb-0"><strong><?= $lang[4]; ?></strong></p>
-                            </li>
-                            <li>
-                                <p class="mb-0"><strong><?= $lang[5]; ?></strong></p>
-                            </li>
-                            <li>
-                                <p class="mb-0"><?= $lang[6]; ?></p>
-                            </li>
-                            <li>
-                                <p><?= $lang[7]; ?></p>
-                            </li>
+                            <?php include_once '../struktur/syarat.php' ?>
                         </ul>
                     </div>
                 </div>
