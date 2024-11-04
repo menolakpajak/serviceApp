@@ -171,3 +171,10 @@ function quo(id){
 
     return;
 }
+
+//fungsi reset
+function resetValue(){
+var nota = document.getElementById('reset-nota');
+    nota.style.display='none';
+    // console.log(nota);
+}

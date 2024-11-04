@@ -1075,8 +1075,7 @@ function editDone($order)
         }
     }
     return $result;
-}
-;
+};
 
 // EDIT ABORT
 function editAbort($order)
@@ -1319,7 +1318,6 @@ function editAbort($order)
         array_push($log['detail'], 'Kerusakan : ' . $data['error'] . ' => ' . $order['error']);
     }
 
-
     if (empty($log['detail'])) {
         return 'tidak ada perubahan !';
     }
@@ -1406,8 +1404,8 @@ function editAbort($order)
         }
     }
     return $result;
-}
-;
+};
+
 
 // UPDATE PROSES
 

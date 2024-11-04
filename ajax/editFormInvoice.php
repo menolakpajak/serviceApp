@@ -128,9 +128,9 @@ if(!empty($data['cancel'])){
 								
 								</div>
 								<hr>
-<!-- ////////////////// -->
-<div class="col-12 of-x-auto">
-<table class="table table-striped table-nota">
+			<!-- ////////////////// -->
+				<div id="reset-nota" class="col-12 of-x-auto">
+						<table class="table table-striped table-nota">
 							<thead>
 									<tr class="title_fill color-white">
 									<th scope="col">Qty</th>
@@ -288,6 +288,7 @@ if(!empty($data['cancel'])){
 												<div class="box" style="justify-content: space-between;">
 													<button onclick="calInvoice()" type="button" class="btn btn-primary">Calculate</button>
 													<button type="submit" class="btn btn-success">Update</button>
+													<button onclick="resetValue()" type="button" class="btn btn-danger">Reset</button>
 												</div>
 											</div>
 											<div class="form-group input">

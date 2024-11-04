@@ -553,7 +553,7 @@ if (empty($data2['check_filter_info'])) {
 
 										<div class="action">
 											<?php if ($akses == 'master'): ?>
-												<a href="javascript:void(0)" class="btn btn-primary mt-1" onclick="editDone()"> Edit </a>
+												<a href="javascript:void(0)" class="btn btn-primary mt-1" onclick="editAbort()"> Edit </a>
 												<a href="javascript:void(0)" class="btn btn-danger mt-1" onclick="deleteData('done','<?= $id; ?>')"> Delete </a>
 												<a href="javascript:void(0)" class="btn btn-warning mt-1" onclick="backProses('<?= $id; ?>')"> Back to Proses </a>
 											<?php endif; ?>

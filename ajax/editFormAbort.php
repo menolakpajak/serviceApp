@@ -35,7 +35,6 @@ if(!empty($data)){
 	include_once '../struktur/ajax-404.php';
 }
 $sc_list = data("SELECT * FROM service_center ORDER BY nama");
-
 //convert kode service center ke nama
 $sc_code = $data['service_at'];
 $service_at = data("SELECT * FROM service_center WHERE kode = '$sc_code'");
@@ -44,7 +43,6 @@ if(!empty($service_at)){
 }else{
 	$service = '';
 }
-
 // <<<...LOGIC FOR CHECKBOX....>>
 
 $kamera = '';
