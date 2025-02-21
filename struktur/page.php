@@ -134,6 +134,7 @@
 			<a style="padding-left: 2em;" href="javascript:void(0)"><em class="fa fa-chevron-circle-down">&nbsp;</em> Detail Pickup</a>
 		</li>
 	<?php endif; ?>
+
 	<?php if (in_array($_SESSION['akses'], ['master', 'admin'])): ?>
 		<?php if (!in_array($page[0], ['suplier', 'nota', 'surat jalan'])) {
 			$collapse = 'collapse';
@@ -173,6 +174,53 @@
 						echo 'href="' . $page[1] . 'order-surat-jalan/"';
 					} ?>>
 						<span class="fa fa-envelope">&nbsp;</span> Surat Jalan
+					</a>
+				</li>
+			</ul>
+		</li>
+	<?php endif; ?>
+
+	<!-- EARNINGS -->
+	<?php if ($_SESSION['akses'] != 'master'): ?>
+		<?php if (!in_array($page[0], ['queue', 'pending', 'paid'])) {
+			$collapse = 'collapse';
+		} else {
+			$collapse = '';
+		} ?>
+		<li class="parent ">
+			<a data-toggle="collapse" href="#sub-item-2">
+				<em class="fa fa-usd">&nbsp;</em> EARNINGS
+				<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right">
+					<em class="fa fa-chevron-down"></em>
+				</span>
+			</a>
+			<ul class="children <?= $collapse; ?>" id="sub-item-2">
+
+				<li>
+					<a <?php if ($page[0] == 'queue') {
+						echo 'class="col-active" href="javascript:void(0)"';
+					} else {
+						echo 'href="' . $page[1] . 'dashboard"';
+					} ?>>
+						<span class="fa fa-folder">&nbsp;</span> Queue
+					</a>
+				</li>
+				<li>
+					<a <?php if ($page[0] == 'pending') {
+						echo 'class="col-active" href="javascript:void(0)"';
+					} else {
+						echo 'href="' . $page[1] . 'dashboard"';
+					} ?>>
+						<span class="fa fa-hourglass-half">&nbsp;</span> Pending
+					</a>
+				</li>
+				<li>
+					<a <?php if ($page[0] == 'paid') {
+						echo 'class="col-active" href="javascript:void(0)"';
+					} else {
+						echo 'href="' . $page[1] . 'dashboard"';
+					} ?>>
+						<span class="fa fa-paypal">&nbsp;</span> Paid
 					</a>
 				</li>
 			</ul>

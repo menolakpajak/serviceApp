@@ -107,11 +107,17 @@ $profit = array_sum($allProfit);
 											<li><a onclick="cariInvoiceBulan()" href="javascript:void(0)">
 													<em id="icon2" class="fa fa-sort-numeric-asc"></em>
 													<p id="opsi2" style="display: inline;"> Bulan </p>
-												</a></li>
+												</a>
+											</li>
 											<li class="divider"></li>
 											<li><a id="periode" href="javascript:void(0)">
 													<em class="fa fa-calendar"></em> Periode
-												</a></li>
+												</a>
+											</li>
+											<li><a id="quotation" onclick="quotation()" class="color-orange" href="javascript:void(0)">
+													<em class="fa fa-file"></em> Quotation
+												</a>
+											</li>
 										</ul>
 									</li>
 								</ul>

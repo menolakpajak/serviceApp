@@ -15,7 +15,12 @@ $userName = $_SESSION['user'];
 $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
 
+
 $id = $_GET['id'];
+if (!in_array($akses, ['master', 'admin'], true)) {
+	header("Location: ../print?invoice-for=true&id=$id");
+}
+
 $data = data("SELECT * FROM invoice WHERE kode = '$id'");
 if (empty($data)) {
 	include_once '../error/index.php';
@@ -38,14 +43,17 @@ $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
 $ppn = $data['ppn'];
 $deposit = $data['deposit'];
-if(!empty($data['discount'])){$discount = $data['discount'];
-}else{$discount = 0;}
+if (!empty($data['discount'])) {
+	$discount = $data['discount'];
+} else {
+	$discount = 0;
+}
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
-if(!empty($data['cancel'])){
+if (!empty($data['cancel'])) {
 	$cancel = $data['cancel'];
-}else{
+} else {
 	$cancel = 0;
 }
 $spk = '';
@@ -104,7 +112,7 @@ $kode_id = "$huruf-$angka";
 		<?php include_once '../struktur/profil.php' // foto profil ?>
 		<div class="divider"></div>
 
-		<?php include_once ('../struktur/page.php');  // side page >> ?>
+		<?php include_once('../struktur/page.php');  // side page >> ?>
 	</div><!--/.sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">

@@ -458,7 +458,6 @@ function pickup(id, status) {
 
 // KONFIRMASI BACK TO PROSESS
 function backProses(id) {
-    
     var token = generateRandomString(6);
     Swal.fire({
         title: "AKAN MEMPROSES INI ?",

@@ -65,7 +65,7 @@ $akses = $_SESSION['akses'];
                 <td><?= date('d-M-Y', strtotime($datas['date_pickup'])); ?></td>
 
                 <td>
-                    <a class="color-blue" href="<?= 'detail-pickup/?id=' . $datas['no_spk']; ?>" target="_blank">
+                    <a class="color-blue" href="<?= '../detail-pickup/?id=' . $datas['no_spk']; ?>" target="_blank">
                         <?php
                         $spk = str_split($datas['no_spk'], 7);
                         $huruf = $spk[1];

@@ -850,7 +850,7 @@ function cariPickup(event) {
 }
 
 //cari invoice
-function cariInvoice(event) {
+function cariInvoice(event, param) {
     event.preventDefault();
     var search = document.querySelector("#keyword-nota").value;
 
@@ -864,6 +864,9 @@ function cariInvoice(event) {
     if (document.getElementById("tahun") != null) {
         var tahun = document.getElementById("tahun").value;
         formData.append("tahun", tahun);
+    }
+    if (param !== undefined) {
+        formData.append("quotation", true);
     }
     formData.append("submit", true);
 
@@ -942,4 +945,8 @@ function cariInvoiceBulan(id) {
             return;
         }
     });
+}
+
+function quotation() {
+    cariInvoice(event);
 }
