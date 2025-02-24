@@ -200,7 +200,7 @@
 					<a <?php if ($page[0] == 'queue') {
 						echo 'class="col-active" href="javascript:void(0)"';
 					} else {
-						echo 'href="' . $page[1] . 'dashboard"';
+						echo 'href="' . $page[1] . 'earnings/?queue"';
 					} ?>>
 						<span class="fa fa-folder">&nbsp;</span> Queue
 					</a>
@@ -209,7 +209,7 @@
 					<a <?php if ($page[0] == 'pending') {
 						echo 'class="col-active" href="javascript:void(0)"';
 					} else {
-						echo 'href="' . $page[1] . 'dashboard"';
+						echo 'href="' . $page[1] . 'earnings/?pending"';
 					} ?>>
 						<span class="fa fa-hourglass-half">&nbsp;</span> Pending
 					</a>
@@ -218,7 +218,7 @@
 					<a <?php if ($page[0] == 'paid') {
 						echo 'class="col-active" href="javascript:void(0)"';
 					} else {
-						echo 'href="' . $page[1] . 'dashboard"';
+						echo 'href="' . $page[1] . 'earnings/?paid"';
 					} ?>>
 						<span class="fa fa-paypal">&nbsp;</span> Paid
 					</a>
