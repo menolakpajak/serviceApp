@@ -1,5 +1,9 @@
 <?php
 // error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 
 date_default_timezone_set("Asia/Hong_Kong");
@@ -10,10 +14,10 @@ $userServer = 'digp8161_service';
 $serverPwd = 'Kmzwa8aw@@';
 $database = 'digp8161_service';
 
-// $server = 'localhost';
-// $userServer = 'root';
-// $serverPwd = '';
-// $database = 'service';
+$server = 'localhost';
+$userServer = 'root';
+$serverPwd = '';
+$database = 'service';
 
 
 $connFirst = new mysqli($server, $userServer, $serverPwd);

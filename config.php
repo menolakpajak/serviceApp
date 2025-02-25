@@ -18,7 +18,7 @@ if (isset($_SESSION['kode'])) {
 
 
 $url = 'http://95.111.198.145/post.php';
-
+$months = [null, 'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'];
 $now = strtotime($datetime);
 $all = data("SELECT * FROM data");
 if (!empty($all)) {

@@ -16,20 +16,21 @@ $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
 $now = explode(' ', $datetime)[0];
 $now = explode('-', $now);
-$datenow = $months[(int) $now[1]] . ' ' . $now[0];
 $now = $now[0] . '-' . $now[1];
 
 $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' ORDER BY date");
+var_dump($now);
+var_dump($data);
+die;
+$allOmset = [];
+$allProfit = [];
 
-// $allOmset = [];
-// $allProfit = [];
-
-// foreach ($data as $input) {
-// 	array_push($allOmset, str_replace(',', '', $input['subtotal']));
-// 	array_push($allProfit, str_replace(',', '', $input['profit']));
-// }
-// $omset = array_sum($allOmset);
-// $profit = array_sum($allProfit);
+foreach ($data as $input) {
+	array_push($allOmset, str_replace(',', '', $input['subtotal']));
+	array_push($allProfit, str_replace(',', '', $input['profit']));
+}
+$omset = array_sum($allOmset);
+$profit = array_sum($allProfit);
 
 ?>
 
@@ -100,7 +101,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<?= ucfirst($datenow); ?>
+						January 2025
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
 									<em class="fa fa-sort"></em>
@@ -137,10 +138,10 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 								<tbody>
 									<tr>
 										<th>
-											<h3 class="color-blue"><strong><?= number_format(count($data), 0, '.', ','); ?></strong></h3>
+											<h3 class="color-blue"><strong><?= number_format($omset, 0, '.', ','); ?></strong></h3>
 										</th>
 										<th style="text-align: right;">
-											<h3 class="color-green"><strong>NULL</strong></h3>
+											<h3 class="color-green"><strong><?= number_format($profit, 0, '.', ','); ?></strong></h3>
 										</th>
 									</tr>
 
@@ -164,33 +165,22 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 										<tr>
 											<th scope="row"><?= $i; ?></th>
 											<td><?= date('d-M-Y', strtotime($datas['date'])); ?></td>
-											<td><a href="<?= '../detail-invoice/?id=' . $datas['no_spk']; ?>">
+											<td><a href="<?= '../detail-invoice/?id=' . $datas['kode']; ?>">
 													<?php
-													$spk = str_split($datas['no_spk'], 7);
-													$huruf = $spk[1];
-													$angka = str_split($spk[0], 3);
-													$spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
-													echo $spk;
-													?>
-												</a>
-											</td>
-											<td>
-												<?php if (!empty($datas['invoice'])): ?>
-													<a href="<?= '../detail-invoice/?id=' . $datas['invoice']; ?>">
-														<?php
-														$kode_id = str_split($datas['invoice'], 8);
-														$huruf = $kode_id[0];
-														$angka = $kode_id[1];
-														$kode_id = "$huruf-$angka";
-														echo $kode_id;
+													$kode_id = str_split($datas['kode'], 8);
+													$huruf = $kode_id[0];
+													$angka = $kode_id[1];
+													$kode_id = "$huruf-$angka";
+													echo $kode_id
 														?>
-													</a>
-												<?php else: ?>
-													<p>NULL</p>
-												<?php endif; ?>
-											</td>
-											<td>NULL</td>
-											<td>NULL</td>
+												</a></td>
+											<td><?= $datas['subtotal']; ?></td>
+											<?php if ($datas['status'] == 'pending'): ?>
+												<td style="font-weight:500;" class="color-orange"><?= ucfirst($datas['status']); ?></td>
+											<?php endif; ?>
+											<?php if ($datas['status'] == 'paid'): ?>
+												<td style="font-weight:500;" class="color-green"><?= ucfirst($datas['status']); ?></td>
+											<?php endif; ?>
 										</tr>
 										<?php $i++; ?>
 									<?php endforeach; ?>
