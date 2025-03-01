@@ -34,6 +34,10 @@ function confirmInput(event) {
         confirmButtonText: "Input",
     }).then((result) => {
         if (result.isConfirmed) {
+            var input = document.querySelector(".inputBtn");
+            console.log(input);
+            input.style.display = "none";
+
             var date = document.querySelector("#date").value;
             var no_spk = document.querySelector("#no_spk").value;
             var nama = document.querySelector("#nama").value;

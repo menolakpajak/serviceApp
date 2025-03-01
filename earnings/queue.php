@@ -19,7 +19,7 @@ $now = explode('-', $now);
 $datenow = $months[(int) $now[1]] . ' ' . $now[0];
 $now = $now[0] . '-' . $now[1];
 
-$data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' ORDER BY date");
+$data = data("SELECT * FROM earnings WHERE penerima = '$kode' AND date like '$now%' ORDER BY date");
 
 // $allOmset = [];
 // $allProfit = [];

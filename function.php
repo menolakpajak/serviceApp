@@ -113,6 +113,16 @@ function input($order)
     mysqli_query($conn, $query);
     $result = mysqli_error($conn);
     if (mysqli_affected_rows($conn) > 0) {
+        if ($_SESSION['akses'] !== 'master') {
+            $query = "INSERT INTO earnings (date,penerima,no_spk)
+                    VALUES 
+                    ('$date',
+                    '$penerima',
+                    '$no_spk')";
+
+            mysqli_query($conn, $query);
+        }
+
         $url_bot = urlencode(encrypt($no_spk));
         $text = '
 Input Baru ==>
@@ -1075,7 +1085,8 @@ function editDone($order)
         }
     }
     return $result;
-};
+}
+;
 
 // EDIT ABORT
 function editAbort($order)
@@ -1404,7 +1415,8 @@ function editAbort($order)
         }
     }
     return $result;
-};
+}
+;
 
 
 // UPDATE PROSES
@@ -1722,7 +1734,7 @@ function backProses($order)
     $data = $data[0];
     $prev_log = json_decode($data['log'], true);
     $status = strtoupper($data['status']);
-    
+
     $log = array();
     $log['date'] = $datetime;
     $log['status'] = $data['status'];
@@ -2166,12 +2178,12 @@ function inputNotaFor($order)
     $quo = [];
     $quo_detail = [];
     $quo_detail['date'] = $date;
-    $quo_detail['qts'] = json_decode($qts,true);
-    $quo_detail['dekripsi'] = json_decode($desc,true);
-    $quo_detail['kode_part'] = json_decode($kode_inv,true);
-    $quo_detail['buy'] = json_decode($buy,true);
-    $quo_detail['margin'] = json_decode($margin,true);
-    $quo_detail['sell'] = json_decode($sell,true);
+    $quo_detail['qts'] = json_decode($qts, true);
+    $quo_detail['dekripsi'] = json_decode($desc, true);
+    $quo_detail['kode_part'] = json_decode($kode_inv, true);
+    $quo_detail['buy'] = json_decode($buy, true);
+    $quo_detail['margin'] = json_decode($margin, true);
+    $quo_detail['sell'] = json_decode($sell, true);
     $quo_detail['profit'] = $profit;
     $quo_detail['subtotal'] = $subtotal;
     $quo_detail['dpp'] = $dpp;
@@ -2266,8 +2278,8 @@ function editNota($order)
 
     $data = $data[0];
     $save_as = $data['save_as']; // validasi untuk input kolom quotation    
-    $quotation = json_decode($data['quotation'],true); // validasi untuk input kolom quotation
-    
+    $quotation = json_decode($data['quotation'], true); // validasi untuk input kolom quotation
+
     $qts = $order['qts'];
     $kode_part = $order['kode'];
     $desc = $order['desc'];
@@ -2318,15 +2330,18 @@ function editNota($order)
 
 
     $quo = [];
-    if(!empty($quotation)){$quo = $quotation;};
+    if (!empty($quotation)) {
+        $quo = $quotation;
+    }
+    ;
     $quo_detail = [];
     $quo_detail['date'] = $datetime;
-    $quo_detail['qts'] = json_decode($qts,true);
-    $quo_detail['dekripsi'] = json_decode($desc,true);
-    $quo_detail['kode_part'] = json_decode($kode_part,true);
-    $quo_detail['buy'] = json_decode($buy,true);
-    $quo_detail['margin'] = json_decode($margin,true);
-    $quo_detail['sell'] = json_decode($sell,true);
+    $quo_detail['qts'] = json_decode($qts, true);
+    $quo_detail['dekripsi'] = json_decode($desc, true);
+    $quo_detail['kode_part'] = json_decode($kode_part, true);
+    $quo_detail['buy'] = json_decode($buy, true);
+    $quo_detail['margin'] = json_decode($margin, true);
+    $quo_detail['sell'] = json_decode($sell, true);
     $quo_detail['profit'] = $profit;
     $quo_detail['subtotal'] = $subtotal;
     $quo_detail['dpp'] = $dpp;
@@ -2342,7 +2357,7 @@ function editNota($order)
 
     $json_quo = mysqli_real_escape_string($conn, $quo);
 
-        $query = "UPDATE invoice SET 
+    $query = "UPDATE invoice SET 
         date = '$date',
         qts = '$qts', 
         kode_part = '$json_kode',
@@ -2363,7 +2378,7 @@ function editNota($order)
         quotation = '$json_quo'
         WHERE kode = '$id'";
 
-    if($save_as == 'invoice'){
+    if ($save_as == 'invoice') {
         $query = "UPDATE invoice SET 
         date = '$date',
         qts = '$qts', 
@@ -2391,7 +2406,7 @@ function editNota($order)
     } else {
         return $conn->error;
     }
-    
+
 }
 
 //set invoice
@@ -2509,9 +2524,10 @@ function signature($order)
 
 
 //update version
-function update_version($versi){
+function update_version($versi)
+{
     global $conn;
-    
+
     $query = "UPDATE version SET 
     versi = '$versi' ";
 
