@@ -1,8 +1,8 @@
 <?php
-// error_reporting(0);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(0);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 
 
@@ -14,16 +14,17 @@ $userServer = 'digp8161_service';
 $serverPwd = 'Kmzwa8aw@@';
 $database = 'digp8161_service';
 
-$server = 'localhost';
-$userServer = 'root';
-$serverPwd = '';
-$database = 'service';
+// $server = 'localhost';
+// $userServer = 'root';
+// $serverPwd = '';
+// $database = 'service';
 
 
 $connFirst = new mysqli($server, $userServer, $serverPwd);
 if ($connFirst->connect_error) {
-    die("Koneksi gagal: " . $connFirst->connect_error);
+    echo "Koneksi gagal: " . $connFirst->connect_error;
     $connFirst->close();
+    die;
 }
 
 function format_date($date, $format)

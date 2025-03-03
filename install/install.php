@@ -329,7 +329,6 @@ if ($result->num_rows > 0) {
         `margin` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`margin`)),
         `sell` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`sell`)),
         `profit` varchar(100) NOT NULL,
-        `spend` varchar(100) NULL,
         `subtotal` varchar(100) NOT NULL,
         `dpp` varchar(100) NOT NULL,
         `ppn` varchar(100) NOT NULL,
@@ -337,6 +336,7 @@ if ($result->num_rows > 0) {
         `discount` varchar(100) DEFAULT NULL,
         `total` varchar(100) NOT NULL,
         `cancel` varchar(100) DEFAULT NULL,
+        `spend` varchar(100) DEFAULT NULL,
         `save_as` varchar(20) NOT NULL,
         `status` varchar(20) DEFAULT NULL,
         `rek` varchar(20) DEFAULT NULL,
@@ -430,14 +430,14 @@ if ($result->num_rows > 0) {
     $createTable = "CREATE TABLE `earnings` (
         `id` INT AUTO_INCREMENT PRIMARY KEY,
         `date` datetime NOT NULL,
-        `date_paid` datetime NULL,
         `penerima` varchar(100) NOT NULL,
         `no_spk` varchar(50) NOT NULL UNIQUE,
-        `invoice` varchar(50) NULL,
-        `profit` varchar(100) NULL,
-        `status` varchar(50) NULL,
+        `invoice` varchar(50) DEFAULT NULL,
+        `profit` varchar(100) DEFAULT NULL,
+        `status` varchar(50) DEFAULT NULL,
         INDEX idx_date (date),
-        INDEX idx_penerima (penerima)
+        INDEX idx_penerima (penerima),
+        INDEX idx_status (status)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
     $result = $conn->query($createTable);
     if ($result === true) {

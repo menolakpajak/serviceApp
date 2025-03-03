@@ -2025,6 +2025,7 @@ function inputNotaFor(event) {
             var discount = document.querySelector("#discount").value;
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
+            var spend = document.querySelector("#spend").value;
             var note = document.querySelector("#note").value;
             var saveas = document.querySelector("#saveas").value;
             var rekening = document.querySelector("#rekening").value;
@@ -2072,6 +2073,7 @@ function inputNotaFor(event) {
             formData.append("discount", discount);
             formData.append("total", total);
             formData.append("cancel", cancel);
+            formData.append("spend", spend);
             formData.append("note", note);
             formData.append("saveas", saveas);
             formData.append("rekening", rekening);
@@ -2143,6 +2145,7 @@ function editNota(event) {
             var discount = document.querySelector("#discount").value;
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
+            var spend = document.querySelector("#spend").value;
             var note = document.querySelector("#note").value;
             var rekening = document.querySelector("#rekening").value;
 
@@ -2188,6 +2191,7 @@ function editNota(event) {
             formData.append("discount", discount);
             formData.append("total", total);
             formData.append("cancel", cancel);
+            formData.append("spend", spend);
             formData.append("note", note);
             formData.append("rekening", rekening);
 
@@ -2459,4 +2463,92 @@ function sendBot(no, msg, kind) {
     };
     ajax.open("POST", `../ajax/sendWa.php`, "true");
     ajax.send(formData);
+}
+
+//SPEND PAID SELECTED
+function paySelected(id) {
+    var token = generateRandomString(6);
+    var selectedIds = [];
+    document.querySelectorAll(".orderCheckBox:checked").forEach((checkbox) => {
+        selectedIds.push(checkbox.value);
+    });
+
+    if (selectedIds.length == 0) {
+        // JIKA CHECKLIST KOSONG
+        Swal.fire({
+            icon: "error",
+            title: "GAGAL",
+            confirmButtonText: "Ulangi",
+            confirmButtonColor: "#f54949",
+            text: "Pilih minimal satu order untuk diperbarui.",
+        });
+        return;
+    }
+
+    Swal.fire({
+        title: "PROSES KE PAID ?",
+        html: `<p class="color-red">⚠️ DATA yang tercentang statusnya akan berubah ke PAID</p>
+<h3 class="color-blue strong">${token[1]}</h3>
+<input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "PAY",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
+                Swal.fire({
+                    icon: "error",
+                    title: "DATA GAGAL DIPROSES",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Token Salah !",
+                });
+                return;
+            }
+
+            if (selectedIds.length > 0) {
+                // AJAX >>>
+                let formData = new FormData();
+                formData.append("kode", selectedIds);
+                formData.append("submit", true);
+
+                var ajax = new XMLHttpRequest();
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        var ok = ajax.responseText;
+                        // alert(ok);
+                        // return;
+                        if (ok == "ok") {
+                            Swal.fire({
+                                icon: "success",
+                                title: "INVOICE BERHASIL DI UPDATE",
+                                confirmButtonText: "OK",
+                                text: "Perubahan dapat dilihat di page PAID !",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            console.log(ok);
+                            return;
+                            Swal.fire({
+                                icon: "error",
+                                title: "INVOICE GAGAL DI UPDATE",
+                                confirmButtonText: "Ulangi",
+                                confirmButtonColor: "#f54949",
+                                text: ok,
+                            });
+                        }
+                    }
+                };
+                ajax.open("POST", `../action/paySelected.php`, "true");
+                ajax.send(formData);
+                // AJAX END>>>
+            }
+        }
+    });
 }

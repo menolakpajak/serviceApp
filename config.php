@@ -16,19 +16,27 @@ if (isset($_SESSION['kode'])) {
     $conn->query($query);
 }
 
+if ($_SESSION['akses'] == 'master') {
+    if (!isset($_SESSION['user_list'])) {
+        $_SESSION['user_list'] = array();
+        $_SESSION['user_name'] = array();
+        $user_list = data("SELECT * FROM logininfo WHERE akses != 'master' ORDER BY nama");
+        foreach ($user_list as $list) {
+            array_push($_SESSION['user_name'], $list['kodeuser']);
+            array_push($_SESSION['user_list'], [$list['kodeuser'], $list['nama']]);
+        }
+    }
+}
+
+// var_dump($_SESSION['user_list']);
+// die;
+
 
 $url = 'http://95.111.198.145/post.php';
 $months = [null, 'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'];
 $now = strtotime($datetime);
 $all = data("SELECT * FROM data");
 if (!empty($all)) {
-    // $no_spk = data("SELECT * FROM data ORDER BY no_spk DESC")[0]['no_spk'];
-    // $new = data("SELECT * FROM data WHERE status = 'new' ");
-    // $proses = data("SELECT * FROM data WHERE status = 'proses' ");
-    // $done = data("SELECT * FROM data WHERE status = 'done' ");
-    // $abort = data("SELECT * FROM data WHERE status = 'abort' ");
-    // $finish = data("SELECT * FROM data WHERE (status = 'done' OR status = 'abort') ");
-    // $pin = data("SELECT * FROM data WHERE pin = 'on' AND status != 'pickup' ORDER BY no_spk DESC");
 
     $new = array_filter($all, function ($item) {
         return $item['status'] === 'new';
@@ -101,9 +109,9 @@ if (!empty($new)) {
                 $new_status = $new_wait['status'];
                 $new_date_info = $new_wait['date'];
 
-                $query = "INSERT INTO notif_msg
+                $query = "INSERT INTO notif_msg (no_spk, date, date_wa,date_info,nama,status,klik,wa)
                                             VALUES 
-                    ('', '$new_id','$datetime','$datetime','$new_date_info', '$new_nama', '$new_status', 'no', 'yes')";
+                    ('$new_id','$datetime','$datetime','$new_date_info', '$new_nama', '$new_status', 'no', 'yes')";
                 mysqli_query($conn, $query);
                 if (mysqli_affected_rows($conn) > 0) {
                     // bot($wa_text, ''); //Fungsi mengirim text bot
@@ -165,9 +173,9 @@ if (!empty($proses)) {
                 $new_nama = $new_wait['nama'];
                 $new_status = $new_wait['status'];
 
-                $query = "INSERT INTO notif_msg
+                $query = "INSERT INTO notif_msg (no_spk, date, date_wa,date_info,nama,status,klik,wa)
                                             VALUES 
-                ('', '$new_id','$datetime','$datetime','$new_date_info', '$new_nama','$new_status', 'no', 'yes')";
+                ('$new_id','$datetime','$datetime','$new_date_info', '$new_nama','$new_status', 'no', 'yes')";
                 mysqli_query($conn, $query);
                 if (mysqli_affected_rows($conn) > 0) {
                     // bot($wa_text, ''); //Fungsi mengirim text bot
@@ -218,9 +226,9 @@ if (!empty($finish)) {
                 $new_nama = $new_wait['nama'];
                 $new_status = $new_wait['status'];
 
-                $query = "INSERT INTO notif_msg
+                $query = "INSERT INTO notif_msg (no_spk, date, date_wa,date_info,nama,status,klik,wa)
                                             VALUES 
-                    ('', '$new_id','$datetime','$datetime','$new_date_info', '$new_nama','$new_status', 'no', 'yes')";
+                    ('$new_id','$datetime','$datetime','$new_date_info', '$new_nama','$new_status', 'no', 'yes')";
                 mysqli_query($conn, $query);
                 if (mysqli_affected_rows($conn) > 0) {
                     // bot($wa_text, ''); //Fungsi mengirim text bot

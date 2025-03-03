@@ -21,7 +21,7 @@
 					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 							<em class="fa fa-bell"></em><span class="label label-info"><?= count($notif); ?></span>
 						</a>
-						<ul class="dropdown-menu dropdown-messages msg-notif">
+						<ul class="dropdown-menu dropdown-messages msg-notif" style="overflow-y: auto; height: 300px;">
 							<?php if (isset($pin)): ?>
 								<li><a href="<?= $page[1]; ?>order-pin/">
 										<div><em class="fa fa-thumb-tack"></em> <strong class="color-red"><?= count($pin); ?></strong> Pinned Order to execute

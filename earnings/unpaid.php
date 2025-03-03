@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-$page = ['queue', '../'];
+$page = ['unpaid', '../'];
 
 if (empty($_SESSION['login'])) {
 	header('Location: ../login');
@@ -19,7 +19,8 @@ $now = explode('-', $now);
 $datenow = $months[(int) $now[1]] . ' ' . $now[0];
 $now = $now[0] . '-' . $now[1];
 
-$data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' ORDER BY date");
+$data = data("SELECT * FROM earnings WHERE (penerima = '$kode' AND date like '$now%' AND status IS NULL) ORDER BY date");
+
 ?>
 
 
@@ -29,7 +30,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Earnings - queue</title>
+	<title>Earnings - unpaid</title>
 
 	<!-- favicon -->
 	<?php include_once '../struktur/favicon.php' ?>
@@ -71,13 +72,13 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 				<li><a href="#">
 						<em class="fa fa-book color-blue"></em>
 					</a></li>
-				<li class="active">Queue</li>
+				<li class="active">Unpaid</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12" style="display:flex; justify-content:space-between">
-				<h1 class="page-header color-blue">Earnings Queue</h1>
+				<h1 class="page-header color-orange">Earnings Unpaid</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -93,7 +94,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<ul class="dropdown-settings">
-											<li><a onclick="cariEarningsBulan('queue')" href="javascript:void(0)">
+											<li><a onclick="cariEarningsBulan('unpaid')" href="javascript:void(0)">
 													<em id="icon2" class="fa fa-sort-numeric-asc"></em>
 													<p id="opsi2" style="display: inline;"> Bulan </p>
 												</a>
@@ -125,7 +126,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 											<h3 class="color-blue"><strong><?= number_format(count($data), 0, '.', ','); ?></strong></h3>
 										</th>
 										<th style="text-align: right;">
-											<h3 class="color-green"><strong>NULL</strong></h3>
+											<h3 class="color-green"><strong id="display-share">0</strong></h3>
 										</th>
 									</tr>
 
@@ -139,17 +140,24 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 										<th scope="col">No. SPK</th>
 										<th scope="col">No. Invoice</th>
 										<th scope="col">Profit</th>
-										<th scope="col">Sharing</th>
+										<th scope="col">Sharing 10%</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php $i = 1; ?>
+									<?php $i = 1;
+									$totalShare = 0; ?>
 
 									<?php foreach ($data as $datas): ?>
+										<?php $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
+										if ($sharing < 50000) {
+											$sharing = 50000;
+										}
+										?>
+
 										<tr>
 											<th scope="row"><?= $i; ?></th>
 											<td><?= date('d-M-Y', strtotime($datas['date'])); ?></td>
-											<td><a target="_blank" href="<?= '../detail-new/?id=' . $datas['no_spk']; ?>">
+											<td><a target="_blank" href="<?= '../detail-pickup/?id=' . $datas['no_spk']; ?>">
 													<?php
 													$spk = str_split($datas['no_spk'], 7);
 													$huruf = $spk[1];
@@ -174,14 +182,16 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 													<p>NULL</p>
 												<?php endif; ?>
 											</td>
-											<td>NULL</td>
-											<td>NULL</td>
+											<td><?= $datas['profit']; ?></td>
+											<td><?= number_format($sharing, 0, '.', ','); ?></td>
 										</tr>
-										<?php $i++; ?>
+										<?php $i++;
+										$totalShare += $sharing; ?>
 									<?php endforeach; ?>
 
 								</tbody>
 							</table>
+							<input id="totalshare" type="hidden" value="<?= number_format($totalShare, 0, '.', ','); ?>">
 							<?php if (empty($data)) {
 								echo '<h4 style="text-align:center;color:#f70000e0;font-weight:400;">Tidak ada data untuk ditampilkan !</h4>';
 
@@ -223,6 +233,10 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 		<script src="../js/cPass.js?versi=<?= $version; ?>"></script>
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="../alert/sweetalert2.all.js"></script>
+
+		<script>
+			totalSharing();
+		</script>
 
 
 </body>

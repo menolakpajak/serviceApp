@@ -48,6 +48,7 @@ if (!empty($data['discount'])) {
 } else {
 	$discount = 0;
 }
+$spend = $data['spend'];
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
@@ -284,6 +285,14 @@ $kode_id = "$huruf-$angka";
 													<strong style="width: fit-content; text-wrap:nowrap;">Discount</strong>
 													<div style="text-align: right;width:100%">
 														<strong><?= $discount; ?></strong>
+													</div>
+												</div>
+											</div>
+											<div class="form-group input color-red">
+												<div class="box">
+													<strong style="width: fit-content; text-wrap:nowrap;">Spend</strong>
+													<div style="text-align: right;width:100%">
+														<strong><?= $spend; ?></strong>
 													</div>
 												</div>
 											</div>

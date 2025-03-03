@@ -113,16 +113,6 @@ function input($order)
     mysqli_query($conn, $query);
     $result = mysqli_error($conn);
     if (mysqli_affected_rows($conn) > 0) {
-        if ($_SESSION['akses'] !== 'master') {
-            $query = "INSERT INTO earnings (date,penerima,no_spk)
-                    VALUES 
-                    ('$date',
-                    '$penerima',
-                    '$no_spk')";
-
-            mysqli_query($conn, $query);
-        }
-
         $url_bot = urlencode(encrypt($no_spk));
         $text = '
 Input Baru ==>
@@ -1628,7 +1618,7 @@ function abort($order)
     }
 }
 
-// RUBAH STATUS DONE KE PICKUP
+// RUBAH STATUS DONE/ABORT KE PICKUP
 
 function pickup($order)
 {
@@ -1687,9 +1677,22 @@ function pickup($order)
     $kelengkapan = $data['kelengkapan'];
     $error = $data['error'];
 
+    if (!empty($invoice)) {
+        $profit = data("SELECT * FROM invoice WHERE kode = '$invoice' ");
+        if (!empty($profit)) {
+            $profit = $profit[0]['spend'];
+        } else {
+            $profit = 0;
+        }
+    } else {
+        $profit = 0;
+    }
+
     $query = "INSERT INTO pickup (no_spk, date, date_proses,date_update,date_finish,date_pickup,counter,service_at,location,nama,alamat,wa,no_tlp,tipe,unit,sn,error,result,cost,acc,note,pin,status,penerima,kelengkapan,signature,time_line,invoice,surat_jalan,log)
-        
     VALUES('$id','$date','$date_proses','$date_update','$date_finish','$date_pickup','$counter','$service_at','$location', '$nama','$alamat','$wa','$no_tlp','$tipe_unit','$unit','$serial_number','$error','$result','$cost','$acc','$note','$pin','$status','$penerima','$kelengkapan','$signature','$time_line','$invoice','$surat_jalan','$log')";
+
+    $addEarnngs = "INSERT INTO earnings (date,penerima,no_spk,invoice,profit)
+    VALUES('$datetime','$penerima','$id','$invoice','$profit')";
 
     $deleteData = "DELETE FROM data WHERE no_spk = '$id'";
 
@@ -1700,16 +1703,34 @@ function pickup($order)
     try {
         // Melakukan query INSERT
         if ($conn->query($query) === TRUE) {
-            // Melakukan query DELETE
-            if ($conn->query($deleteData) === TRUE) {
-                // Commit transaksi jika keduanya berhasil
-                $conn->commit();
-                echo 'ok';
+
+            if ($penerima !== 'mtr001') {
+                //melakukan insert ke tabel earnings
+                if ($conn->query($addEarnngs) === TRUE) {
+
+                    // Melakukan query DELETE
+                    if ($conn->query($deleteData) === TRUE) {
+                        // Commit transaksi jika ketiganya berhasil
+                        $conn->commit();
+                        echo 'ok';
+                    } else {
+                        throw new Exception("Error in DELETE query: " . $conn->error);
+                    }
+                } else {
+                    throw new Exception("Error in INSERT query EARNINGS: " . $conn->error);
+                }
             } else {
-                throw new Exception("Error in DELETE query: " . $conn->error);
+                // Melakukan query DELETE
+                if ($conn->query($deleteData) === TRUE) {
+                    // Commit transaksi jika ketiganya berhasil
+                    $conn->commit();
+                    echo 'ok';
+                } else {
+                    throw new Exception("Error in DELETE query: " . $conn->error);
+                }
             }
         } else {
-            throw new Exception("Error in INSERT query: " . $conn->error);
+            throw new Exception("Error in INSERT query PICKUP: " . $conn->error);
         }
     } catch (Exception $e) {
         // Rollback transaksi jika terjadi kesalahan
@@ -2163,6 +2184,7 @@ function inputNotaFor($order)
     $discount = $order['discount'];
     $total = $order['total'];
     $cancel = $order['cancel'];
+    $spend = $order['spend'];
     $rekening = $order['rekening'];
     $note = htmlentities($order['note'], ENT_QUOTES, 'UTF-8');
     $saveas = htmlspecialchars($order['saveas']);
@@ -2192,6 +2214,7 @@ function inputNotaFor($order)
     $quo_detail['discount'] = $discount;
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
+    $quo_detail['spend'] = $spend;
     $quo_detail['save_as'] = 'quotation';
     $quo_detail['input'] = $_SESSION['kode'];
     array_push($quo, $quo_detail);
@@ -2201,7 +2224,7 @@ function inputNotaFor($order)
     $json_desc = mysqli_real_escape_string($conn, $desc);
     $json_kode = mysqli_real_escape_string($conn, $kode_inv);
 
-    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,discount,total,cancel,save_as,status,rek,note,quotation)
+    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,discount,total,cancel,spend,save_as,status,rek,note,quotation)
                     VALUES 
                     ('$date',
                     '$no_spk',
@@ -2221,6 +2244,7 @@ function inputNotaFor($order)
                     '$discount',
                     '$total',
                     '$cancel',
+                    '$spend',
                     '$saveas',
                     'pending',
                     '$rekening',
@@ -2294,6 +2318,7 @@ function editNota($order)
     $discount = $order['discount'];
     $total = $order['total'];
     $cancel = $order['cancel'];
+    $spend = $order['spend'];
     $note = $order['note'];
     $rekening = htmlspecialchars($order['rekening']);
 
@@ -2314,6 +2339,7 @@ function editNota($order)
         $discount != $data['discount'] ||
         $total != $data['total'] ||
         $cancel != $data['cancel'] ||
+        $spend != $data['spend'] ||
         $note != $data['note'] ||
         $rekening != $data['rek'] ||
         ($date . ':00' != $data['date'])
@@ -2350,6 +2376,7 @@ function editNota($order)
     $quo_detail['discount'] = $discount;
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
+    $quo_detail['spend'] = $spend;
     $quo_detail['save_as'] = 'quotation';
     $quo_detail['input'] = $_SESSION['kode'];
     array_push($quo, $quo_detail);
@@ -2373,6 +2400,7 @@ function editNota($order)
         discount = '$discount',
         total = '$total',
         cancel = '$cancel',
+        spend = '$spend',
         note = '$note',
         rek = '$rekening',
         quotation = '$json_quo'
@@ -2395,6 +2423,7 @@ function editNota($order)
         discount = '$discount',
         total = '$total',
         cancel = '$cancel',
+        spend = '$spend',
         note = '$note',
         rek = '$rekening'
         WHERE kode = '$id'";
@@ -2527,7 +2556,6 @@ function signature($order)
 function update_version($versi)
 {
     global $conn;
-
     $query = "UPDATE version SET 
     versi = '$versi' ";
 
@@ -2537,5 +2565,25 @@ function update_version($versi)
     } else {
         return $conn->error;
     }
+}
 
+// SET PAID pada table earnings
+function setPaidSpending($order)
+{
+    global $conn;
+    global $datetime;
+
+    $ids = implode(',', array_map('intval', $order));
+
+    $query = "UPDATE earnings SET 
+        date = '$datetime',
+        status = 'paid'
+        WHERE id IN ($ids)";
+
+    $conn->query($query);
+    if ($conn->affected_rows > 0) {
+        return 'ok';
+    } else {
+        return $conn->error;
+    }
 }

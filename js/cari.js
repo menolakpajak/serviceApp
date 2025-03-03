@@ -903,7 +903,7 @@ function cariInvoice(event, param) {
 }
 
 // cari invoive sesuai bulan
-function cariInvoiceBulan(id) {
+function cariInvoiceBulan() {
     Swal.fire({
         title: "SORTING !",
         html: `<form onsubmit="cariInvoice(event)">
@@ -949,4 +949,191 @@ function cariInvoiceBulan(id) {
 
 function quotation() {
     cariInvoice(event);
+}
+
+// hitung total share di folder earning dan spending
+function totalSharing() {
+    if (document.querySelector("#totalshare") != null) {
+        let totalShare = document.querySelector("#totalshare").value;
+        let displayShare = document.querySelector("#display-share");
+        displayShare.innerText = totalShare;
+        // console.log(totalShare);
+    }
+}
+
+//CARI EARNINGS
+function cariEarnings(event, status, kode = 0) {
+    event.preventDefault();
+
+    let formData = new FormData();
+
+    if (document.getElementById("bulan") != null) {
+        var bulan = document.getElementById("bulan").value;
+        formData.append("bulan", bulan);
+    }
+    if (document.getElementById("tahun") != null) {
+        var tahun = document.getElementById("tahun").value;
+        formData.append("tahun", tahun);
+    }
+    if (kode !== 0) {
+        formData.append("kode", kode);
+    }
+    formData.append("submit", true);
+
+    var ajax = new XMLHttpRequest();
+    // Menambahkan elemen loading spinner ke dalam pesan SweetAlert
+    var swalWithLoading = Swal.mixin({
+        title: "SEARCHING 🔍",
+        text: "Please wait...",
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        willOpen: () => {
+            Swal.showLoading();
+        },
+        didClose: () => {
+            Swal.close();
+        },
+    });
+
+    // Menampilkan loading spinner sebelum mengirim request
+    swalWithLoading.fire();
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var ok = ajax.responseText;
+            swalWithLoading.close();
+            // console.log(ok);
+
+            container.innerHTML = ok;
+            totalSharing();
+        }
+    };
+    // EARNINGS
+    if (status == "queue") {
+        ajax.open("POST", `../ajax/cariEarningsQueue.php`, "true");
+    }
+    if (status == "unpaid") {
+        ajax.open("POST", `../ajax/cariEarningsUnpaid.php`, "true");
+    }
+    if (status == "paid") {
+        ajax.open("POST", `../ajax/cariEarningsPaid.php`, "true");
+    }
+
+    // SHARING
+    if (status == "sharingUnpaid") {
+        ajax.open("POST", `../ajax/cariSharingUnpaid.php`, "true");
+    }
+    if (status == "sharingPaid") {
+        ajax.open("POST", `../ajax/cariSharingPaid.php`, "true");
+    }
+    ajax.send(formData);
+}
+
+// FUNGSI DATE SEKARANG
+function dateNow(month, year) {
+    let monts = [null, "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+    let panelHeading = document.querySelector(".panel-heading");
+    if (panelHeading) {
+        let fisrtTextNode = Array.from(panelHeading.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
+        if (fisrtTextNode) {
+            fisrtTextNode.nodeValue = `${monts[month]}  ${year}`;
+        }
+    }
+}
+
+// cari EARNINGS sesuai bulan
+function cariEarningsBulan(status) {
+    Swal.fire({
+        title: "SORTING !",
+        html: `<form onsubmit="cariInvoice(event)">
+        <select name="bulan" id="bulan" class="form-control swal2-select" required>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+        </select>
+        <input id="tahun" type="number" class="form-control swal2-input" placeholder="Tahun" autocomplete="off" required style="max-width:100%">
+        </form>`,
+        icon: "warning",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Search",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let month = document.getElementById("bulan").value;
+            let year = document.getElementById("tahun").value;
+            if (month == "" || year == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "INVALID",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Bulan dan tahun tidak boleh kosong !",
+                });
+                return;
+            }
+            dateNow(Number(month), year);
+            cariEarnings(event, status);
+            return;
+        }
+    });
+}
+
+// cari SHARING sesuai bulan
+function cariSharingBulan(status, kode) {
+    Swal.fire({
+        title: "SORTING !",
+        html: `<form onsubmit="cariInvoice(event)">
+        <select name="bulan" id="bulan" class="form-control swal2-select" required>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+        </select>
+        <input id="tahun" type="number" class="form-control swal2-input" placeholder="Tahun" autocomplete="off" required style="max-width:100%">
+        </form>`,
+        icon: "warning",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Search",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let month = document.getElementById("bulan").value;
+            let year = document.getElementById("tahun").value;
+            if (month == "" || year == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "INVALID",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Bulan dan tahun tidak boleh kosong !",
+                });
+                return;
+            }
+            dateNow(Number(month), year);
+            cariEarnings(event, status, kode);
+            return;
+        }
+    });
 }

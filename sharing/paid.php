@@ -1,16 +1,14 @@
 <?php
-ob_start();
-session_start();
-$page = ['queue', '../'];
 
-if (empty($_SESSION['login'])) {
-	header('Location: ../login');
+if (!isset($user)) {
+	header('Location: ../admin');
+	die;
 }
+$page = [$user, '../'];
 
-require '../config.php';
+
 
 $kode = $_SESSION['kode'];
-login($kode, $_SESSION['token'], ['cs', 'admin']);
 $userName = $_SESSION['user'];
 $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
@@ -19,7 +17,8 @@ $now = explode('-', $now);
 $datenow = $months[(int) $now[1]] . ' ' . $now[0];
 $now = $now[0] . '-' . $now[1];
 
-$data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' ORDER BY date");
+$data = data("SELECT * FROM earnings WHERE (penerima = '$user' AND date like '$now%' AND status IS NOT NULL) ORDER BY date");
+
 ?>
 
 
@@ -29,7 +28,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Earnings - queue</title>
+	<title>Sharing - Paid</title>
 
 	<!-- favicon -->
 	<?php include_once '../struktur/favicon.php' ?>
@@ -71,13 +70,13 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 				<li><a href="#">
 						<em class="fa fa-book color-blue"></em>
 					</a></li>
-				<li class="active">Queue</li>
+				<li class="active">Sharing Paid</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12" style="display:flex; justify-content:space-between">
-				<h1 class="page-header color-blue">Earnings Queue</h1>
+				<h1 class="page-header color-green">Sharing Paid</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -93,14 +92,22 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<ul class="dropdown-settings">
-											<li><a onclick="cariEarningsBulan('queue')" href="javascript:void(0)">
-													<em id="icon2" class="fa fa-sort-numeric-asc"></em>
+											<li><a onclick="cariSharingBulan('sharingPaid','<?= $user; ?>')" href="javascript:void(0)">
+													<em id="icon2" class="fa fa-calendar"></em>
 													<p id="opsi2" style="display: inline;"> Bulan </p>
 												</a>
 											</li>
 											<li class="divider"></li>
-											<li><a id="periode" href="javascript:void(0)">
-													<em class="fa fa-calendar"></em> Periode
+											<li><a href="../sharing/?<?= $user; ?>" class="color-purple">
+													<em id="icon2" class="fa fa-usd"></em>
+													<p style="display: inline;" class="color-orange"> UNPAID PAGE</p>
+												</a>
+											</li>
+											<li class="divider"></li>
+											<li>
+												<a onclick="paySelected()" href="javascript:void(0)">
+													<em class="fa fa-check color-green"></em>
+													<p style="display: inline;" class="color-green"> PAY SELECTED</p>
 												</a>
 											</li>
 										</ul>
@@ -125,7 +132,7 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 											<h3 class="color-blue"><strong><?= number_format(count($data), 0, '.', ','); ?></strong></h3>
 										</th>
 										<th style="text-align: right;">
-											<h3 class="color-green"><strong>NULL</strong></h3>
+											<h3 class="color-green"><strong id="display-share">0</strong></h3>
 										</th>
 									</tr>
 
@@ -134,22 +141,27 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th scope="col">No</th>
-										<th scope="col">Date</th>
+										<th scope="col"><input class="form-check-input" type="checkbox" id="checkall" value="" aria-label="..."> All</th>
+										<th scope="col">PAID Date</th>
 										<th scope="col">No. SPK</th>
 										<th scope="col">No. Invoice</th>
 										<th scope="col">Profit</th>
-										<th scope="col">Sharing</th>
+										<th scope="col">Sharing 10%</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php $i = 1; ?>
-
+									<?php $totalShare = 0; ?>
 									<?php foreach ($data as $datas): ?>
+										<?php $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
+										if ($sharing < 50000) {
+											$sharing = 50000;
+										}
+										?>
+
 										<tr>
-											<th scope="row"><?= $i; ?></th>
+											<th scope="row"><input class="form-check-input orderCheckBox" type="checkbox" id="checkboxNoLabel" value="<?= $datas['id']; ?>" aria-label="..."></th>
 											<td><?= date('d-M-Y', strtotime($datas['date'])); ?></td>
-											<td><a target="_blank" href="<?= '../detail-new/?id=' . $datas['no_spk']; ?>">
+											<td><a target="_blank" href="<?= '../detail-pickup/?id=' . $datas['no_spk']; ?>">
 													<?php
 													$spk = str_split($datas['no_spk'], 7);
 													$huruf = $spk[1];
@@ -174,14 +186,15 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 													<p>NULL</p>
 												<?php endif; ?>
 											</td>
-											<td>NULL</td>
-											<td>NULL</td>
+											<td><?= $datas['profit']; ?></td>
+											<td><?= number_format($sharing, 0, '.', ','); ?></td>
 										</tr>
-										<?php $i++; ?>
+										<?php $totalShare += $sharing; ?>
 									<?php endforeach; ?>
 
 								</tbody>
 							</table>
+							<input id="totalshare" type="hidden" value="<?= number_format($totalShare, 0, '.', ','); ?>">
 							<?php if (empty($data)) {
 								echo '<h4 style="text-align:center;color:#f70000e0;font-weight:400;">Tidak ada data untuk ditampilkan !</h4>';
 
@@ -219,10 +232,22 @@ $data = data("SELECT * FROM data WHERE penerima = '$kode' AND date like '$now%' 
 		<script src="../event/js/caleandar.js"></script>
 		<script src="../event/js/event.js"></script>
 		<script src="../js/cari.js?versi=<?= $version; ?>"></script>
+		<script src="../alert/confirm.js?versi=<?= $version; ?>"></script>
 		<script src="../js/user.js?versi=<?= $version; ?>"></script>
 		<script src="../js/cPass.js?versi=<?= $version; ?>"></script>
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="../alert/sweetalert2.all.js"></script>
+
+		<script>
+			totalSharing();
+
+			document.getElementById('checkall').addEventListener("change", function () {
+				let checkbox = document.querySelectorAll(".orderCheckBox");
+				checkbox.forEach(checkbox => {
+					checkbox.checked = this.checked
+				})
+			})
+		</script>
 
 
 </body>

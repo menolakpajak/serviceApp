@@ -14,12 +14,12 @@ if (empty($_GET)) {
     $direct = array_keys($_GET)[0];
 }
 
-if (!in_array($direct, ['pending', 'paid'], true)) {
+if (!in_array($direct, ['unpaid', 'paid'], true)) {
     include_once('queue.php');
     die;
 }
-if ($direct == 'pending') {
-    include_once('pending.php');
+if ($direct == 'unpaid') {
+    include_once('unpaid.php');
     die;
 }
 if ($direct == 'paid') {

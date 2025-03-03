@@ -135,6 +135,8 @@
 		</li>
 	<?php endif; ?>
 
+
+	<!-- ADMIN -->
 	<?php if (in_array($_SESSION['akses'], ['master', 'admin'])): ?>
 		<?php if (!in_array($page[0], ['suplier', 'nota', 'surat jalan'])) {
 			$collapse = 'collapse';
@@ -180,9 +182,39 @@
 		</li>
 	<?php endif; ?>
 
+	<!-- SHARING -->
+	<?php if ($_SESSION['akses'] == 'master'): ?>
+		<?php if (!in_array($page[0], $_SESSION['user_name'])) {
+			$collapse = 'collapse';
+		} else {
+			$collapse = '';
+		} ?>
+		<li class="parent ">
+			<a data-toggle="collapse" href="#sub-item-3">
+				<em class="fa fa-usd">&nbsp;</em> SHARING
+				<span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
+					<em class="fa fa-chevron-down"></em>
+				</span>
+			</a>
+			<ul class="children <?= $collapse; ?>" id="sub-item-3">
+				<?php foreach ($_SESSION['user_list'] as $list): ?>
+					<li>
+						<a <?php if ($page[0] == $list[0]) {
+							echo 'class="col-active" href="javascript:void(0)"';
+						} else {
+							echo 'href="' . $page[1] . 'sharing/?' . $list[0] . ' " ';
+						} ?>>
+							<span class="fa fa-user">&nbsp;</span> <?= ucwords($list[1]); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</li>
+	<?php endif; ?>
+
 	<!-- EARNINGS -->
 	<?php if ($_SESSION['akses'] != 'master'): ?>
-		<?php if (!in_array($page[0], ['queue', 'pending', 'paid'])) {
+		<?php if (!in_array($page[0], ['queue', 'unpaid', 'paid'])) {
 			$collapse = 'collapse';
 		} else {
 			$collapse = '';
@@ -206,12 +238,12 @@
 					</a>
 				</li>
 				<li>
-					<a <?php if ($page[0] == 'pending') {
+					<a <?php if ($page[0] == 'unpaid') {
 						echo 'class="col-active" href="javascript:void(0)"';
 					} else {
-						echo 'href="' . $page[1] . 'earnings/?pending"';
+						echo 'href="' . $page[1] . 'earnings/?unpaid"';
 					} ?>>
-						<span class="fa fa-hourglass-half">&nbsp;</span> Pending
+						<span class="fa fa-hourglass-half">&nbsp;</span> Unpaid
 					</a>
 				</li>
 				<li>
@@ -227,6 +259,7 @@
 		</li>
 	<?php endif; ?>
 
+	<!-- USER CHECK -->
 	<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 			<em class="fa fa-users">&nbsp;</em> USERS <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 		</a>
@@ -237,6 +270,8 @@
 		</ul>
 	</li>
 
+
+	<!-- SETTINGs -->
 	<li class="parent "><a data-toggle="collapse" href="#setting">
 			<em class="fa fa-cog">&nbsp;</em> SETTING <span data-toggle="collapse" href="#setting" class="icon pull-right"><em class="fa fa-chevron-down"></em></span>
 		</a>

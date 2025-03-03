@@ -1,30 +1,30 @@
-<?php 
+<?php
 $id = $_GET['id'];
 $data = data("SELECT * FROM data WHERE no_spk = '$id'");
-if(empty($data)){
+if (empty($data)) {
     include_once '../struktur/ajax-404.php';
 }
 $data = $data[0];
-$date = date('d/m/Y',strtotime($data['date'])) ;
+$date = date('d/m/Y', strtotime($data['date']));
 $penerima = $data['penerima'];
 $data['penerima'] = data("SELECT * FROM logininfo WHERE kodeuser = '$penerima'")[0]['nama'];
 $json = $data['kelengkapan'];
-$data2 = json_decode($json,true);
+$data2 = json_decode($json, true);
 
-$spk = str_split($data['no_spk'],7);
+$spk = str_split($data['no_spk'], 7);
 $huruf = $spk[1];
-$angka = str_split($spk[0],3);
+$angka = str_split($spk[0], 3);
 $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 
 $send_lang = '';
 include_once 'languages/receipt/id.php';
-if(isset($_GET['en'])){
+if (isset($_GET['en'])) {
     include_once 'languages/receipt/en.php';
     $send_lang = '&en';
 }
-$qrcode = "https://repair.digitalisasi.net/receipt?spk=". urlencode(encrypt($id)).$send_lang;
+$qrcode = "https://repair.digitalisasi.net/receipt?spk=" . urlencode(encrypt($id)) . $send_lang;
 $send_spk = encrypt($data['no_spk']);
-						// <<<...LOGIC FOR CHECKBOX....>>
+// <<<...LOGIC FOR CHECKBOX....>>
 
 $kamera = '';
 $lensa = '';
@@ -48,78 +48,94 @@ $filter_info = ucfirst($data2['check_filter_info']);
 $other_info = ucfirst($data2['other']);
 
 
-    if(!empty($data2['check_kamera'])){
-        $kamera = '
+if (!empty($data2['check_kamera'])) {
+    $kamera = '
         <div class="col-3">
         <strong class="d-block">- Kamera</strong>
         <div class="ps-2">
-        <span>'.$kamera_info.'</span>
+        <span>' . $kamera_info . '</span>
         </div>
         </div>';
-    }
-    if(!empty($data2['check_lensa'])){
-        $lensa = '
+}
+if (!empty($data2['check_lensa'])) {
+    $lensa = '
         <div class="col-3">
         <strong class="d-block">- Lensa</strong>
         <div class="ps-2">
-        <span>'.$lensa_info.'</span>
+        <span>' . $lensa_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_battery'])){$battery = '
+        </div>';
+}
+if (!empty($data2['check_battery'])) {
+    $battery = '
         <div class="col-3">
         <strong class="d-block">- Battery</strong>
         <div class="ps-2">
-        <span>'.$battery_info.'</span>
+        <span>' . $battery_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_memory'])){$memory = '
+        </div>';
+}
+if (!empty($data2['check_memory'])) {
+    $memory = '
         <div class="col-3">
         <strong class="d-block">- Memory</strong>
         <div class="ps-2">
-        <span>'.$memory_info.'</span>
+        <span>' . $memory_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_strap'])){$strap = '
+        </div>';
+}
+if (!empty($data2['check_strap'])) {
+    $strap = '
         <div class="col-3">
         <strong class="d-block">- Strap</strong>
         <div class="ps-2">
-        <span>'.$strap_info.'</span>
+        <span>' . $strap_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_bodycap'])){$bodyCap = '
+        </div>';
+}
+if (!empty($data2['check_bodycap'])) {
+    $bodyCap = '
         <div class="col-3">
         <strong class="d-block">- Body Cap</strong>
         <div class="ps-2">
-        <span>'.$bodyCap_info.'</span>
+        <span>' . $bodyCap_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_lenscap'])){$lensCap = '
+        </div>';
+}
+if (!empty($data2['check_lenscap'])) {
+    $lensCap = '
         <div class="col-3">
         <strong class="d-block">- Lens Cap</strong>
         <div class="ps-2">
-        <span>'.$lensCap_info.'</span>
+        <span>' . $lensCap_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['check_filter'])){$filter = '
+        </div>';
+}
+if (!empty($data2['check_filter'])) {
+    $filter = '
         <div class="col-3">
         <strong class="d-block">- Filter</strong>
         <div class="ps-2">
-        <span>'.$filter_info.'</span>
+        <span>' . $filter_info . '</span>
         </div>
-        </div>';}
-    if(!empty($data2['other'])){$other = '
+        </div>';
+}
+if (!empty($data2['other'])) {
+    $other = '
         <div class="col-12">
         <strong class="d-block">- Other</strong>
         <div class="ps-2">
-        <span>'.$other_info.'</span>
+        <span>' . $other_info . '</span>
         </div>
-        </div>';}
+        </div>';
+}
 
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,19 +145,22 @@ $other_info = ucfirst($data2['other']);
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-	<link href="../alert/sweetalert2.css" rel="stylesheet">
-    <link rel="stylesheet" href="print.css?versi=<?= $version ; ?>">
+    <link href="../alert/sweetalert2.css" rel="stylesheet">
+    <link rel="stylesheet" href="print.css?versi=<?= $version; ?>">
 
     <title><?= $spk; ?></title>
-	
+
 </head>
+
 <body>
     <div class="container-fluid send">
-    <div class="col-3 col-sm-1 mt-0 mb-1">
-        <select class="form-select" aria-label="Default select example" onchange="language(this)">
-            <option value="id" <?php if(!isset($_GET)) echo 'selected'; ?>>ID</option>
-            <option value="en" <?php if(isset($_GET['en'])) echo 'selected'; ?>>EN</option>
-        </select>
+        <div class="col-3 col-sm-1 mt-0 mb-1">
+            <select class="form-select" aria-label="Default select example" onchange="language(this)">
+                <option value="id" <?php if (!isset($_GET))
+                    echo 'selected'; ?>>ID</option>
+                <option value="en" <?php if (isset($_GET['en']))
+                    echo 'selected'; ?>>EN</option>
+            </select>
         </div>
     </div>
     <div class="container-xl rounded">
@@ -149,14 +168,14 @@ $other_info = ucfirst($data2['other']);
         <div id="head" class="row rounded">
             <div class="col-8">
                 <div class="row pt-2 ps-3">
-                    <img src="../imgs/logo/only-logo-terang.png" class="col-6 h-100 p-1 gx-0 w-25">    
+                    <img src="../imgs/logo/only-logo-terang.png" class="col-6 h-100 p-1 gx-0 w-25">
                     <div class="col-6 gx-0 d-flex align-items-center">
                         <div>
                             <h3 class="m-0 font-head head-color">Digital Repair</h3>
                             <h6 class="m-0 font-head">
-                            Jl. Tukad Pancoran IV <br>block A4 no 12B <br>
-                            Denpasar - Bali <br>
-                            08980000703</h6>
+                                Jl. Tukad Pancoran IV <br>block A4 no 12B <br>
+                                Denpasar - Bali <br>
+                                08980000703</h6>
                         </div>
                     </div>
                 </div>
@@ -176,7 +195,7 @@ $other_info = ucfirst($data2['other']);
                         <strong class="m-0 d-block">UNIT</strong>
                         <strong class="m-0 d-block">SN</strong>
                         <strong class="m-0 d-block">STATUS</strong>
-                        </div>
+                    </div>
                     <div class="col-1">
                         <strong class="m-0 d-block">:</strong>
                         <strong class="m-0 d-block">:</strong>
@@ -192,10 +211,7 @@ $other_info = ucfirst($data2['other']);
                 </div>
             </div>
             <div class="col-6 text-center border border-1 border-dark position-relative">
-                <svg class="w-75 h-100 m-0 position-absolute" id="barcode"
-                        jsbarcode-value="<?= $spk; ?>"
-                        jsbarcode-textmargin="0"
-                        jsbarcode-fontoptions="bold"></svg>
+                <svg class="w-75 h-100 m-0 position-absolute" id="barcode" jsbarcode-value="<?= $spk; ?>" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
             </div>
         </div>
         <!-- close info -->
@@ -214,7 +230,7 @@ $other_info = ucfirst($data2['other']);
         <!-- identity -->
         <div id="identity" class="row px-2">
             <div class="col-6 border border-1 border-dark py-1">
-                <strong class="d-block"><?= ucwords($data['nama']) ; ?></strong>
+                <strong class="d-block"><?= ucwords($data['nama']); ?></strong>
                 <span class="d-block"><?= $data['wa']; ?></span>
                 <span class="d-block"><?= nl2br($data['alamat']); ?></span>
             </div>
@@ -231,15 +247,15 @@ $other_info = ucfirst($data2['other']);
             </div>
             <div class="col-12 border border-1 border-dark py-1 pe-3">
                 <div class="row">
-                    <?= $kamera ; ?>
-                    <?= $battery ; ?>
-                    <?= $lensa ; ?>
-                    <?= $memory ; ?>
-                    <?= $strap ; ?>
-                    <?= $bodyCap ; ?>
-                    <?= $lensCap ; ?>
-                    <?= $filter ; ?>
-                    <?= $other ; ?>
+                    <?= $kamera; ?>
+                    <?= $battery; ?>
+                    <?= $lensa; ?>
+                    <?= $memory; ?>
+                    <?= $strap; ?>
+                    <?= $bodyCap; ?>
+                    <?= $lensCap; ?>
+                    <?= $filter; ?>
+                    <?= $other; ?>
                 </div>
             </div>
         </div>
@@ -254,7 +270,7 @@ $other_info = ucfirst($data2['other']);
                 <div class="row">
                     <div class="container">
                         <ul>
-                        <?php include_once '../struktur/syarat.php' ?>
+                            <?php include_once '../struktur/syarat.php' ?>
                         </ul>
                     </div>
                 </div>
@@ -262,53 +278,44 @@ $other_info = ucfirst($data2['other']);
         </div>
         <!-- close syarat -->
 
-        <?php if(empty($data['signature'])): ?>
-        <!-- hormat kami -->
-        <div id="hormat kami" class="mt-1 row justify-content-end">
-            <div class="col-3">
-                <p class="text-center fw-bold mb-1"><?= $lang['agree']; ?></p>
-                <div id="s-canvas" class="border border-1 border-dark" style="width: 100%;height:100px;">
-                    <canvas id="signature-pad" width="171" height="98"></canvas>
-                </div>
-                <p class="m-0 text-center fw-bold"><?= ucwords($data['nama']); ?></p>
-                <div id="save-button" class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-sm btn-success" onclick="saveSignature('<?= $send_spk; ?>')">Save</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="clearSignature()">Clear</button>
+        <?php if (empty($data['signature'])): ?>
+            <!-- hormat kami -->
+            <div id="hormat kami" class="mt-1 row justify-content-end">
+                <div class="col-3">
+                    <p class="text-center fw-bold mb-1"><?= $lang['agree']; ?></p>
+                    <div id="s-canvas" class="border border-1 border-dark" style="width: 100%;height:100px;">
+                        <canvas id="signature-pad" width="171" height="98"></canvas>
+                    </div>
+                    <p class="m-0 text-center fw-bold"><?= ucwords($data['nama']); ?></p>
+                    <div id="save-button" class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-success" onclick="saveSignature('<?= $send_spk; ?>')">Save</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="clearSignature()">Clear</button>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php else: ?>
             <div id="hormat kami" class="mt-1 row justify-content-end">
-            <div class="col-3">
-                <p class="text-center fw-bold mb-1"><?= $lang['agree']; ?></p>
-                <div style="width: 100%;height:100px;">
-                    <!-- <canvas id="signature-pad" width="171" height="98"></canvas> -->
-                    <img id="displayed-signature" width="171" height="98" src="<?= $data['signature']; ?>" alt="costumer signature"/>
+                <div class="col-3">
+                    <p class="text-center fw-bold mb-1"><?= $lang['agree']; ?></p>
+                    <div style="width: 100%;height:100px;">
+                        <img id="displayed-signature" width="171" height="98" src="<?= $data['signature']; ?>" alt="costumer signature" />
+                    </div>
+                    <p class="m-0 text-center fw-bold"><?= ucwords($data['nama']); ?></p>
                 </div>
-                <p class="m-0 text-center fw-bold"><?= ucwords($data['nama']); ?></p>
             </div>
-        </div>
-        <!-- close hormat -->
+            <!-- close hormat -->
         <?php endif ?>
-        
+
         <!-- Toast with Placements -->
-        <div
-            id="toastCopy"
-            class="send bs-toast toast toast-placement-ex m-2 bg-primary"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-            data-delay="2000"
-            data-autohide="true"
-            style="top: 0; left: 0;">
+        <div id="toastCopy" class="send bs-toast toast toast-placement-ex m-2 bg-primary" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" data-autohide="true" style="top: 0; left: 0;">
             <div class="toast-header">
-            <i class="bi bi-bell"></i>
-            <div class="me-auto fw-semibold"> Link Berhasil dicopy !</div>
-            <!-- <small>11 mins ago</small> -->
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                <i class="bi bi-bell"></i>
+                <div class="me-auto fw-semibold"> Link Berhasil dicopy !</div>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
-            <hr id='foot-hr' class="mt-1">
+        <hr id='foot-hr' class="mt-1">
         <button id="print" class="btn btn-secondary mb-3" onclick="printDocument()"><i class="bi bi-printer-fill"></i> Print</button>
         <a class="send btn btn-success mb-3" target="_blank" href="https://wa.me/<?= $data['wa']; ?>?text=<?= urlencode($qrcode); ?>"><i class="bi bi-whatsapp"></i> Send</a>
         <a class="send btn btn-warning mb-3" href="javascript:void(0)" onclick="sendBot('<?= $data['wa']; ?>','<?= $qrcode; ?>','receipt')"><i class="bi bi-robot"></i> BOT</a>
@@ -317,20 +324,18 @@ $other_info = ucfirst($data2['other']);
 
 
 
-<script src="../alert/sweetalert2.all.js?versi=<?= $version ; ?>"></script>
-<script src="../alert/confirm.js?<?=$version ; ?>"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<!-- html2canvas -->
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<!-- signature_pad -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<script src="barcode.js?versi=<?= $version ; ?>"></script>
-<script src="print.js?versi=<?= $version ; ?>"></script>
+    <script src="../alert/sweetalert2.all.js?versi=<?= $version; ?>"></script>
+    <script src="../alert/confirm.js?<?= $version; ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <!-- html2canvas -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <!-- signature_pad -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <script src="barcode.js?versi=<?= $version; ?>"></script>
+    <script src="print.js?versi=<?= $version; ?>"></script>
 
 </body>
 
 
 </html>
-
-
