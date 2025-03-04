@@ -20,8 +20,7 @@ if (empty($_POST['no_spk'])) {
 }
 
 $id = $_POST['no_spk'];
-var_dump($_POST['date']);
-die;
+
 if (isset($_POST['submit'])) {
     $result = pickup($_POST);
     echo $result;
