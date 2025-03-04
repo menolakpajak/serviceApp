@@ -112,7 +112,7 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$kode' AND date like '$n
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
 					<div class="panel-body">
-						<div id="container" class="canvas-wrapper">
+						<div id="container" class="canvas-wrapper of-x-auto">
 							<table class="table table-striped rekap">
 								<thead>
 									<tr>

@@ -49,7 +49,7 @@ $data = data($query);
 
     </tbody>
 </table>
-<table class="table table-striped">
+<table class="table table-striped rekap">
     <thead>
         <tr>
             <th scope="col">No</th>

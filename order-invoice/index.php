@@ -72,7 +72,7 @@ $profit = array_sum($allProfit);
 				<input id="keyword-nota" type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
-		<?php include_once ('../struktur/page.php');  // side page >> ?>
+		<?php include_once('../struktur/page.php');  // side page >> ?>
 	</div><!--/.sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -126,8 +126,8 @@ $profit = array_sum($allProfit);
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
 					<div class="panel-body">
-						<div id="container" class="canvas-wrapper">
-							<table class="table table-striped rekap">
+						<div id="container" class="canvas-wrapper of-x-auto">
+							<table class="table table-striped">
 								<thead>
 									<tr>
 										<th scope="col" class="color-primary">OMSET</th>

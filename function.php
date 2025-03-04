@@ -122,7 +122,7 @@ NAMA : ' . $nama . '
 UNIT : ' . $unit . '
 ERROR : ' . $error . '
 LINK : https://repair.digitalisasi.net/receipt?spk=' . $url_bot;
-        bot($text);
+        // bot($text);
         return 'ok';
     } else {
         return $result;
@@ -1625,6 +1625,11 @@ function pickup($order)
     global $datetime;
     global $conn;
     $id = $order['no_spk'];
+    if (empty($order['date'])) {
+        $datePickup = $datetime;
+    } else {
+        $datePickup = date('Y-m-d H:i', strtotime($order['date']));
+    }
 
     $data = data("SELECT * FROM data WHERE no_spk = '$id' ");
     if (empty($data)) {
@@ -1652,7 +1657,7 @@ function pickup($order)
     $date_proses = $data['date_proses'];
     $date_update = $data['date_update'];
     $date_finish = $data['date_finish'];
-    $date_pickup = $datetime;
+    $date_pickup = $datePickup;
     $counter = $data['counter'];
     $service_at = $data['service_at'];
     $location = $data['location'];

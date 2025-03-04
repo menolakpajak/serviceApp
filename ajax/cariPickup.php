@@ -24,9 +24,9 @@ $order = $_GET['order'];
 
 $query = "SELECT * FROM pickup
             WHERE
-            (no_spk LIKE '%$keyword%' OR
-            nama LIKE '%$keyword%' OR 
-            no_tlp LIKE '%$keyword%') ORDER BY $order LIMIT 20";
+            (no_spk LIKE '$keyword%' OR
+            nama LIKE '$keyword%' OR 
+            wa LIKE '$keyword%') ORDER BY $order LIMIT 20";
 
 $data = data($query);
 

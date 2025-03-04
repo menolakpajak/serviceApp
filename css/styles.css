@@ -1707,3 +1707,7 @@ p.back-link {
         max-width: 800px !important;
     }
 }
+
+.rekap {
+    min-width: 380px !important;
+}

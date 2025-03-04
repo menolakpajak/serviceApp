@@ -35,8 +35,7 @@ function confirmInput(event) {
     }).then((result) => {
         if (result.isConfirmed) {
             var input = document.querySelector(".inputBtn");
-            console.log(input);
-            input.style.display = "none";
+            // input.style.display = "none";
 
             var date = document.querySelector("#date").value;
             var no_spk = document.querySelector("#no_spk").value;
@@ -144,11 +143,29 @@ function confirmInput(event) {
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
+            // Menambahkan elemen loading spinner ke dalam pesan SweetAlert
+            var swalWithLoading = Swal.mixin({
+                title: "UPLOADING ⏳",
+                text: "Please wait...",
+                allowOutsideClick: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                },
+                didClose: () => {
+                    Swal.close();
+                },
+            });
+
+            // Menampilkan loading spinner sebelum mengirim request
+            swalWithLoading.fire();
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     var ok = ajax.responseText;
                     if (ok == "ok") {
                         document.getElementsByTagName("form")[0].innerHTML = "";
+                        swalWithLoading.close();
                         Swal.fire({
                             icon: "success",
                             title: "DATA BERHASIL DI INPUT",
@@ -389,11 +406,15 @@ function pickup(id, status) {
     if (status == "done") {
         var html = `<p><strong class="color-green">DONE</strong> to <strong class="color-purple">PICKUP</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
+        <label for="datePickup">Paid Date :</label>
+        <input id="datePickup" type="datetime-local" class="form-control swal2-input" placeholder="Pickup Date">
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`;
     }
     if (status == "abort") {
         var html = `<p><strong class="color-red">ABORT</strong> to <strong class="color-purple">PICKUP</strong></p>
         <h3 class="color-blue strong">${token[1]}</h3>
+        <label for="datePickup">Paid Date :</label>
+        <input id="datePickup" type="datetime-local" class="form-control swal2-input" placeholder="Pickup Date">
         <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`;
     }
 
@@ -409,6 +430,7 @@ function pickup(id, status) {
         if (result.isConfirmed) {
             var validation = document.querySelector("#validation").value;
             validation = removeSpecialCharacters(validation);
+            var date = document.querySelector("#datePickup").value;
 
             if (validation != token[0]) {
                 Swal.fire({
@@ -423,13 +445,12 @@ function pickup(id, status) {
 
             let formData = new FormData();
             formData.append("no_spk", id);
+            formData.append("date", date);
             formData.append("submit", true);
             var ajax = new XMLHttpRequest();
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     var ok = ajax.responseText;
-                    // alert(ok)
-                    // return;
                     if (ok == "ok") {
                         document.getElementsByTagName("form")[0].innerHTML = "";
                         Swal.fire({
@@ -2341,7 +2362,6 @@ function setPaid(id) {
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     var ok = ajax.responseText;
-                    // return console.log(ok);
                     if (ok == "ok") {
                         document.getElementsByTagName("form")[0].innerHTML = "";
                         Swal.fire({

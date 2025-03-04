@@ -49,7 +49,7 @@ $omset = array_sum($allOmset);
 $profit = array_sum($allProfit);
 
 ?>
-<table class="table table-striped rekap">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col" class="color-primary">OMSET</th>
