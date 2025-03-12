@@ -105,9 +105,9 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$user' AND date like '$n
 											</li>
 											<li class="divider"></li>
 											<li>
-												<a onclick="paySelected()" href="javascript:void(0)">
-													<em class="fa fa-check color-green"></em>
-													<p style="display: inline;" class="color-green"> PAY SELECTED</p>
+												<a href="javascript:void(0)">
+													<em class="fa fa-trash color-red"></em>
+													<p style="display: inline;" class="color-red"> DELETE</p>
 												</a>
 											</li>
 										</ul>

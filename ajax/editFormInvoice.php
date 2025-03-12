@@ -73,6 +73,12 @@ if (!empty($data['cancel'])) {
 	$cancel = 0;
 }
 
+if (!empty($data['spend'])) {
+	$spend = $data['spend'];
+} else {
+	$spend = 0;
+}
+
 
 ?>
 
@@ -295,7 +301,7 @@ if (!empty($data['cancel'])) {
 								<div class="form-group input color-red">
 									<div class="box">
 										<label for="spend">Spend :</label>
-										<input type="text" class="form-control color-red" id="spend" onkeyup="numSeperate(event)" value="0">
+										<input type="text" class="form-control color-red" id="spend" onkeyup="numSeperate(event)" value="<?= $spend; ?>">
 									</div>
 								</div>
 								<div class="form-group input">

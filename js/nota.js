@@ -16,6 +16,7 @@ function calInvoice() {
     var dp = document.querySelector("#deposit");
     var discount = document.querySelector("#discount");
     var total = document.querySelector("#total");
+    var spend = document.querySelector("#spend");
 
     var item = qts.length;
 
@@ -48,6 +49,7 @@ function calInvoice() {
     dpp.value = Math.round(fdpp).toLocaleString();
     ppn.value = Math.round(fppn).toLocaleString();
     profit.value = Math.round(fprofit).toLocaleString();
+    spend.value = profit.value;
 }
 
 function numSeperate(event) {
@@ -137,8 +139,7 @@ function profitShow(profit) {
 }
 
 //fungsi menampilkan quotation
-function quo(id){
-
+function quo(id) {
     let formData = new FormData();
     formData.append("id", id);
     formData.append("submit", true);
@@ -148,11 +149,11 @@ function quo(id){
         if (ajax.readyState == 4 && ajax.status == 200) {
             var ok = JSON.parse(ajax.responseText);
             // return console.log(ok);
-            if(ok.length > 0){
-                var link = '';
-                for(i = 0; i < ok.length; i++){
-                    var date = ok[i]['date'];
-                    link += `<a class="btn btn-warning mt-1" href="../quotation/?kode=${id}&index=${i}" target="_blank"><i class="fa fa-file" aria-hidden="true"> </i> ${date}</a>`
+            if (ok.length > 0) {
+                var link = "";
+                for (i = 0; i < ok.length; i++) {
+                    var date = ok[i]["date"];
+                    link += `<a class="btn btn-warning mt-1" href="../quotation/?kode=${id}&index=${i}" target="_blank"><i class="fa fa-file" aria-hidden="true"> </i> ${date}</a>`;
                 }
             }
 
@@ -163,9 +164,9 @@ function quo(id){
                 showCancelButton: false,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "OK",
-            })
+            });
         }
-    }
+    };
     ajax.open("POST", `../ajax/quotation.php`, "true");
     ajax.send(formData);
 
@@ -173,8 +174,8 @@ function quo(id){
 }
 
 //fungsi reset
-function resetValue(){
-var nota = document.getElementById('reset-nota');
-    nota.style.display='none';
+function resetValue() {
+    var nota = document.getElementById("reset-nota");
+    nota.style.display = "none";
     // console.log(nota);
 }
