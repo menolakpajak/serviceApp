@@ -164,15 +164,21 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$user' AND date like '$n
 										<th scope="col">No. SPK</th>
 										<th scope="col">No. Invoice</th>
 										<th scope="col">Profit</th>
-										<th scope="col">Sharing 10%</th>
+										<th scope="col">Sharing</th>
+										<th scope="col">Action </th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php $totalShare = 0; ?>
 									<?php foreach ($data as $datas): ?>
-										<?php $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
-										if ($sharing < 50000) {
-											$sharing = 50000;
+										<?php
+										if (empty($datas['sharing'])) {
+											$sharing = (int) str_replace(',', '', $datas['profit']) / 10;
+											if ($sharing < 50000) {
+												$sharing = 50000;
+											}
+										} else {
+											$sharing = (int) str_replace(',', '', $datas['sharing']);
 										}
 										?>
 
@@ -206,6 +212,7 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$user' AND date like '$n
 											</td>
 											<td><?= $datas['profit']; ?></td>
 											<td><?= number_format($sharing, 0, '.', ','); ?></td>
+											<td><button onclick="action('<?= $datas['id']; ?>','<?= $datas['profit']; ?>','<?= number_format($sharing, 0, '.', ','); ?>')" class="btn btn-info">Action</button></td>
 										</tr>
 										<?php $totalShare += $sharing; ?>
 									<?php endforeach; ?>
@@ -250,6 +257,7 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$user' AND date like '$n
 		<script src="../event/js/caleandar.js"></script>
 		<script src="../event/js/event.js"></script>
 		<script src="../js/cari.js?versi=<?= $version; ?>"></script>
+		<script src="../js/nota.js?versi=<?= $version; ?>"></script>
 		<script src="../alert/confirm.js?versi=<?= $version; ?>"></script>
 		<script src="../js/user.js?versi=<?= $version; ?>"></script>
 		<script src="../js/cPass.js?versi=<?= $version; ?>"></script>

@@ -59,7 +59,8 @@ if (isset($_POST['bulan']) && !empty($_POST['bulan'])) {
             <th scope="col">No. SPK</th>
             <th scope="col">No. Invoice</th>
             <th scope="col">Profit</th>
-            <th scope="col">Sharing 10%</th>
+            <th scope="col">Sharing</th>
+            <th scope="col">Action </th>
         </tr>
     </thead>
     <tbody>
@@ -101,6 +102,7 @@ if (isset($_POST['bulan']) && !empty($_POST['bulan'])) {
                 </td>
                 <td><?= $datas['profit']; ?></td>
                 <td><?= number_format($sharing, 0, '.', ','); ?></td>
+                <td><button onclick="action('<?= $datas['id']; ?>','<?= $datas['profit']; ?>','<?= number_format($sharing, 0, '.', ','); ?>')" class="btn btn-info">Action</button></td>
             </tr>
             <?php $totalShare += $sharing; ?>
         <?php endforeach; ?>

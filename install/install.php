@@ -434,6 +434,7 @@ if ($result->num_rows > 0) {
         `no_spk` varchar(50) NOT NULL UNIQUE,
         `invoice` varchar(50) DEFAULT NULL,
         `profit` varchar(100) DEFAULT NULL,
+        `sharing` varchar(100) DEFAULT NULL,
         `status` varchar(50) DEFAULT NULL,
         INDEX idx_date (date),
         INDEX idx_penerima (penerima),

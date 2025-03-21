@@ -48,7 +48,11 @@ if (!empty($data['discount'])) {
 } else {
 	$discount = 0;
 }
-$spend = $data['spend'];
+if (!empty($data['spend'])) {
+	$spend = $data['spend'];
+} else {
+	$spend = 0;
+}
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];

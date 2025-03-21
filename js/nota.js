@@ -179,3 +179,157 @@ function resetValue() {
     nota.style.display = "none";
     // console.log(nota);
 }
+
+// Action on sharing page
+//ACTION SHARING EDIT OR DELETE FUNCTION
+function actionSharing(event, action, id = 0, profit, sharing) {
+    event.preventDefault();
+
+    let formData = new FormData();
+
+    formData.append("id", id);
+    formData.append("profit", profit);
+    formData.append("sharing", sharing);
+    formData.append("submit", true);
+
+    var ajax = new XMLHttpRequest();
+    // Menambahkan elemen loading spinner ke dalam pesan SweetAlert
+    var swalWithLoading = Swal.mixin({
+        title: "Proccesing ⏳",
+        text: "Please wait...",
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        willOpen: () => {
+            Swal.showLoading();
+        },
+        didClose: () => {
+            Swal.close();
+        },
+    });
+
+    // Menampilkan loading spinner sebelum mengirim request
+    swalWithLoading.fire();
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var ok = ajax.responseText;
+            swalWithLoading.close();
+            if (ok == "edit ok") {
+                swalWithLoading.close();
+
+                Swal.fire({
+                    icon: "success",
+                    title: "DATA BERHASIL DI EDIT",
+                    confirmButtonText: "OK",
+                    text: "Data telah berubah !",
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else if (ok == "delete ok") {
+                Swal.fire({
+                    icon: "success",
+                    title: "DATA BERHASIL DI HAPUS",
+                    confirmButtonText: "OK",
+                    text: "Data telah Terhapus !",
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "DATA GAGAL DI PROSES",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: ok,
+                });
+            }
+        }
+    };
+
+    if (action == "delete") {
+        ajax.open("POST", `../action/deleteSharing.php`, "true");
+    } else {
+        ajax.open("POST", `../action/editSharing.php`, "true");
+    }
+    ajax.send(formData);
+}
+
+//TOMBOL ACTION DI SHARING PAGE
+function action(id, profit, sharing) {
+    // console.log(id);
+    Swal.fire({
+        title: "ACTION !",
+        html: `<button onclick="editAction(${id},'${profit}','${sharing}')" class="btn btn-info">Edit</button></td>
+        <button onclick="deleteSharing(${id})" class="btn btn-danger">Delete</button></td>`,
+        icon: "warning",
+        showCancelButton: false,
+        showConfirmButton: false,
+    });
+}
+//EDIT FUNCTION DI SHARING PAGE
+function editAction(id, profit, sharing) {
+    Swal.fire({
+        title: "EDITING !",
+        html: `<form>
+                <input id="actionProfit" type="text" class="form-control swal2-input" placeholder="Profit" autocomplete="off" required onkeyup="numSeperate(event)" value="${profit}">
+                <input id="actionSharing" type="text" class="form-control swal2-input" placeholder="Sharing" autocomplete="off" required onkeyup="numSeperate(event)" value=${sharing}>
+        </form>`,
+        icon: "warning",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "EDIT",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let editProfit = document.getElementById("actionProfit").value;
+            let editSharing = document.getElementById("actionSharing").value;
+            if (profit == "" || sharing == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "INVALID",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Profit dan Sharing tidak boleh kosong !",
+                });
+                return;
+            }
+            actionSharing(event, "edit", id, editProfit, editSharing);
+            return;
+        }
+    });
+}
+
+// DELETE SHARING
+function deleteSharing(id) {
+    var token = generateRandomString(6);
+
+    Swal.fire({
+        title: "HAPUS DATA INI ?",
+        html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
+        <h3 class="color-blue strong">${token[1]}</h3>
+        <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
+                Swal.fire({
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Token Salah !",
+                });
+                return;
+            }
+            actionSharing(event, "delete", id, "", "");
+        }
+    });
+}

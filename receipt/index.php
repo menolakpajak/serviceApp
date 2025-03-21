@@ -1,5 +1,8 @@
 <?php
 require '../koneksi.php';
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: Sat, 01 Jan 2000 00:00:00 GMT");
 
 $page = ['receipt', '../'];
 $id = decrypt($_GET['spk']);
@@ -277,7 +280,7 @@ if (isset($_GET['en'])) {
                 <div class="row">
                     <div class="container">
                         <ul>
-                        <?php include_once '../struktur/syarat.php' ?>
+                            <?php include_once '../struktur/syarat.php' ?>
                         </ul>
                     </div>
                 </div>

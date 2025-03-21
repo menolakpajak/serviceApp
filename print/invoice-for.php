@@ -40,17 +40,20 @@ $subtotal = $data['subtotal'];
 $dpp = $data['dpp'];
 $ppn = $data['ppn'];
 $deposit = $data['deposit'];
-if(!empty($data['discount'])){$discount = $data['discount'];
-}else{$discount = 0;}
+if (!empty($data['discount'])) {
+    $discount = $data['discount'];
+} else {
+    $discount = 0;
+}
 $total = $data['total'];
-$quototal = str_replace(',','',$subtotal)  - str_replace(',','',$discount);
-$quototal = number_format($quototal,0,'.',',');
+$quototal = str_replace(',', '', $subtotal) - str_replace(',', '', $discount);
+$quototal = number_format($quototal, 0, '.', ',');
 $note = $data['note'];
 $rekening = $data['rek'];
-if(!empty($data['cancel'])){
-	$cancel = $data['cancel'];
-}else{
-	$cancel = "150,000";
+if (!empty($data['cancel'])) {
+    $cancel = $data['cancel'];
+} else {
+    $cancel = "150,000";
 }
 $dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
 
@@ -111,7 +114,7 @@ if (isset($_GET['en'])) {
     </div>
     <div class="container-xl rounded">
         <!-- head -->
-        <?php include_once ("../struktur/print-head.php"); ?>
+        <?php include_once("../struktur/print-head.php"); ?>
         <!-- close head -->
 
         <!-- info -->
@@ -280,7 +283,7 @@ if (isset($_GET['en'])) {
 
             <!-- hormat kami -->
             <div id="hormat kami" class="row justify-content-end">
-                <div class="col-3">
+                <div class="col-3 sign">
                     <p class="text-center fw-bold mb-5"><?= $words['hormat']; ?></p>
                     <p class="mb-0 text-center fw-bold"><?= ucwords($data['admin']); ?></p>
                     <hr class="border border-dark border-1 opacity-50 m-0">

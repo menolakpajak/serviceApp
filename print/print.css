@@ -1,24 +1,18 @@
 @font-face {
-    font-family: 'balooDa';
-    src: url('../fonts/BalooDa-Regular.woff2') format('woff2'),
-         url('../fonts/BalooDa-Regular.woff') format('woff');
-    
-  }
-@font-face {
-font-family: 'calibri';
-src: url('../fonts/calibri-regular.woff2') format('woff2'),
-        url('../fonts/calibri-regular.woff') format('woff');
-
+    font-family: "balooDa";
+    src: url("../fonts/BalooDa-Regular.woff2") format("woff2"), url("../fonts/BalooDa-Regular.woff") format("woff");
 }
 @font-face {
-    font-family: 'stamp';
-    src: url('../fonts/Stamp.woff2') format('woff2'),
-            url('../fonts/Stamp.woff') format('woff');
-    
+    font-family: "calibri";
+    src: url("../fonts/calibri-regular.woff2") format("woff2"), url("../fonts/calibri-regular.woff") format("woff");
+}
+@font-face {
+    font-family: "stamp";
+    src: url("../fonts/Stamp.woff2") format("woff2"), url("../fonts/Stamp.woff") format("woff");
 }
 
 body {
-    font-family: 'calibry', sans-serif;
+    font-family: "calibry", sans-serif;
     background-color: #afaead;
     height: 100%;
     padding: 25px 0 25px 0;
@@ -31,7 +25,6 @@ body {
     background-color: white;
 }
 
-
 @media print {
     @page {
         size: A4;
@@ -42,26 +35,23 @@ body {
         height: 100%;
         font-size: 8pt !important;
     }
-  
+
     /* Tambahkan gaya cetak khusus atau penyesuaian lainnya di sini */
     body {
-      background-color: white;
+        background-color: white;
     }
-    
+
     #print,
-    .send, 
+    .send,
     #save-button,
     #foot-hr {
         display: none !important;
     }
-    
-  }
-
-
+}
 
 /* CUSTOM */
 
-h1{
+h1 {
     font-size: 50px !important;
 }
 
@@ -71,15 +61,15 @@ h1{
 .tb-center {
     text-align: center !important;
 }
-.font-head{
-    font-family: 'balooDa', sans-serif;
+.font-head {
+    font-family: "balooDa", sans-serif;
     color: #606060;
 }
-.font-stamp{
-    font-family: 'stamp', sans-serif;
+.font-stamp {
+    font-family: "stamp", sans-serif;
 }
 .head-color {
-    color: #FF8F56;
+    color: #ff8f56;
 }
 .w-fit-content {
     width: fit-content !important;
@@ -102,9 +92,9 @@ h1{
 
 .stamp {
     border: 5px dashed #68f528;
-    border-radius: 10px; 
+    border-radius: 10px;
     transform: rotate(-20deg);
-    opacity: .5;
+    opacity: 0.5;
     color: #68f528;
 }
 #stamp {
@@ -114,4 +104,11 @@ h1{
 
 .mb-min-1 {
     margin-bottom: -0.5rem !important;
+}
+
+.sign {
+    background-image: url("../imgs/signature/sign.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

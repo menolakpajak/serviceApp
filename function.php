@@ -2541,6 +2541,10 @@ function signature($order)
     if (empty($data)) {
         die('Receipt mungkin telah terhapus !');
     }
+    $data = $data[0];
+    if (!empty($data['signature'])) {
+        die('Already Signed !');
+    }
 
 
     $query = "UPDATE data SET 
@@ -2590,5 +2594,60 @@ function setPaidSpending($order)
         return 'ok';
     } else {
         return $conn->error;
+    }
+}
+
+// EDIT SHARING
+
+function editSharing($order)
+{
+    global $conn;
+    global $datetime;
+    $id = $order['id'];
+
+    if (empty($order['date'])) {
+        $date = $datetime;
+    } else {
+        $date = date('Y-m-d H:i', strtotime($order['date']));
+    }
+
+    $data = data("SELECT * FROM earnings WHERE id = $id");
+    if (empty($data)) {
+        die('Invoice mungkin telah terhapus !');
+    }
+
+    $profit = $order['profit'];
+    $sharing = $order['sharing'];
+
+    $query = "UPDATE earnings SET 
+        profit = '$profit',
+        sharing = '$sharing'
+        WHERE id = $id ";
+
+    $conn->query($query);
+    if ($conn->affected_rows > 0) {
+        return 'edit ok';
+    } else {
+        return $conn->error;
+    }
+}
+
+//DELETE User
+function deleteSharing($order)
+{
+    global $conn;
+    $id = $order['id'];
+    $data = data("SELECT * FROM earnings WHERE id = $id");
+    if (empty($data)) {
+        return 'Tidak Ada data, mungkin telah terhapus !';
+    }
+
+    $query = "DELETE FROM earnings WHERE id = $id ";
+    mysqli_query($conn, $query);
+    $result = mysqli_error($conn);
+    if (mysqli_affected_rows($conn) > 0) {
+        return 'delete ok';
+    } else {
+        return $result;
     }
 }
