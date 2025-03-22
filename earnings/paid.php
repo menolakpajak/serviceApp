@@ -140,7 +140,7 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$kode' AND date like '$n
 										<th scope="col">No. SPK</th>
 										<th scope="col">No. Invoice</th>
 										<th scope="col">Profit</th>
-										<th scope="col">Sharing 10%</th>
+										<th scope="col">Sharing</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -148,9 +148,13 @@ $data = data("SELECT * FROM earnings WHERE (penerima = '$kode' AND date like '$n
 									$totalShare = 0; ?>
 
 									<?php foreach ($data as $datas): ?>
-										<?php $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
-										if ($sharing < 50000) {
-											$sharing = 50000;
+										<?php if (empty($datas['sharing'])) {
+											$sharing = (int) str_replace(',', '', $datas['profit']) / 10;
+											if ($sharing < 50000) {
+												$sharing = 50000;
+											}
+										} else {
+											$sharing = (int) str_replace(',', '', $datas['sharing']);
 										}
 										?>
 

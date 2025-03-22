@@ -62,9 +62,13 @@ if (isset($_POST['bulan']) && !empty($_POST['bulan'])) {
         $totalShare = 0; ?>
 
         <?php foreach ($data as $datas): ?>
-            <?php $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
-            if ($sharing < 50000) {
-                $sharing = 50000;
+            <?php if (empty($datas['sharing'])) {
+                $sharing = (int) str_replace(',', '', $datas['profit']) / 10;
+                if ($sharing < 50000) {
+                    $sharing = 50000;
+                }
+            } else {
+                $sharing = (int) str_replace(',', '', $datas['sharing']);
             }
             ?>
 
