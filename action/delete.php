@@ -19,8 +19,6 @@ if (!in_array($_SESSION['akses'], ['master'])) {
     include_once '../struktur/action-403.php';
 }
 
-var_dump(isset($_POST['deletedd']));
-die;
 if (isset($_POST['submit'])) {
     if (isset($_POST['deleted'])) {
         $result = harddelete($_POST);
