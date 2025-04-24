@@ -15,7 +15,7 @@ $userName = $_SESSION['user'];
 $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
 
-$data = data("SELECT * FROM pickup ORDER BY id DESC LIMIT 50");
+$data = data("SELECT * FROM pickup ORDER BY date_pickup DESC LIMIT 50");
 
 
 
@@ -65,7 +65,7 @@ $data = data("SELECT * FROM pickup ORDER BY id DESC LIMIT 50");
 				<input id="keyword-pickup" type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
-		<?php include_once ('../struktur/page.php');  // side page >> ?>
+		<?php include_once('../struktur/page.php');  // side page >> ?>
 	</div><!--/.sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -288,7 +288,7 @@ $data = data("SELECT * FROM pickup ORDER BY id DESC LIMIT 50");
 		<script>
 			var title = <?= $title; ?>;
 			var n = <?= $n; ?>;
-			var date = <?= $newDate; ?>; 
+			var date = <?= $newDate; ?>;
 			var year = [];
 			var mo = [];
 			var day = [];

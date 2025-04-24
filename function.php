@@ -1795,12 +1795,110 @@ function backProses($order)
 }
 
 // FUNGSI DELETE DATA
-
+//SOFT DELETE
 function delete($order)
+{
+    global $datetime;
+    global $conn;
+    $id = $order['no_spk'];
+    if (empty($order['date'])) {
+        $datePickup = $datetime;
+    } else {
+        $datePickup = date('Y-m-d H:i', strtotime($order['date']));
+    }
+
+    $data = data("SELECT * FROM data WHERE no_spk = '$id' ");
+    if (empty($data)) {
+        return 'Tidak Ada data, mungkin telah terhapus !';
+    }
+    $data = $data[0];
+    $status = strtoupper($data['status']);
+    $prev_log = json_decode($data['log'], true);
+
+    $log = array();
+    $log['date'] = $datetime;
+    $log['status'] = 'proses';
+    $log['action'] = 'move';
+    $log['detail'] = [];
+    $log['user'] = $_SESSION['kode'];
+
+    array_push($log['detail'], "Perpindahan status dari $status => DELETED");
+
+    array_push($prev_log, $log);
+    $log = json_encode($prev_log, JSON_PRETTY_PRINT);
+    $log = mysqli_real_escape_string($conn, $log);
+
+
+    $date = $data['date'];
+    $date_proses = $data['date_proses'];
+    $date_pickup = $datePickup;
+    $counter = $data['counter'];
+    $service_at = $data['service_at'];
+    $location = $data['location'];
+    $nama = $data['nama'];
+    $alamat = $data['alamat'];
+    $wa = $data['wa'];
+    $no_tlp = $data['no_tlp'];
+    $tipe_unit = $data['tipe'];
+    $unit = $data['unit'];
+    $serial_number = $data['sn'];
+    $pin = $data['pin'];
+    $note = $data['note'];
+    $result = $data['result'];
+    $cost = $data['cost'];
+    $acc = $data['acc'];
+    $penerima = $data['penerima'];
+    $time_line = $data['time_line'];
+    $signature = $data['signature'];
+    $invoice = $data['invoice'];
+    $surat_jalan = $data['surat_jalan'];
+    $status = $data['status'];
+    $kelengkapan = $data['kelengkapan'];
+    $error = $data['error'];
+
+    $query = "INSERT INTO deleted (no_spk, date, date_proses,date_pickup,counter,service_at,location,nama,alamat,wa,no_tlp,tipe,unit,sn,error,result,cost,acc,note,pin,status,penerima,kelengkapan,signature,time_line,invoice,surat_jalan,log)
+    VALUES('$id','$date','$date_proses','$date_pickup','$counter','$service_at','$location', '$nama','$alamat','$wa','$no_tlp','$tipe_unit','$unit','$serial_number','$error','$result','$cost','$acc','$note','$pin','$status','$penerima','$kelengkapan','$signature','$time_line','$invoice','$surat_jalan','$log')";
+
+    if ($date_proses === null) {
+        $query = "INSERT INTO deleted (no_spk, date, date_pickup,counter,service_at,location,nama,alamat,wa,no_tlp,tipe,unit,sn,error,result,cost,acc,note,pin,status,penerima,kelengkapan,signature,time_line,invoice,surat_jalan,log)
+    VALUES('$id','$date','$date_pickup','$counter','$service_at','$location', '$nama','$alamat','$wa','$no_tlp','$tipe_unit','$unit','$serial_number','$error','$result','$cost','$acc','$note','$pin','$status','$penerima','$kelengkapan','$signature','$time_line','$invoice','$surat_jalan','$log')";
+    }
+
+    $deleteData = "DELETE FROM data WHERE no_spk = '$id'";
+
+    // Memulai transaksi
+    $conn->begin_transaction();
+
+    try {
+        // Melakukan query INSERT
+        if ($conn->query($query) === TRUE) {
+            // Melakukan query DELETE
+            if ($conn->query($deleteData) === TRUE) {
+                // Commit transaksi jika keduanya berhasil
+                $conn->commit();
+                echo 'ok';
+            } else {
+                throw new Exception("Error in DELETE query: " . $conn->error);
+            }
+
+        } else {
+            throw new Exception("Error in INSERT query DELETE: " . $conn->error);
+        }
+    } catch (Exception $e) {
+        // Rollback transaksi jika terjadi kesalahan
+        $conn->rollback();
+        echo "Error: " . $e->getMessage();
+    }
+    // >>>>>>>
+}
+
+
+//HARD DELETE
+function harddelete($order)
 {
     $id = $order['no_spk'];
     global $conn;
-    $query = "DELETE FROM data WHERE no_spk = '$id' ";
+    $query = "DELETE FROM deleted WHERE no_spk = '$id' ";
     mysqli_query($conn, $query);
     $result = mysqli_error($conn);
 

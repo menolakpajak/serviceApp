@@ -653,7 +653,6 @@ if (document.getElementById("keyword-abort") != null) {
 }
 
 //cari pickup
-
 if (document.getElementById("keyword-pickup") != null) {
     var keyword = document.getElementById("keyword-pickup");
 

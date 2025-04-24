@@ -135,6 +135,24 @@
 		</li>
 	<?php endif; ?>
 
+	<!-- DELETED -->
+	<?php if ($_SESSION['akses'] == 'master'): ?>
+		<li <?php if ($page[0] == 'deleted') {
+			echo 'class="active"';
+		} ?>>
+			<a <?php if ($page[0] == 'deleted') {
+				echo 'href="javascript:void(0)"';
+			} else {
+				echo 'href="' . $page[1] . 'order-deleted/"';
+			} ?>><em class="fa fa-trash color-red">&nbsp;</em> DELETED</a>
+		</li>
+
+		<?php if ($page[0] == 'detail-deleted'): ?>
+			<li style="background-color:#c4e3e9;">
+				<a style="padding-left: 2em;" href="javascript:void(0)"><em class="fa fa-chevron-circle-down">&nbsp;</em> DELETED</a>
+			</li>
+		<?php endif; ?>
+	<?php endif; ?>
 
 	<!-- ADMIN -->
 	<?php if (in_array($_SESSION['akses'], ['master', 'admin'])): ?>

@@ -1,21 +1,21 @@
 <?php
 ob_start();
 session_start();
-$page = ['pin,', '../'];
-
+$page = ['deleted', '../'];
 
 if (empty($_SESSION['login'])) {
 	header('Location: ../login');
 }
 
 require '../config.php';
+
 $kode = $_SESSION['kode'];
-login($kode, $_SESSION['token'], ['master', 'admin', 'audit', 'cs']);
+login($kode, $_SESSION['token'], ['master']);
 $userName = $_SESSION['user'];
 $kode = $_SESSION['kode'];
 $akses = $_SESSION['akses'];
 
-$data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abort') ORDER BY date");
+$data = data("SELECT * FROM deleted ORDER BY date_pickup DESC LIMIT 50");
 
 
 
@@ -28,7 +28,7 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Pin Order</title>
+	<title>Service - Deleted Order</title>
 
 	<!-- favicon -->
 	<?php include_once '../struktur/favicon.php' ?>
@@ -62,7 +62,7 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 		<div class="divider"></div>
 		<form action="javascript:void(0)">
 			<div class="form-group">
-				<input id="keyword-new" type="hidden" class="form-control" placeholder="Search">
+				<input id="keyword-deleted" type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
 		<?php include_once('../struktur/page.php');  // side page >> ?>
@@ -72,16 +72,16 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#">
-						<em class="fa fa-thumb-tack color-blue"></em>
+						<em class="fa fa-trash color-red"></em>
 					</a></li>
-				<li class="active">PIN ORDER</li>
+				<li class="active">Deleted Order</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12" style="display:flex; justify-content:space-between">
-				<h1 class="page-header color-blue">Pin Order</h1>
-				<a style="height:fit-content; margin-top:25px;" class="btn btn-warning" href="../inputOrder/">Input Order !</a>
+				<h1 class="page-header color-red">Deleted Order</h1>
+				<a style="height:fit-content; margin-top:25px;" class="btn btn-primary" href="../inputOrder/">Input Order !</a>
 			</div>
 		</div><!--/.row-->
 
@@ -90,30 +90,32 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						DATA SERVICE
-						<!-- <ul class="pull-right panel-settings panel-button-tab-right">
+						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-								<em class="fa fa-sort"></em>
-							</a>
+									<em class="fa fa-sort"></em>
+								</a>
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<ul class="dropdown-settings">
 											<li><a id="select1" class="naik" href="javascript:void(0)">
-												<em id="icon1" class="fa fa-sort-alpha-asc"></em><p id="opsi1" style="display: inline;"> Nama </p>
+													<em id="icon1" class="fa fa-sort-alpha-asc"></em>
+													<p id="opsi1" style="display: inline;"> Nama </p>
 												</a>
 											</li>
 											<li class="divider"></li>
 											<li><a id="select2" class="naik" href="javascript:void(0)">
-												<em id="icon2" class="fa fa-sort-numeric-asc"></em><p id="opsi2" style="display: inline;"> Tanggal </p>
-											</a></li>
+													<em id="icon2" class="fa fa-sort-numeric-asc"></em>
+													<p id="opsi2" style="display: inline;"> Tanggal </p>
+												</a></li>
 											<li class="divider"></li>
 											<li><a id="periode" href="javascript:void(0)">
-												<em class="fa fa-calendar"></em> Periode
-											</a></li>
+													<em class="fa fa-calendar"></em> Periode
+												</a></li>
 										</ul>
 									</li>
 								</ul>
 							</li>
-						</ul> -->
+						</ul>
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
 					<div class="panel-body">
@@ -123,10 +125,10 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 								<thead>
 									<tr>
 										<th scope="col">No</th>
-										<th scope="col">Date</th>
+										<th scope="col">Deleted</th>
 										<th scope="col">SPK</th>
 										<th scope="col">Nama</th>
-										<th scope="col">Status</th>
+										<th scope="col">Unit</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -135,19 +137,11 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 
 									<?php foreach ($data as $datas): ?>
 
-										<?php
-										if ($datas['status'] == 'new') {
-											$link = '../detail-new/?id=' . $datas['no_spk'];
-											$color = 'color-blue';
-										} else {
-											$link = '../detail-proses/?id=' . $datas['no_spk'];
-											$color = 'color-orange';
-										}
-										?>
 										<tr>
 											<th scope="row"><?= $i; ?></th>
-											<td><?= date('d-M-Y', strtotime($datas['date'])); ?></td>
-											<td><a href="<?= $link; ?>">
+											<td><?= date('d-M-Y', strtotime($datas['date_pickup'])); ?></td>
+											<td>
+												<a class="color-red" href="<?= '../detail-deleted/?id=' . $datas['no_spk']; ?>">
 													<?php
 													$spk = str_split($datas['no_spk'], 7);
 													$huruf = $spk[1];
@@ -155,17 +149,23 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 													$spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 													echo $spk;
 													?>
-												</a></td>
+											</td>
 											<td><?= $datas['nama']; ?></td>
-											<td style="font-weight:500;" class="<?= $color; ?>"><?= strtoupper($datas['status']); ?></td>
+											<td style="font-weight:500;"><?= ucfirst($datas['tipe']); ?></td>
 										</tr>
 										<?php $i++; ?>
 									<?php endforeach; ?>
 
 								</tbody>
+
 							</table>
+							<?php if (empty($data)) {
+								echo '<h4 style="text-align:center;color:#f70000e0;font-weight:400;">Tidak ada data untuk ditampilkan !</h4>';
+
+							} ?>
 
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -180,8 +180,10 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 					</div>
 					<div class="panel-body articles-container">
 
+
 						<?php foreach ($data as $datas): ?>
-							<?php $datTime = explode('-', date('d-M', strtotime($datas['date']))); ?>
+							<?php $datTime = explode('-', date('d-M', strtotime($datas['date_pickup']))); ?>
+
 							<div class="article border-bottom">
 								<div class="col-xs-12">
 									<div class="row">
@@ -199,7 +201,10 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 								<div class="clear"></div>
 							</div><!--End .article-->
 						<?php endforeach; ?>
+						<?php if (empty($data)) {
+							echo '<h4 style="text-align:center;color:#f70000e0;font-weight:400;">Data Kosong !</h4>';
 
+						} ?>
 					</div>
 				</div><!--End .articles-->
 
@@ -242,13 +247,12 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 
 		</div>
 
-
-
 		<script src="../js/jquery-1.11.1.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
-		<script src="../js/custom.js"></script>
+		<script src="../js/custom.js?versi=<?= $version; ?>"></script>
 		<script src="../event/js/caleandar.js?versi=<?= $version; ?>"></script>
 		<script src="../event/js/event.js?versi=<?= $version; ?>"></script>
+		<script src="../js/cari.js?versi=<?= $version; ?>"></script>
 		<script src="../js/user.js?versi=<?= $version; ?>"></script>
 		<script src="../js/cPass.js?versi=<?= $version; ?>"></script>
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -263,11 +267,11 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 		$cek = [];
 		$x = 0;
 		for ($i = 0; $i < $n; $i++) {
-			$dataDate = explode(' ', $data[$i]['date'])[0];
+			$dataDate = explode(' ', $data[$i]['date_pickup'])[0];
 			$dataDate = explode('-', $dataDate);
 			$dataDate = [$dataDate[0], ($dataDate[1] - 1), $dataDate[2]];
 			array_push($newDate, $dataDate);
-			$same = explode(' ', $data[$i]['date'])[0];
+			$same = explode(' ', $data[$i]['date_pickup'])[0];
 
 			array_push($title, '<a href="../detail-new/?id=' . $data[$i]['no_spk'] . '" style="font-size:15px;display:block;" target="_blank">-- ' . ucfirst($data[$i]['nama']) . '</a>');
 
@@ -293,8 +297,6 @@ $data = data("SELECT * FROM data WHERE pin = 'on' AND status NOT IN ('done','abo
 				year.push(Number(date[i][0]))
 				mo.push(date[i][1])
 				day.push(Number(date[i][2]))
-
-
 
 			}
 			for (i = 0; i < n; i++) {

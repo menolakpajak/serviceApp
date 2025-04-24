@@ -550,7 +550,6 @@ function backProses(id) {
 // KONFIRMASI DELETE
 
 // DELETE TABEL DATA
-
 function deleteData(status, id) {
     var token = generateRandomString(6);
 
@@ -588,7 +587,78 @@ function deleteData(status, id) {
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     var ok = ajax.responseText;
-                    // alert(ok);
+                    // console.log(ok);
+                    // return;
+                    if (ok == "ok") {
+                        document.getElementsByTagName("form")[0].innerHTML = "";
+                        Swal.fire({
+                            icon: "success",
+                            title: "DATA BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page Sebelumnya !",
+                        }).then(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, null, `../order-${status}/`);
+                            }
+                            window.location.href = `../order-${status}/`;
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "DATA GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
+                    }
+                }
+            };
+            ajax.open("POST", `../action/delete.php`, "true");
+            ajax.send(formData);
+        }
+    });
+}
+
+// HARD DELETE TABEL DATA
+function hardDelete(status, id) {
+    var token = generateRandomString(6);
+
+    Swal.fire({
+        title: "HAPUS DATA INI ?",
+        html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
+        <h3 class="color-blue strong">${token[1]}</h3>
+        <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
+                Swal.fire({
+                    icon: "error",
+                    title: "DATA GAGAL DI HAPUS",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Token Salah !",
+                });
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("no_spk", id);
+            formData.append("deleted", true);
+            formData.append("submit", true);
+
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    // console.log(ok);
                     // return;
                     if (ok == "ok") {
                         document.getElementsByTagName("form")[0].innerHTML = "";

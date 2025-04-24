@@ -447,3 +447,54 @@ if ($result->num_rows > 0) {
         echo fail(13, 'EARNINGS', $conn->error);
     }
 }
+
+// cek table DELETED
+$query = "SHOW TABLES LIKE 'deleted' ";
+$result = $conn->query($query);
+if ($result->num_rows > 0) {
+    echo exist(14, 'DELETED');
+} else {
+    $createTable = "CREATE TABLE `deleted` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `no_spk` varchar(50) NOT NULL UNIQUE,
+        `date` datetime NOT NULL,
+        `date_proses` datetime DEFAULT NULL,
+        `date_update` datetime DEFAULT NULL,
+        `date_finish` datetime DEFAULT NULL,
+        `date_pickup` datetime DEFAULT NULL,
+        `counter` varchar(20) NOT NULL,
+        `service_at` varchar(50) DEFAULT NULL,
+        `location` varchar(50) DEFAULT NULL,
+        `nama` varchar(100) NOT NULL,
+        `alamat` text NOT NULL,
+        `wa` varchar(20) NOT NULL,
+        `no_tlp` varchar(20) DEFAULT NULL,
+        `tipe` varchar(20) NOT NULL,
+        `unit` varchar(100) NOT NULL,
+        `sn` varchar(100) NOT NULL,
+        `error` text NOT NULL,
+        `result` text DEFAULT NULL,
+        `cost` text DEFAULT NULL,
+        `acc` varchar(10) DEFAULT NULL,
+        `note` text DEFAULT NULL,
+        `pin` varchar(10) NOT NULL,
+        `status` varchar(20) NOT NULL,
+        `penerima` varchar(20) NOT NULL,
+        `kelengkapan` longtext DEFAULT NULL,
+        `signature` text DEFAULT NULL,
+        `invoice` varchar(50) DEFAULT NULL,
+        `surat_jalan` text DEFAULT NULL,
+        `time_line` longtext DEFAULT NULL,
+        `log` longtext DEFAULT NULL,
+        INDEX idx_date (date),
+        INDEX idx_nama (nama),
+        INDEX idx_no_w (wa)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+    $result = $conn->query($createTable);
+
+    if ($result === true) {
+        echo success(14, 'DELETED');
+    } else {
+        echo fail(14, 'DELETED', $conn->error);
+    }
+}

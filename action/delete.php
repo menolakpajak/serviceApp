@@ -1,9 +1,9 @@
-<?php 
+<?php
 ob_start();
 session_start();
 
 
-if(empty($_SESSION['login'])){
+if (empty($_SESSION['login'])) {
     include_once '../struktur/action-logout.php';
 }
 
@@ -11,19 +11,25 @@ require '../function.php';
 
 $kode = $_SESSION['kode'];
 $login = data("SELECT * FROM logininfo WHERE kodeuser = '$kode' ")[0];
-if($_SESSION['token'] != $login['token']){
+if ($_SESSION['token'] != $login['token']) {
     include_once '../struktur/action-logout.php';
 }
 
-if(!in_array($_SESSION['akses'],['master'])){
+if (!in_array($_SESSION['akses'], ['master'])) {
     include_once '../struktur/action-403.php';
 }
 
-if(isset($_POST['submit'])){
-    $result =  delete($_POST);
-    echo $result;
-    }else{
-        include_once '../struktur/action-noKey.php';
+var_dump(isset($_POST['deletedd']));
+die;
+if (isset($_POST['submit'])) {
+    if (isset($_POST['deleted'])) {
+        $result = harddelete($_POST);
+    } else {
+        $result = delete($_POST);
     }
+    echo $result;
+} else {
+    include_once '../struktur/action-noKey.php';
+}
 
 ?>
