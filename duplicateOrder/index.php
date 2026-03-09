@@ -367,6 +367,9 @@ $data = $data[0];
 									<div class="kerusakan">
 										<textarea class="form-control" name="error" id="error" cols="20" rows="10" placeholder="Info Kerusakan..." required autocomplete="off"></textarea>
 									</div>
+									<div class="signature d-none">
+										<textarea class="form-control"  name="signature" id="signature" cols="20" rows="10" autocomplete="off" ><?= $data['signature']; ?></textarea>
+									</div>
 
 								</div>
 

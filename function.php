@@ -68,6 +68,10 @@ function input($order)
     $note = htmlentities($order['note'], ENT_QUOTES, 'UTF-8');
     $penerima = $_SESSION['kode'];
     $error = htmlentities($order['error'], ENT_QUOTES, 'UTF-8');
+    $signature = $order['signature'];
+    if($signature == 'undefined' || empty($signature)){
+        $signature = '';
+    }
 
     $kelengkapan = array();
     $kelengkapan['check_kamera'] = htmlspecialchars($order['check_kamera']);
@@ -90,7 +94,7 @@ function input($order)
     $kelengkapan = json_encode($kelengkapan, JSON_PRETTY_PRINT);
     $json = $conn->real_escape_string($kelengkapan);
 
-    $query = "INSERT INTO data (no_spk,date,counter,nama,alamat,wa,no_tlp,tipe,unit,sn,error,pin,note,status,penerima,kelengkapan,log)
+    $query = "INSERT INTO data (no_spk,date,counter,nama,alamat,wa,no_tlp,tipe,unit,sn,error,pin,note,status,penerima,kelengkapan,signature,log)
                     VALUES 
                     ('$no_spk',
                     '$date',
@@ -108,6 +112,7 @@ function input($order)
                     'new',
                     '$penerima',
                     '$json',
+                    '$signature',
                     '$log')";
 
     mysqli_query($conn, $query);
@@ -1914,6 +1919,37 @@ function harddelete($order)
     }
 }
 
+//delete signature
+function deleteSignature($order)
+{
+    global $conn;
+    global $datetime;
+    $id = $order['id'];
+    $data = data("SELECT * FROM data WHERE id = '$id' ");
+    if (empty($data)) {
+        return 'Tidak Ada data, mungkin telah terhapus !';
+    }
+    $data = $data[0];
+    if($data['signature'] === '') {
+        return 'Data tidak memiliki signature !';
+    }
+
+    $query = "UPDATE data SET 
+            signature = ''
+            WHERE id = '$id' ";
+
+    mysqli_query($conn, $query);
+    $result = mysqli_error($conn);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        return 'ok';
+    } else {
+        if (empty($result)) {
+            return 'Anda Tidak Melakukan Perubahan !';
+        }
+    }
+    return $result;
+};
 
 // FUNGSI SERVICE CENTER.......>>>
 

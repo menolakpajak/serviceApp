@@ -324,6 +324,7 @@ if (!empty($data2['other'])) {
         <a class="send btn btn-success mb-3" target="_blank" href="https://wa.me/<?= $data['wa']; ?>?text=<?= urlencode($qrcode); ?>"><i class="bi bi-whatsapp"></i> Send</a>
         <a class="send btn btn-warning mb-3" href="javascript:void(0)" onclick="sendBot('<?= $data['wa']; ?>','<?= $qrcode; ?>','receipt')"><i class="bi bi-robot"></i> BOT</a>
         <a class="send btn btn-primary mb-3" href="<?= $qrcode; ?>" onclick="copyURI(event)"><i class="bi bi-copy"></i> Copy</a>
+        <a class="send btn btn-danger mb-3" href="javascript:void(0)" onclick="confirmSignatureDelete('<?= $data['id']; ?>')"><i class="bi bi-delete"></i> Del Signature</a>
     </div>
 
 

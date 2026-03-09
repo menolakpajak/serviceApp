@@ -108,6 +108,8 @@ function confirmInput(event) {
             var check_lenscap_info = document.querySelector("#check_lenscap_info").value;
             var check_filter_info = document.querySelector("#check_filter_info").value;
             var other = document.querySelector("#other").value;
+            var signature = document.querySelector("#signature")?.value;
+            
 
             let formData = new FormData();
             formData.append("date", date);
@@ -140,6 +142,7 @@ function confirmInput(event) {
             formData.append("check_lenscap_info", check_lenscap_info);
             formData.append("check_filter_info", check_filter_info);
             formData.append("other", other);
+            formData.append("signature", signature);
             formData.append("submit", true);
 
             var ajax = new XMLHttpRequest();
@@ -685,6 +688,70 @@ function hardDelete(status, id) {
                 }
             };
             ajax.open("POST", `../action/delete.php`, "true");
+            ajax.send(formData);
+        }
+    });
+}
+
+// HARD DELETE TABEL DATA
+function confirmSignatureDelete(id) {
+    var token = generateRandomString(6);
+
+    Swal.fire({
+        title: "HAPUS SIGNATURE ?",
+        html: `<p class="color-red">⚠️ Data yang terhapus tidak dapat dipulihkan</p>
+        <h3 class="color-blue strong">${token[1]}</h3>
+        <input id="validation" type="text" class="form-control swal2-input" placeholder="Inputkan Token di atas!" autocomplete="off">`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#222",
+        confirmButtonText: "DELETE",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var validation = document.querySelector("#validation").value;
+            validation = removeSpecialCharacters(validation);
+
+            if (validation != token[0]) {
+                Swal.fire({
+                    icon: "error",
+                    title: "SIGNATURE GAGAL DI HAPUS",
+                    confirmButtonText: "Ulangi",
+                    confirmButtonColor: "#f54949",
+                    text: "Token Salah !",
+                });
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("id", id);
+            formData.append("submit", true);
+
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var ok = ajax.responseText;
+                    if (ok == "ok") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "SIGNATURE BERHASIL DI HAPUS",
+                            confirmButtonText: "OK",
+                            text: "Perubahan dapat dilihat di page Sebelumnya !",
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "SIGNATURE GAGAL DI HAPUS",
+                            confirmButtonText: "Ulangi",
+                            confirmButtonColor: "#f54949",
+                            text: ok,
+                        });
+                    }
+                }
+            };
+            ajax.open("POST", `../action/deleteSignature.php`, "true");
             ajax.send(formData);
         }
     });
