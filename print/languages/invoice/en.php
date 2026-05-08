@@ -42,6 +42,9 @@ if ($detail == 'invoice_for') {
     } else {
         $words['note'][0] = "<h6 class='fw-bold'>Terms and conditions:</h6>";
         $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> Paying a deposit of  <strong class='text-primary'>($dp)</strong>, which is 50% of the total cost.</p>";
+        if (isset($_GET['L']) || isset($_GET['l'])) {
+            $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> <strong class='text-primary'>Full payment</strong> in advance according to the total service cost.</p>";
+        }
         $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> The offer is valid until 14 calendar days.</p>";
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> If no confirmation is received, it will be considered as canceled.</p>";
         $words['note'][4] = "<p class='syarat mb-0'><strong>4.</strong> Please settle the remaining payment before the delivery or collection of the unit.</p>";

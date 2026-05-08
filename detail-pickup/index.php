@@ -525,7 +525,7 @@ if (empty($data2['check_filter_info'])) {
 										</div>
 										<div class="note">
 											<div style="background-color:#3836362e;border-radius:10px;padding:10px; margin-bottom: 10px">
-												<h5 style="font-weight: bold; text-decoration: underline;">Estimasi Biaya :</h5>
+												<h5 style="font-weight: bold; text-decoration: underline;">Keterangan :</h5>
 												<p style="color:black !important;"><?= ucfirst(nl2br($data['cost'])); ?></p>
 											</div>
 										</div>

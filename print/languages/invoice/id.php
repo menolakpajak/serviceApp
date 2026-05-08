@@ -45,6 +45,10 @@ if ($detail == 'invoice_for') {
     } else {
         $words['note'][0] = "<h6 class='fw-bold'>Syarat dan ketentuan :</h6>";
         $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> Membayar DP sebesar <strong class='text-primary'>($dp)</strong>, 50% dari total biaya.</p>";
+        if (isset($_GET['L']) || isset($_GET['l'])) {
+             $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> <strong class='text-primary'>Pelunasan di awal</strong> sesuai dengan total biaya service.</p>";
+            $words['note'][1] = "<p class='syarat mb-0'><strong>1.</strong> Membayar <strong class='text-primary'>Pelunasan di awal</strong> sesuai dengan total biaya service.</p>";
+        }
         $words['note'][2] = "<p class='syarat mb-0'><strong>2.</strong> Penawaran berlaku s/d 14 hari kalender.</p>";
         $words['note'][3] = "<p class='syarat mb-0'><strong>3.</strong> Jika tidak ada konfirmasi maka akan dianggap batal.</p>";
         $words['note'][4] = "<p class='syarat mb-0'><strong>4.</strong> Harap melakukan pelunasan sebelum pengiriman atau pengambilan unit.</p>";

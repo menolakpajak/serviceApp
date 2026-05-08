@@ -451,7 +451,7 @@ if (empty($data2['check_filter_info'])) {
 							<textarea class="form-control" name="pengecekan" id="pengecekan" cols="20" rows="10" placeholder="---"><?= strip_tags($data['result']); ?></textarea>
 						</div>
 						<div class="kerusakan" style="margin-bottom: 20px;">
-							<label for="biaya">Estimasi Biaya :</label>
+							<label for="biaya">Keterangan :</label>
 							<textarea class="form-control" name="biaya" id="biaya" cols="20" rows="10" placeholder="---"><?= strip_tags($data['cost']); ?></textarea>
 						</div>
 						<?php if ($data['acc'] == 'on') {
