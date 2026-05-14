@@ -12,7 +12,8 @@ $lang[5] = 'If the confirmation of the service cost quotation we provided is not
 $lang[6] = 'Orders cannot be CANCELED once the quotation has been approved or after the repair process has been completed.';
 $lang[7] = 'We are not responsible for the LOSS / DAMAGE of units that have been COMPLETED / CANCELLED services and are not retrieved within 30 days from the confirmation that the unit is ready for pickup.';
 $lang[8] = 'The service warranty is valid for 30 days from the date of pickup confirmation or the date stated on the receipt, applicable to the same issue and not caused by misuse or natural disasters.';
-$lang[9] = 'There will be an additional delivery fee if the unit needs to be picked up at the start or delivered back upon completion of the repair, according to the distance and terms.';
-$lang[10] = 'An additional fee will apply if the customer requests expedited processing beyond the standard estimated timeline or queue as per our system.';
+$lang[9] = 'For all underwater cameras that are originally designed to be waterproof without the use of additional accessories, such as GoPro, Insta360, or similar devices, if an inspection or repair requires complete disassembly of the camera, we are unable to guarantee that the camera will remain waterproof afterward unless additional accessories such as an underwater housing or protective underwater case are used.';
+$lang[10] = 'There will be an additional delivery fee if the unit needs to be picked up at the start or delivered back upon completion of the repair, according to the distance and terms.';
+$lang[11] = 'An additional fee will apply if the customer requests expedited processing beyond the standard estimated timeline or queue as per our system.';
 
 $lang['agree'] = 'I Agree';
