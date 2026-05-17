@@ -67,6 +67,17 @@ $page = ['index', ''];
 	<!-- Main CSS File -->
 	<link href="assets/css/main.css" rel="stylesheet">
 
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8NJX4ZY9">
+	</script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-YH8NJX4ZY9');
+	</script>
+
 </head>
 
 <body class="index-page">
@@ -486,7 +497,7 @@ $page = ['index', ''];
 						<div class="pricing-item featured">
 							<p class="popular">Optional</p>
 							<h3>Pickup and Delivery</h3>
-							<p class="description">Harga untuk per 20km</p>
+							<p class="description">Harga untuk per 10km</p>
 							<h4><sup>Rp</sup>50,000<span></h4>
 							<a href="#" class="cta-btn">Hubungi Kami</a>
 							<ul>
@@ -509,7 +520,7 @@ $page = ['index', ''];
 								<li><i class="bi bi-check"></i> <span>Cek board dan jalur kelistrikan</span></li>
 								<li><i class="bi bi-check"></i> <span>Cek firmware Unit</span></li>
 								<li><i class="bi bi-check"></i> <span>Diagnosa menyeluruh</span></li>
-								<li><i class="bi bi-check"></i> <span>Cleaning board dan komponen</span></li>
+								<!-- <li><i class="bi bi-check"></i> <span>Cleaning board dan komponen</span></li> -->
 								<li><i class="bi bi-check"></i> <span>Laporan hasil pengecekan</span></li>
 								<li><i class="bi bi-check"></i> <span>Solusi, saran dan tips</span></li>
 							</ul>
