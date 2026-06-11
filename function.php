@@ -2324,6 +2324,7 @@ function inputNotaFor($order)
     $total = $order['total'];
     $cancel = $order['cancel'];
     $spend = $order['spend'];
+    $acc = $order['acc'];
     $rekening = $order['rekening'];
     $note = htmlentities($order['note'], ENT_QUOTES, 'UTF-8');
     $saveas = htmlspecialchars($order['saveas']);
@@ -2354,6 +2355,7 @@ function inputNotaFor($order)
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
     $quo_detail['spend'] = $spend;
+    $quo_detail['acc'] = $acc;
     $quo_detail['save_as'] = 'quotation';
     $quo_detail['input'] = $_SESSION['kode'];
     array_push($quo, $quo_detail);
@@ -2363,7 +2365,7 @@ function inputNotaFor($order)
     $json_desc = mysqli_real_escape_string($conn, $desc);
     $json_kode = mysqli_real_escape_string($conn, $kode_inv);
 
-    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,discount,total,cancel,spend,save_as,status,rek,note,quotation)
+    $sql_nota = "INSERT INTO invoice (date,kode,admin,link,qts,kode_part,deskripsi,buy,margin,sell,profit,subtotal,dpp,ppn,deposit,discount,total,cancel,spend,acc,save_as,status,rek,note,quotation)
                     VALUES 
                     ('$date',
                     '$no_spk',
@@ -2384,6 +2386,7 @@ function inputNotaFor($order)
                     '$total',
                     '$cancel',
                     '$spend',
+                    '$acc',
                     '$saveas',
                     'pending',
                     '$rekening',
@@ -2458,6 +2461,7 @@ function editNota($order)
     $total = $order['total'];
     $cancel = $order['cancel'];
     $spend = $order['spend'];
+    $acc = $order['acc'];
     $note = $order['note'];
     $rekening = htmlspecialchars($order['rekening']);
 
@@ -2479,6 +2483,7 @@ function editNota($order)
         $total != $data['total'] ||
         $cancel != $data['cancel'] ||
         $spend != $data['spend'] ||
+        $acc != $data['acc'] ||
         $note != $data['note'] ||
         $rekening != $data['rek'] ||
         ($date . ':00' != $data['date'])
@@ -2516,6 +2521,7 @@ function editNota($order)
     $quo_detail['total'] = $total;
     $quo_detail['cancel'] = $cancel;
     $quo_detail['spend'] = $spend;
+    $quo_detail['acc'] = $acc;
     $quo_detail['save_as'] = 'quotation';
     $quo_detail['input'] = $_SESSION['kode'];
     array_push($quo, $quo_detail);
@@ -2540,6 +2546,7 @@ function editNota($order)
         total = '$total',
         cancel = '$cancel',
         spend = '$spend',
+        acc = '$acc',
         note = '$note',
         rek = '$rekening',
         quotation = '$json_quo'
@@ -2563,6 +2570,7 @@ function editNota($order)
         total = '$total',
         cancel = '$cancel',
         spend = '$spend',
+        acc = '$acc',
         note = '$note',
         rek = '$rekening'
         WHERE kode = '$id'";

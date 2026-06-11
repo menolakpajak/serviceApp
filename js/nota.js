@@ -17,6 +17,7 @@ function calInvoice() {
     var discount = document.querySelector("#discount");
     var total = document.querySelector("#total");
     var spend = document.querySelector("#spend");
+    var acc = document.querySelector("#acc");
 
     var item = qts.length;
 
@@ -50,6 +51,7 @@ function calInvoice() {
     ppn.value = Math.round(fppn).toLocaleString();
     profit.value = Math.round(fprofit).toLocaleString();
     spend.value = profit.value;
+    acc.value = (makeNum(subtotal.value) * 0.5).toLocaleString();
 }
 
 function numSeperate(event) {

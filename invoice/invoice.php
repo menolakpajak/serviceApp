@@ -48,7 +48,13 @@ if (!empty($data['cancel'])) {
     $cancel = "150,000";
 }
 
-$dp = number_format(str_replace(',', '', $subtotal) / 2, 0, '.', ',');
+if (!empty($data['acc'])) {
+    $acc = $data['acc'];
+} else {
+    $acc = 0;
+}
+
+$dp = number_format(str_replace(',', '', $acc) / 2, 0, '.', ',');
 
 $spk = str_split($link_spk, 7);
 $huruf = $spk[1];

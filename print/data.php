@@ -293,7 +293,7 @@ if (!empty($data2['other'])) {
                     <p class="m-0 text-center fw-bold"><?= ucwords($data['nama']); ?></p>
                     <div id="save-button" class="d-flex justify-content-between">
                         <button type="button" class="btn btn-sm btn-success" onclick="saveSignature('<?= $send_spk; ?>')">Save</button>
-                        <button type="button" class="btn btn-sm btn-primary" onclick="clearSignature()">Clear</button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="clearSignature()">Clear</button>
                     </div>
                 </div>
             </div>

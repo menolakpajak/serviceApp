@@ -337,6 +337,7 @@ if ($result->num_rows > 0) {
         `total` varchar(100) NOT NULL,
         `cancel` varchar(100) DEFAULT NULL,
         `spend` varchar(100) DEFAULT NULL,
+        `acc` varchar(100) DEFAULT NULL,
         `save_as` varchar(20) NOT NULL,
         `status` varchar(20) DEFAULT NULL,
         `rek` varchar(20) DEFAULT NULL,

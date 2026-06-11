@@ -53,6 +53,11 @@ if (!empty($data['spend'])) {
 } else {
 	$spend = 0;
 }
+if (!empty($data['acc'])) {
+	$acc = $data['acc'];
+} else {
+	$acc = 0;
+}
 $total = $data['total'];
 $note = $data['note'];
 $rekening = $data['rek'];
@@ -297,6 +302,14 @@ $kode_id = "$huruf-$angka";
 													<strong style="width: fit-content; text-wrap:nowrap;">Spend</strong>
 													<div style="text-align: right;width:100%">
 														<strong><?= $spend; ?></strong>
+													</div>
+												</div>
+											</div>
+											<div class="form-group input color-green">
+												<div class="box">
+													<strong style="width: fit-content; text-wrap:nowrap;">ACC</strong>
+													<div style="text-align: right;width:100%">
+														<strong><?= $acc; ?></strong>
 													</div>
 												</div>
 											</div>

@@ -2184,6 +2184,7 @@ function inputNotaFor(event) {
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
             var spend = document.querySelector("#spend").value;
+            var acc = document.querySelector("#acc").value;
             var note = document.querySelector("#note").value;
             var saveas = document.querySelector("#saveas").value;
             var rekening = document.querySelector("#rekening").value;
@@ -2232,6 +2233,7 @@ function inputNotaFor(event) {
             formData.append("total", total);
             formData.append("cancel", cancel);
             formData.append("spend", spend);
+            formData.append("acc", acc);
             formData.append("note", note);
             formData.append("saveas", saveas);
             formData.append("rekening", rekening);
@@ -2304,6 +2306,7 @@ function editNota(event) {
             var total = document.querySelector("#total").value;
             var cancel = document.querySelector("#cancel").value;
             var spend = document.querySelector("#spend").value;
+            var acc = document.querySelector("#acc").value;
             var note = document.querySelector("#note").value;
             var rekening = document.querySelector("#rekening").value;
 
@@ -2350,6 +2353,7 @@ function editNota(event) {
             formData.append("total", total);
             formData.append("cancel", cancel);
             formData.append("spend", spend);
+            formData.append("acc", acc);
             formData.append("note", note);
             formData.append("rekening", rekening);
 

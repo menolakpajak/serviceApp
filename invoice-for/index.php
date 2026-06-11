@@ -278,6 +278,12 @@ $spk = "$angka[0]-$angka[1]$angka[2]-$huruf";
 													<input type="text" class="form-control color-red" id="spend" onkeyup="numSeperate(event)" value="0">
 												</div>
 											</div>
+											<div class="form-group input color-green">
+												<div class="box">
+													<label for="acc">ACC :</label>
+													<input type="text" class="form-control color-green" id="acc" onkeyup="numSeperate(event)" value="0">
+												</div>
+											</div>
 											<div class="form-group input">
 												<div class="box" style="justify-content: space-between;">
 													<button onclick="calInvoice()" type="button" class="btn btn-primary">Calculate</button>
