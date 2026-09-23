@@ -33,5 +33,8 @@
                                 <p class="mb-0"><?= $lang[10]; ?></p>
                             </li>
                             <li>
-                                <p ><?= $lang[11]; ?></p>
+                                <p class="mb-0"><?= $lang[11]; ?></p>
+                            </li>
+                            <li>
+                                <p ><?= $lang[12]; ?></p>
                             </li>

@@ -13,7 +13,8 @@ $lang[6] = 'Order tidak bisa diBATALkan setelah quotation di setujui atau proses
 $lang[7] = 'Kami tidak bertanggung jawab atas KEHILANGAN / KERUSAKAN unit yang SELESAI / BATAL service yang tidak diambil dalam waktu 30 hari sejak konfirmasi bahwa unit sudah bisa diambil.';
 $lang[8] = 'Garansi service berlaku selama 30 hari terhitung dari tanggal konfirmasi pengambilan atau tanggal yang tertera pada nota, untuk kerusakan yang sama dan bukan karena kesalahan pemakaian atau bencana alam.';
 $lang[9] = 'Untuk setiap kamera underwater yang secara default sudah waterproof tanpa menggunakan aksesoris tambahan seperti GOPRO, INSTA360 atau sejenisnya jika dilakukan pengecekan atau perbaikan yang memerlukan pembongkaran total kamera, maka kami tidak bisa memberikan garansi untuk bisa waterproof kembali tanpa menggunakan aksesoris tambahan seperti hausing atau case underwater.';
-$lang[10] = 'Ada penambahan biaya kirim jika unit harus dijemput saat pengambilan atau diantarkan saat selesai perbaikan,sesuai dengan jarak dan ketentuan.';
-$lang[11] = 'Ada penambahan biaya jika pelanggan menginginkan proses agar dipercepat dari estimasi proses standart atau antrian sesuai sistem kami.';
+$lang[10] = 'Untuk setiap proses cleaning tidak dicover garansi dan kami tidak menjamin bisa bersih 100% seperti baru, kami akan melakukan cleaning semaksimal mungkin yang bisa dicapai tanpa pergantian sparepart.';
+$lang[11] = 'Ada penambahan biaya kirim jika unit harus dijemput saat pengambilan atau diantarkan saat selesai perbaikan,sesuai dengan jarak dan ketentuan.';
+$lang[12] = 'Ada penambahan biaya jika pelanggan menginginkan proses agar dipercepat dari estimasi proses standart atau antrian sesuai sistem kami.';
 
 $lang['agree'] = 'Saya setuju';

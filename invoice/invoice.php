@@ -54,7 +54,7 @@ if (!empty($data['acc'])) {
     $acc = 0;
 }
 
-$dp = number_format(str_replace(',', '', $acc) / 2, 0, '.', ',');
+$dp = number_format(str_replace(',', '', $acc), 0, '.', ',');
 
 $spk = str_split($link_spk, 7);
 $huruf = $spk[1];
