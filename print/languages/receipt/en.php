@@ -14,7 +14,7 @@ $lang[7] = 'We are not responsible for the LOSS / DAMAGE of units that have been
 $lang[8] = 'The service warranty is valid for 30 days from the date of pickup confirmation or the date stated on the receipt, applicable to the same issue and not caused by misuse or natural disasters.';
 $lang[9] = 'For all underwater cameras that are originally designed to be waterproof without the use of additional accessories, such as GoPro, Insta360, or similar devices, if an inspection or repair requires complete disassembly of the camera, we are unable to guarantee that the camera will remain waterproof afterward unless additional accessories such as an underwater housing or protective underwater case are used.';
 $lang[10] = 'Please note that all cleaning services are not covered by warranty, and we do not guarantee a 100% brand-new appearance upon completion. However, we will perform the cleaning process to the highest possible standard without replacing any spare parts.';
-$lang[11] = 'There will be an additional delivery fee if the unit needs to be picked up at the start or delivered back upon completion of the repair, according to the distance and terms.';
+$lang[11] = 'To ensure a smooth service workflow and maximize turnaround efficiency, our policy does not include the provision of repair documentation (photo/video). Documentation services are only available upon written request for an official statement and will be subject to an additional fee.';
 $lang[12] = 'An additional fee will apply if the customer requests expedited processing beyond the standard estimated timeline or queue as per our system.';
 
 $lang['agree'] = 'I Agree';
